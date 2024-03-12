@@ -4,11 +4,11 @@ local sn = luasnip.snippet_node
 local t = luasnip.text_node
 local i = luasnip.insert_node
 
-luasnip.add_snippets("python", {
-    s("im", {
-        t('import '),
-    }),
+vim.cmd[[
+iab im import
+]]
 
+luasnip.add_snippets("python", {
     s('if', {
         t('if '),
         i(1, 'expr'),

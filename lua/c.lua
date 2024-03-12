@@ -8,7 +8,7 @@ luasnip.add_snippets("c", {
   s("inc", {
     t("#include<"), 
     i(1),
-    t(".h>"),
+    t({".h>", ""}),
     i(0),
   }),
 
@@ -16,50 +16,51 @@ luasnip.add_snippets("c", {
       t('#define '),
       i(1, 'DEFNAME'),
       t(' '),
-      i(0, 'VALUE')
+      i(2, 'VALUE'),
+      i(0),
   }),
 
   s("if", {
       t("if("),
-      i(1),
+      i(1, "expr"),
       t({") {", "    "}),
-      i(2),
-      t({"", "}"}),
+      i(2, "statement;"),
+      t({"", "}"),
       i(0)
   }),
 
   s("eli", {
       t("else if("),
-      i(1),
+      i(1, "expr"),
       t({") {", "    "}),
-      i(2),
+      i(2, "statement;"),
       t({"", "}"}),
       i(0),
   }),
 
   s("els", {
       t({"else {", ""}),
-      i(1),
+      i(1, "statement;"),
       t({"", "}"}),
       i(0),
   }),
 
   s("for", {
       t("for("),
-      i(1),
+      i(1, "initalize"),
       t("; "),
-      i(2),
+      i(2, "expr"),
       t("; "),
-      i(3),
+      i(3, "incr"),
       t({") {", "    "}),
-      i(4),
+      i(4, "statement;"),
       t({"", "}"}),
       i(0),
   }),
 
   s("switch", {
       t("switch("),
-      i(1, "EXPR"),
+      i(1, "expr"),
       t({") {", "    "}),
       i(2),
       t({"", "}"}),
@@ -78,10 +79,11 @@ luasnip.add_snippets("c", {
 
   s("pri", {
       t('printf("'),
-      i("1"),
+      i(1, "format"),
       t('"'),
-      i(0),
+      i(2, "args..."),
       t(");"),
+      i(0),
   }),
 
 })

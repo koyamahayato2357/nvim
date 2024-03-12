@@ -21,26 +21,33 @@ luasnip.add_snippets("tex", {
 
     s('beg', {
         t('\\begin{'),
-        i(0),
+        i(1),
         t('}'),
+        i(0),
+        
     }),
 
     s('end', {
         t('\\end{'),
-        i(0),
+        i(1),
         t('}'),
+        i(0),
+        
     }),
 
     s('sec', {
         t('\\section{'),
-        i(0),
+        i(1),
         t('}'),
+        i(0),
+        
     }),
 
     s('sbs', {
         t('\\subsection{'),
-        i(0),
+        i(1),
         t('}'),
+        i(0),
     }),
 })
 
