@@ -49,5 +49,37 @@ luasnip.add_snippets("tex", {
         t('}'),
         i(0),
     }),
+
+    s('equ', {
+        t({'\\begin{equation}', ''}),
+        i(1, 'equation'),
+        t({'', '\\end{equation}'}),
+        i(0),
+    }),
+
+    s('item', {
+        t({'\\begin{itemize}', '    \\item{'}),
+        i(1, 'Item'),
+        t('}'),
+        i(2),
+        t({'', '\\end{itemize}'}),
+        i(0),
+    }),
+
+    s('enum', {
+        t({'\\begin{enumerate}', '    \\item{'}),
+        i(1, 'Item'),
+        t('}'),
+        i(2),
+        t({'', '\\end{itemize}'}),
+        i(0),
+    }),
+
+    s('ite', {
+        t('\\item{'),
+        i(1, 'Item'),
+        t('}'),
+        i(0),
+    }),
 })
 

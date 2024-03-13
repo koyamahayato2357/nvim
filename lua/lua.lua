@@ -36,7 +36,7 @@ luasnip.add_snippets("lua", {
 
     s("t", {
         t("t('"),
-        i(2),
+        i(1),
         t("'),"),
         i(0),
     }),

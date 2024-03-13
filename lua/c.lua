@@ -25,7 +25,7 @@ luasnip.add_snippets("c", {
       i(1, "expr"),
       t({") {", "    "}),
       i(2, "statement;"),
-      t({"", "}"),
+      t({"", "}"}),
       i(0)
   }),
 

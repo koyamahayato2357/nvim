@@ -29,6 +29,9 @@ opt.statusline = "%F%m%r%h%w[TYPE=%Y][POS=%l,%c,%p%%,%P][BUF=%n]"
 opt.complete = ".,w,b,u,t,kspell"
 opt.path = ".,,,**"
 opt.completeopt = "menuone,noinsert"
+opt.ttyfast = true
+opt.hidden = true
+opt.autoread = true
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohl<CR>")
 vim.keymap.set("n", "<CR>", "<C-b>")
@@ -62,19 +65,50 @@ vim.keymap.set('n', "v", "<C-v>")
 vim.keymap.set("n", "Q", "q")
 vim.keymap.set("n", "q", "ZZ")
 vim.keymap.set("n", "zz", "<cmd>wqa<CR>")
--- vim.keymap.set('v', '"+y', '<cmd>!win32yank.exe -i --crlf<CR>')
+vim.keymap.set('v', '"+y', '<cmd>!win32yank.exe -i --crlf<CR>')
 vim.keymap.set('n', '"+p', '<cmd>r!win32yank.exe -o --lf<CR>')
 vim.keymap.set({ 'n', 'v' }, 'Y', '"+y')
 vim.keymap.set({ "n", "v", "o" }, "L", "$l")
 vim.keymap.set({ "n", "v", "o" }, "H", "^")
-vim.keymap.set({ "n", "v", "o" }, "K", "5k")
-vim.keymap.set({ "n", "v", "o" }, "J", "5j")
+vim.keymap.set({ "n", "v", "o" }, "K", "25k")
+vim.keymap.set({ "n", "v", "o" }, "J", "25j")
 
 vim.keymap.set('i', "<Tab>", 'v:lua.smart_tab()', {expr = true, noremap = true})
 vim.keymap.set('i', "<S-Tab>", "<C-p>")
 vim.keymap.set('i', '<CR>', 'pumvisible() ? "<C-y>" : "<CR>"')
 
 vim.keymap.set('v', 'T', '<cmd>CarbonPaper<CR>')
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+    { "kylechui/nvim-surround", config = true },
+    "easymotion/vim-easymotion",
+    "alvan/vim-closetag",
+    "tpope/vim-repeat",
+    { "numToStr/Comment.nvim", config = true },
+    "nvim-lua/plenary.nvim",
+    { "windwp/nvim-autopairs", config = true },
+    "kshenoy/vim-signature",
+    "mhinz/vim-startify",
+    'neovim/nvim-lspconfig', 
+    's417-lama/carbonpaper.vim',
+    'yutkat/history-ignore.nvim',
+    { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp", config = true },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
+    { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
+})
 
 vim.cmd[[
 cab nvimrc ~/.config/nvim/init.lua
@@ -95,46 +129,28 @@ function smart_tab()
     end
 end
 
-local telescope_setup, telescope = pcall(require, "telescope")
-telescope.setup()
-telescope.load_extension("fzf")
-
-local autopairs_setup, autopairs = pcall(require, "nvim-autopairs")
-autopairs.setup({
-    check_ts = true
-})
-
-vim.keymap.set({"i", "s"}, "<C-E>", function()
-	if luasnip.choice_active() then
-		luasnip.change_choice(1)
-	end
-end, {silent = true})
+local lspconfig = require("lspconfig")
 
 local ext = vim.fn.expand("%"):match("%.(%w+)$")
 if ext == "c" or ext == "cpp" then
-    require'lspconfig'.clangd.setup{}
+    lspconfig.clangd.setup{}
     require('c')
 elseif ext == "py" then
-    require'lspconfig'.pylsp.setup{}
+    lspconfig.pyright.setup{}
     require('python')
 elseif ext == "html" then
-    require'lspconfig'.html.setup{
-        cmd = { "vscode-html-languageserver", "--stdio" },
-    }
+    require("html")
 elseif ext == "js" or ext == "ts" then
-    require'lspconfig'.tsserver.setup{}
+    lspconfig.tsserver.setup{}
 elseif ext == "rs" then
-    require'lspconfig'.rust_analyzer.setup{}
+    lspconfig.rust_analyzer.setup{}
 elseif ext == "tex" then
-    require'lspconfig'.texlab.setup{}
     require('tex')
 elseif ext == "hs" then
-    require'lspconfig'.hls.setup{}
 elseif ext == "lua" then
-    require("lua")
+    -- require("lua")
 end
 
-require("toggleterm").setup()
 local luasnip = require("luasnip")
 vim.keymap.set({"i"}, "ŝ", function() luasnip.expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "ŭ", function() luasnip.jump( 1) end, {silent = true})
@@ -147,29 +163,4 @@ vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 vim.api.nvim_set_hl(0, "Pmenu", {bg = "none"})
 
-vim.cmd([[packadd packer.nvim]])
-
-require("packer").startup(function()
-    use "wbthomason/packer.nvim"
-    use "kylechui/nvim-surround"
-    use "easymotion/vim-easymotion"
-    use "alvan/vim-closetag"
-    use "tpope/vim-repeat"
-    use "nvim-lua/plenary.nvim"
-    use "windwp/nvim-autopairs"
-    use "kshenoy/vim-signature"
-    use "mhinz/vim-startify"
-    use 'neovim/nvim-lspconfig'
-    use 's417-lama/carbonpaper.vim'
-    use 'akinsho/toggleterm.nvim'
-    use 'yutkat/history-ignore.nvim'
-    use({
-    	"L3MON4D3/LuaSnip",
-    	tag = "v2.*", 
-    	run = "make install_jsregexp"
-    })
-    use { 'kartikp10/noctis.nvim', requires = { 'rktjmp/lush.nvim' } }
-    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-    use { "nvim-telescope/telescope.nvim", branch = "0.1.x" }
-end)
 

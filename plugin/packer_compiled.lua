@@ -74,95 +74,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
-  ["carbonpaper.vim"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/carbonpaper.vim",
-    url = "https://github.com/s417-lama/carbonpaper.vim"
-  },
-  ["history-ignore.nvim"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/history-ignore.nvim",
-    url = "https://github.com/yutkat/history-ignore.nvim"
-  },
-  ["lush.nvim"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/lush.nvim",
-    url = "https://github.com/rktjmp/lush.nvim"
-  },
-  ["noctis.nvim"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/noctis.nvim",
-    url = "https://github.com/kartikp10/noctis.nvim"
-  },
-  ["nvim-autopairs"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
-    url = "https://github.com/windwp/nvim-autopairs"
-  },
-  ["nvim-lspconfig"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
-    url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-surround"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/nvim-surround",
-    url = "https://github.com/kylechui/nvim-surround"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/sundo/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
-  },
-  ["plenary.nvim"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/plenary.nvim",
-    url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["telescope-fzf-native.nvim"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
-    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
-  },
-  ["telescope.nvim"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/telescope.nvim",
-    url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["toggleterm.nvim"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
-    url = "https://github.com/akinsho/toggleterm.nvim"
-  },
-  ["vim-closetag"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/vim-closetag",
-    url = "https://github.com/alvan/vim-closetag"
-  },
-  ["vim-easymotion"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/vim-easymotion",
-    url = "https://github.com/easymotion/vim-easymotion"
-  },
-  ["vim-repeat"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/vim-repeat",
-    url = "https://github.com/tpope/vim-repeat"
-  },
-  ["vim-signature"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/vim-signature",
-    url = "https://github.com/kshenoy/vim-signature"
-  },
-  ["vim-startify"] = {
-    loaded = true,
-    path = "/home/sundo/.local/share/nvim/site/pack/packer/start/vim-startify",
-    url = "https://github.com/mhinz/vim-startify"
   }
 }
 
