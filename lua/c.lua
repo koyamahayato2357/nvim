@@ -24,7 +24,7 @@ luasnip.add_snippets("c", {
       t("if("),
       i(1, "expr"),
       t({") {", "    "}),
-      i(2, "statement;"),
+      i(2),
       t({"", "}"}),
       i(0)
   }),
@@ -33,14 +33,14 @@ luasnip.add_snippets("c", {
       t("else if("),
       i(1, "expr"),
       t({") {", "    "}),
-      i(2, "statement;"),
+      i(2),
       t({"", "}"}),
       i(0),
   }),
 
   s("els", {
       t({"else {", ""}),
-      i(1, "statement;"),
+      i(1),
       t({"", "}"}),
       i(0),
   }),
@@ -53,7 +53,7 @@ luasnip.add_snippets("c", {
       t("; "),
       i(3, "incr"),
       t({") {", "    "}),
-      i(4, "statement;"),
+      i(4),
       t({"", "}"}),
       i(0),
   }),
@@ -71,7 +71,7 @@ luasnip.add_snippets("c", {
       t("case "),
       i(1, "VALUE"),
       t({":", "    "}),
-      i(2, "STATEMENT"),
+      i(2),
       t({";", "break;"}),
       i(0)
 

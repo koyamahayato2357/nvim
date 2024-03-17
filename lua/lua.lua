@@ -16,13 +16,22 @@ luasnip.add_snippets("lua", {
         i(0),
     }),
 
-    s("use", {
-        t("use '"),
-        i(1, "user"),
-        t("/"),
-        i(2, "repository"),
-        t("'"),
-        i(0),
+    s('if', {
+        t('if '),
+        i(1, 'expr'),
+        t({' then', '    '}),
+        i(2),
+        t({'', 'end'})
+    }),
+
+    s('fun', {
+        t('function '),
+        i(1, 'f_name'),
+        t('('),
+        i(2),
+        t({')', '    '}),
+        i(3),
+        t({'', 'end'}),
     }),
 
     s("s", {

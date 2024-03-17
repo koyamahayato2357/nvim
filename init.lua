@@ -1,11 +1,42 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+    { "kylechui/nvim-surround", config = true },
+    "easymotion/vim-easymotion",
+    "alvan/vim-closetag",
+    "tpope/vim-repeat",
+    { "numToStr/Comment.nvim", config = true },
+    "nvim-lua/plenary.nvim",
+    { "windwp/nvim-autopairs", config = true },
+    "kshenoy/vim-signature",
+    "mhinz/vim-startify",
+    'neovim/nvim-lspconfig', 
+    's417-lama/carbonpaper.vim',
+    'yutkat/history-ignore.nvim',
+    { 'nvim-tree/nvim-web-devicons', config = true },
+    {'gbprod/substitute.nvim', opts = { modifiers = nil } },
+    { 'chrisgrieser/nvim-various-textobjs', opts = { useDefaultKeymaps = true } },
+    { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp", config = true },
+    { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
+})
+
 pcall(vim.cmd, "colorscheme habamax")
 
 local opt = vim.opt
     
 opt.number = true
-opt.relativenumber = true
 opt.foldmethod = "manual"
-opt.tags="./tags;~"
 opt.virtualedit = "all"
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -45,6 +76,10 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "gw", "<Plug>(easymotion-bd-w)")
 vim.keymap.set("n", "gs", "<Plug>(easymotion-s2)")
+vim.keymap.set('n', 's', require("substitute").operator, { noremap = true })
+vim.keymap.set('n', 'ss', require("substitute").line, { noremap = true })
+vim.keymap.set('n', 'S', require("substitute").eol, { noremap = true })
+vim.keymap.set('x', 's', require("substitute").visual, { noremap = true })
 vim.keymap.set("n", "gz", "<cmd>Telescope find_files<CR>")
 vim.keymap.set('n', 'gb', '<cmd>Telescope buffers<CR>')
 vim.keymap.set("n", "gl", "<cmd>Telescope live_grep<CR>")
@@ -62,57 +97,47 @@ vim.keymap.set('n', 'U', '<C-r>')
 vim.keymap.set('n', '#', 'gt')
 vim.keymap.set('n', 'S', ':%s/')
 vim.keymap.set('n', "v", "<C-v>")
-vim.keymap.set("n", "Q", "q")
+vim.keymap.set('n', "<C-v>", "v")
+vim.keymap.set("n", "gQ", "q")
 vim.keymap.set("n", "q", "ZZ")
 vim.keymap.set("n", "zz", "<cmd>wqa<CR>")
 vim.keymap.set('v', '"+y', '<cmd>!win32yank.exe -i --crlf<CR>')
 vim.keymap.set('n', '"+p', '<cmd>r!win32yank.exe -o --lf<CR>')
+vim.keymap.set("n", "K", "25k")
+vim.keymap.set("n", "J", "25j")
+vim.keymap.set({ 'o', 'v' }, 'K', '5k')
+vim.keymap.set({ 'o', 'v' }, 'J', '5j')
 vim.keymap.set({ 'n', 'v' }, 'Y', '"+y')
 vim.keymap.set({ "n", "v", "o" }, "L", "$l")
 vim.keymap.set({ "n", "v", "o" }, "H", "^")
-vim.keymap.set({ "n", "v", "o" }, "K", "25k")
-vim.keymap.set({ "n", "v", "o" }, "J", "25j")
 
-vim.keymap.set('i', "<Tab>", 'v:lua.smart_tab()', {expr = true, noremap = true})
+vim.keymap.set('i', '<Delete>', 'v:lua.smart_delete()', { expr = true, noremap = true })
+vim.keymap.set('i', "<Tab>", 'v:lua.smart_tab()', { expr = true, noremap = true })
 vim.keymap.set('i', "<S-Tab>", "<C-p>")
-vim.keymap.set('i', '<CR>', 'pumvisible() ? "<C-y>" : "<CR>"')
 
 vim.keymap.set('v', 'T', '<cmd>CarbonPaper<CR>')
-
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
-    { "kylechui/nvim-surround", config = true },
-    "easymotion/vim-easymotion",
-    "alvan/vim-closetag",
-    "tpope/vim-repeat",
-    { "numToStr/Comment.nvim", config = true },
-    "nvim-lua/plenary.nvim",
-    { "windwp/nvim-autopairs", config = true },
-    "kshenoy/vim-signature",
-    "mhinz/vim-startify",
-    'neovim/nvim-lspconfig', 
-    's417-lama/carbonpaper.vim',
-    'yutkat/history-ignore.nvim',
-    { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp", config = true },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
-    { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
-})
 
 vim.cmd[[
 cab nvimrc ~/.config/nvim/init.lua
 ]]
+
+-- local npairs = require('nvim-autopairs')
+
+-- function smart_cr()
+--     if vim.fn.pumvisible() ~= 0 then
+--         return npairs.esc('<C-y>')
+--     else
+--         return npairs.autopairs_cr()
+--     end
+-- end
+
+function smart_delete()
+    if vim.fn.pumvisible() ~= 0 then
+        return "<C-y>"
+    else
+        return "<Delete>"
+    end
+end
 
 function smart_tab()
     local col = vim.fn.col('.')
@@ -124,7 +149,7 @@ function smart_tab()
     if preceding_char == "\t" or preceding_char == " " then
         return "\t"
     else
-        vim.api.nvim_out_write(preceding_char)
+        -- vim.api.nvim_out_write(preceding_char)
         return "<C-n>"
     end
 end
@@ -148,7 +173,7 @@ elseif ext == "tex" then
     require('tex')
 elseif ext == "hs" then
 elseif ext == "lua" then
-    -- require("lua")
+    require("lua")
 end
 
 local luasnip = require("luasnip")
