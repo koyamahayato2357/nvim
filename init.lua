@@ -11,30 +11,29 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-    { "kylechui/nvim-surround", config = true },
-    "easymotion/vim-easymotion",
-    "alvan/vim-closetag",
-    "tpope/vim-repeat",
-    { "numToStr/Comment.nvim", config = true },
-    "nvim-lua/plenary.nvim",
-    { "windwp/nvim-autopairs", config = true },
-    "kshenoy/vim-signature",
-    "mhinz/vim-startify",
+require('lazy').setup({
+    { 'smoka7/hop.nvim', config = true },
+    { 'folke/flash.nvim', config = true },
+    { 'kylechui/nvim-surround', config = true },
+    { 'windwp/nvim-autopairs', config = true },
+    { 'nvim-telescope/telescope.nvim', branch = '0.1.x' },
+    { 'numToStr/Comment.nvim', config = true },
+    { 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp', config = true },
+    { 'gbprod/substitute.nvim', opts = { modifiers = nil } },
+    { 'jonatan-branting/nvim-better-n', config = true },
+    { 'nvim-treesitter/nvim-treesitter', config = true },
+    { 'folke/tokyonight.nvim', lazy = false },
+    { 'rebelot/kanagawa.nvim', lazy = false },
+    'tpope/vim-repeat',
+    'mhinz/vim-startify',
     'neovim/nvim-lspconfig', 
-    's417-lama/carbonpaper.vim',
-    'yutkat/history-ignore.nvim',
-    { 'nvim-tree/nvim-web-devicons', config = true },
-    {'gbprod/substitute.nvim', opts = { modifiers = nil } },
-    { 'chrisgrieser/nvim-various-textobjs', opts = { useDefaultKeymaps = true } },
-    { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp", config = true },
-    { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
+    'nvim-lua/plenary.nvim',
 })
 
-pcall(vim.cmd, "colorscheme habamax")
+pcall(vim.cmd, "colorscheme kanagawa")
 
 local opt = vim.opt
-    
+
 opt.number = true
 opt.foldmethod = "manual"
 opt.virtualedit = "all"
@@ -74,19 +73,19 @@ vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
-vim.keymap.set("n", "gw", "<Plug>(easymotion-bd-w)")
-vim.keymap.set("n", "gs", "<Plug>(easymotion-s2)")
+vim.keymap.set('n', 'ga', '<cmd>HopAnywhere<CR>')
+vim.keymap.set('n', 'gL', '<cmd>HopLine<CR>')
+vim.keymap.set('n', 'go', '<cmd>HopChar1<CR>')
+vim.keymap.set("n", "gt", "<cmd>HopChar2<CR>")
+vim.keymap.set("n", "gw", "<cmd>HopWord<CR>")
 vim.keymap.set('n', 's', require("substitute").operator, { noremap = true })
 vim.keymap.set('n', 'ss', require("substitute").line, { noremap = true })
 vim.keymap.set('n', 'S', require("substitute").eol, { noremap = true })
 vim.keymap.set('x', 's', require("substitute").visual, { noremap = true })
-vim.keymap.set("n", "gz", "<cmd>Telescope find_files<CR>")
-vim.keymap.set('n', 'gb', '<cmd>Telescope buffers<CR>')
-vim.keymap.set("n", "gl", "<cmd>Telescope live_grep<CR>")
-vim.keymap.set("n", "gh", "<cmd>Telescope help_tags<CR>")
-vim.keymap.set("n", "gq", "<cmd>Telescope quickfix<CR>")
-vim.keymap.set('n', "g/", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
-vim.keymap.set('n', "gt", "<cmd>ToggleTerm direction=float<CR>")
+vim.keymap.set("n", ",z", "<cmd>Telescope find_files<CR>")
+vim.keymap.set('n', ',b', '<cmd>Telescope buffers<CR>')
+vim.keymap.set("n", ",l", "<cmd>Telescope live_grep<CR>")
+vim.keymap.set('n', ",/", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
 vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
@@ -94,8 +93,6 @@ vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 vim.keymap.set('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', 'U', '<C-r>')
-vim.keymap.set('n', '#', 'gt')
-vim.keymap.set('n', 'S', ':%s/')
 vim.keymap.set('n', "v", "<C-v>")
 vim.keymap.set('n', "<C-v>", "v")
 vim.keymap.set("n", "gQ", "q")
@@ -107,35 +104,30 @@ vim.keymap.set("n", "K", "25k")
 vim.keymap.set("n", "J", "25j")
 vim.keymap.set({ 'o', 'v' }, 'K', '5k')
 vim.keymap.set({ 'o', 'v' }, 'J', '5j')
-vim.keymap.set({ 'n', 'v' }, 'Y', '"+y')
-vim.keymap.set({ "n", "v", "o" }, "L", "$l")
-vim.keymap.set({ "n", "v", "o" }, "H", "^")
+vim.keymap.set({ "n", "v", "o" }, "L", "5l")
+vim.keymap.set({ "n", "v", "o" }, "H", "5h")
+vim.keymap.set({ "n", "v", "o" }, "gl", "$")
+vim.keymap.set({ "n", "v", "o" }, "gh", "^")
 
 vim.keymap.set('i', '<Delete>', 'v:lua.smart_delete()', { expr = true, noremap = true })
 vim.keymap.set('i', "<Tab>", 'v:lua.smart_tab()', { expr = true, noremap = true })
-vim.keymap.set('i', "<S-Tab>", "<C-p>")
+vim.keymap.set('i', '<Esc>', 'v:lua.smart_esc()', { expr = true, noremap = true })
 
 vim.keymap.set('v', 'T', '<cmd>CarbonPaper<CR>')
 
 vim.cmd[[
 cab nvimrc ~/.config/nvim/init.lua
+cab help Telescope help_tags
+set cpoptions+=$
+set cpoptions+=I
+set cpoptions+=v
 ]]
 
--- local npairs = require('nvim-autopairs')
-
--- function smart_cr()
---     if vim.fn.pumvisible() ~= 0 then
---         return npairs.esc('<C-y>')
---     else
---         return npairs.autopairs_cr()
---     end
--- end
-
 function smart_delete()
-    if vim.fn.pumvisible() ~= 0 then
-        return "<C-y>"
-    else
+    if vim.fn.pumvisible() == 0 then
         return "<Delete>"
+    else
+        return "<C-y>"
     end
 end
 
@@ -151,6 +143,14 @@ function smart_tab()
     else
         -- vim.api.nvim_out_write(preceding_char)
         return "<C-n>"
+    end
+end
+
+function smart_esc()
+    if vim.fn.col('.') == 1 then
+        return "<Esc>"
+    else
+        return "<Esc>l"
     end
 end
 
@@ -187,5 +187,4 @@ vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
 vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 vim.api.nvim_set_hl(0, "Pmenu", {bg = "none"})
-
 
