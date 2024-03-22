@@ -22,7 +22,7 @@ require('lazy').setup({
     { 'savq/melange-nvim', lazy = false },
     { 'smoka7/hop.nvim', config = true, event = "VeryLazy", },
     { 'tpope/vim-repeat', event = "VeryLazy", },
-    { 'vim-jp/vimdoc-ja', event = "VeryLazy"}
+    { 'vim-jp/vimdoc-ja', event = "VeryLazy"},
     { 'windwp/nvim-autopairs', config = true, event = "VeryLazy", },
 })
 
@@ -53,7 +53,7 @@ o.scrolloff = 10
 o.signcolumn = "yes"
 o.smartcase = true
 o.smartindent = true
-o.statusline = "%#PmenuSel#%m%r%h%w%=%=%F%=[TYPE=%Y][POS=%l,%c,%p%%,%P][BUF=%n]"
+o.statusline = "%m%r%h%w%=%=%F%=[TYPE=%Y][POS=%l,%c,%p%%,%P][BUF=%n]"
 o.termguicolors = true
 o.textwidth = 79
 o.tildeop = true
@@ -92,8 +92,8 @@ vim.keymap.set('n', 'zj', '<C-w>j')
 vim.keymap.set('n', 'zk', '<C-w>k')
 vim.keymap.set('n', 'zl', '<C-w>l')
 vim.keymap.set('n', 'zw', '<C-w>w')
-vim.keymap.set('n', 'zo', '<C-w>o')
-vim.keymap.set('n', 'zi', '<C-w>i')
+vim.keymap.set('n', 'zo', '<C-o>')
+vim.keymap.set('n', 'zi', '<C-i>')
 vim.keymap.set({ 'o', 'v' }, 'K', '5k')
 vim.keymap.set({ 'o', 'v' }, 'J', '5j')
 vim.keymap.set({ "n", "v", "o" }, "L", "5l")
@@ -166,4 +166,5 @@ vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
 vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 vim.api.nvim_set_hl(0, "Pmenu", {bg = "none"})
+vim.api.nvim_set_hl(0, "StatusLine", {bg = "none"})
 
