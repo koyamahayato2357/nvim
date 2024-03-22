@@ -12,61 +12,56 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    { 'smoka7/hop.nvim', config = true, event = "VeryLazy", },
-    { 'folke/flash.nvim', config = true, event = "VeryLazy", },
-    { 'kylechui/nvim-surround', config = true, event = "VeryLazy", },
-    { 'windwp/nvim-autopairs', config = true, event = "VeryLazy", },
-    { 'numToStr/Comment.nvim', config = true, event = "VeryLazy", },
     { 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp', config = true, event = "VeryLazy", },
+    { 'folke/flash.nvim', config = true, event = "VeryLazy", },
     { 'gbprod/substitute.nvim', opts = { modifiers = nil }, event = "VeryLazy", },
+    { 'kylechui/nvim-surround', config = true, event = "VeryLazy", },
+    { 'neovim/nvim-lspconfig', event = "VeryLazy", },
+    { 'numToStr/Comment.nvim', config = true, event = "VeryLazy", },
     { 'nvim-treesitter/nvim-treesitter', config = true, event = "VeryLazy", },
     { 'savq/melange-nvim', lazy = false },
-    {'tpope/vim-repeat', event = "VeryLazy", },
-    {'neovim/nvim-lspconfig', event = "VeryLazy", },
+    { 'smoka7/hop.nvim', config = true, event = "VeryLazy", },
+    { 'tpope/vim-repeat', event = "VeryLazy", },
     { 'vim-jp/vimdoc-ja', event = "VeryLazy"}
+    { 'windwp/nvim-autopairs', config = true, event = "VeryLazy", },
 })
 
 pcall(vim.cmd, "colorscheme melange")
 
 local o = vim.o
 
-o.number = true
-o.foldmethod = "manual"
-o.virtualedit = "onemore,insert"
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
-o.textwidth = 79
-o.expandtab = false
-o.lazyredraw = true
-o.termguicolors = true
-o.signcolumn = "yes"
-o.ruler = true
-o.smartindent = true
-o.hlsearch = true
-o.incsearch = true
-o.ignorecase = true
-o.smartcase = true
-o.title = true
-o.wildmenu = true
-o.scrolloff = 10
-o.laststatus = 3
-o.statusline = "%#PmenuSel#%m%r%h%w%=%=%F%=[TYPE=%Y][POS=%l,%c,%p%%,%P][BUF=%n]"
-o.complete = ".,w,b,u,t,kspell"
-o.path = ".,,,**"
-o.completeopt = "menuone,noinsert"
-o.ttyfast = true
-o.hidden = true
 o.autoread = true
 o.backspace = ""
+o.complete = ".,w,b,u,t,kspell"
+o.completeopt = "menu,longest"
+o.foldmethod = "manual"
 o.gdefault = true
-o.matchpairs = "(:),{:},[:],<:>,=:;"
-o.mouse = ""
-o.tildeop = false
-o.timeout = false
-o.writeany = true
 o.guicursor = "i:block"
 o.helplang = "ja,en"
+o.hidden = true
+o.hlsearch = true
+o.ignorecase = true
+o.incsearch = true
+o.laststatus = 2
+o.lazyredraw = true
+o.matchpairs = "(:),{:},[:],<:>,=:;"
+o.mouse = ""
+o.number = true
+o.path = ".,,,**"
+o.ruler = true
+o.scrolloff = 10
+o.signcolumn = "yes"
+o.smartcase = true
+o.smartindent = true
+o.statusline = "%#PmenuSel#%m%r%h%w%=%=%F%=[TYPE=%Y][POS=%l,%c,%p%%,%P][BUF=%n]"
+o.termguicolors = true
+o.textwidth = 79
+o.tildeop = true
+o.timeout = false
+o.ttyfast = true
+o.virtualedit = "onemore,insert"
+o.wildmenu = true
+o.writeany = true
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohl<CR>")
 vim.keymap.set("n", "<CR>", "<C-b>")
@@ -118,7 +113,6 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 vim.cmd[[
 cab nvimrc ~/.config/nvim/init.lua
-cab help Telescope help_tags
 iab #b /******************************************
 iab # <Space>*<Space>
 iab #e <Space>******************************************/
