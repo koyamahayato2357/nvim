@@ -12,8 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-	'neovim/nvim-lspconfig',
-	{ 'kihachi2000/yash.nvim', keys = { { "U", mode = "n" }, }, },
+	{ 'neovim/nvim-lspconfig', event = "VeryLazy", },
 	{ 'folke/flash.nvim', config = true, keys = { { "U", mode = "n" }, }, },
 	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, keys = { { "U", mode = "n", }, }, },
 	{ 'kylechui/nvim-surround', config = true, keys = { { "U", mode = "n", }, }, },
@@ -21,9 +20,11 @@ require('lazy').setup({
 	{ 'nvim-treesitter/nvim-treesitter', config = true, event = "VeryLazy", },
 	{ 'smoka7/hop.nvim', config = true, keys = { { "U", mode = "n", }, }, },
 	{ 'tpope/vim-repeat', keys = { { "U", mode = "n", }, }, },
-	{ 'vim-jp/nvimdoc-ja', keys = { { "U", mode = "n" }, }, },
-	{ 'vim-jp/vimdoc-ja', keys = { { "U", mode = "n" }, }, },
+	'vim-jp/nvimdoc-ja',
+	'vim-jp/vimdoc-ja',
 	{ 'windwp/nvim-autopairs', config = true, keys = { { "U", mode = "n", }, }, },
+	{ 'savq/melange-nvim', keys = { { "c", mode = "c", }, }, },
+	{ 'kihachi2000/yash.nvim', keys = { { "c", mode = "c" }, }, },
 })
 
 require('colorscheme')
@@ -68,13 +69,14 @@ o.wildmenu = true
 o.writeany = true
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohl<CR>")
-vim.keymap.set("n", "<CR>", "<C-b>")
+vim.keymap.set("n", "<BS>", "<C-b>")
 vim.keymap.set("n", "<Space>", "<C-f>")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", ",w", "<cmd>w<CR>")
+vim.keymap.set("n", "du", "cmd>bd<CR>")
 vim.keymap.set('n', 'ga', '<cmd>HopAnywhere<CR>')
 vim.keymap.set('n', 'gL', '<cmd>HopLine<CR>')
 vim.keymap.set("n", "gw", "<cmd>HopWord<CR>")
@@ -100,6 +102,7 @@ vim.keymap.set('n', 'zl', '<C-w>l')
 vim.keymap.set('n', 'zw', '<C-w>w')
 vim.keymap.set('n', 'zo', '<C-o>')
 vim.keymap.set('n', 'zi', '<C-i>')
+vim.keymap.set("n", "zs", "m'")
 vim.keymap.set({ 'o', 'v' }, 'K', '5k')
 vim.keymap.set({ 'o', 'v' }, 'J', '5j')
 vim.keymap.set({ "n", "v", "o" }, "L", "5l")
@@ -118,6 +121,8 @@ vim.keymap.set('i', 'n', 'pumvisible() ? "<C-n>" : "n"', { expr = true, noremap 
 vim.keymap.set('i', 'p', 'pumvisible() ? "<C-p>" : "p"', { expr = true, noremap = true })
 
 vim.keymap.set('v', 'T', '<cmd>CarbonPaper<CR>')
+vim.keymap.set('v', '<C-k>', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv")
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
