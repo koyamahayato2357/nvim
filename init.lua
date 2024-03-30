@@ -35,6 +35,7 @@ o.autoread = true
 o.backspace = ""
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
+o.cursorline = true
 o.foldmethod = "manual"
 o.gdefault = true
 o.guicursor = "i:block"
@@ -70,16 +71,17 @@ o.writeany = true
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohl<CR>")
 vim.keymap.set("n", "<BS>", "<C-b>")
-vim.keymap.set("n", "<Space>", "<C-f>")
+vim.keymap.set("n", "<Delete>", "<C-f>")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
-vim.keymap.set("n", ",w", "<cmd>w<CR>")
-vim.keymap.set("n", "du", "cmd>bd<CR>")
-vim.keymap.set('n', 'ga', '<cmd>HopAnywhere<CR>')
-vim.keymap.set('n', 'gL', '<cmd>HopLine<CR>')
-vim.keymap.set("n", "gw", "<cmd>HopWord<CR>")
+vim.keymap.set("n", "<Space>w", "<cmd>w<CR>")
+vim.keymap.set("n", "<Space>bd", "cmd>bd<CR>")
+vim.keymap.set("n", "<Space>bb", "cmd>b#<CR>")
+vim.keymap.set('n', '<Space>a', '<cmd>HopAnywhere<CR>')
+vim.keymap.set('n', '<Space>l', '<cmd>HopLine<CR>')
+vim.keymap.set("n", "<Space>w", "<cmd>HopWord<CR>")
 vim.keymap.set('n', 's', require("substitute").operator, { noremap = true })
 vim.keymap.set('n', 'ss', require("substitute").line, { noremap = true })
 vim.keymap.set('x', 's', require("substitute").visual, { noremap = true })
@@ -103,6 +105,8 @@ vim.keymap.set('n', 'zw', '<C-w>w')
 vim.keymap.set('n', 'zo', '<C-o>')
 vim.keymap.set('n', 'zi', '<C-i>')
 vim.keymap.set("n", "zs", "m'")
+vim.keymap.set('n', '<Space>', '<Nop>')
+vim.keymap.set('n', '<CR>', '<Nop>')
 vim.keymap.set({ 'o', 'v' }, 'K', '5k')
 vim.keymap.set({ 'o', 'v' }, 'J', '5j')
 vim.keymap.set({ "n", "v", "o" }, "L", "5l")
@@ -130,6 +134,7 @@ vim.keymap.set('o', '7', "i'")
 vim.keymap.set('o', '9', 'i(')
 vim.keymap.set('o', ']', 'i]')
 vim.keymap.set('o', '}', 'i}')
+vim.keymap.set('o', '.', 'i>')
 
 vim.cmd[[
 cab nvimrc ~/.config/nvim/init.lua
@@ -137,6 +142,8 @@ iab #b /******************************************
 iab # <Space>*<Space>
 iab #e <Space>******************************************/
 set cpoptions+=$Iv
+highlight LineNr guifg=#83866c
+highlight CursorLineNr guifg=#c5d6b9
 ]]
 
 function smart_tab()
