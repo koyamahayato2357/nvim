@@ -123,8 +123,13 @@ vim.keymap.set('i', 'p', 'pumvisible() ? "<C-p>" : "p"', { expr = true, noremap 
 vim.keymap.set('v', 'T', '<cmd>CarbonPaper<CR>')
 vim.keymap.set('v', '<C-k>', ":m '<-2<CR>gv=gv")
 vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'v', "<C-v>")
 
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+vim.keymap.set('o', '2', 'i"')
+vim.keymap.set('o', '7', "i'")
+vim.keymap.set('o', '9', 'i(')
+vim.keymap.set('o', ']', 'i]')
+vim.keymap.set('o', '}', 'i}')
 
 vim.cmd[[
 cab nvimrc ~/.config/nvim/init.lua
