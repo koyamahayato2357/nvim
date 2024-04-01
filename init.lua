@@ -169,10 +169,18 @@ local ext = vim.fn.expand("%"):match("%.(%w+)$")
 if ext == "c" or ext == "cpp" then
 	lspconfig.clangd.setup{}
 elseif ext == "py" then
-	lspconfig.pyright.setup{}
+	lspconfig.pylyzer.setup{}
 elseif ext == "js" or ext == "ts" then
 	lspconfig.tsserver.setup{}
 elseif ext == "rs" then
 	lspconfig.rust_analyzer.setup{}
+elseif ext == "lua" then
+	lspconfig.lua_ls.setup{}
+elseif ext == "tex" then
+	lspconfig.texlab.setup{}
+elseif ext == "asm" then
+	lspconfig.asm_lsp.setup{}
+elseif ext == "v" then
+	lspconfig.svls.setup{}
 end
 
