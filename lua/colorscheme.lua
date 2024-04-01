@@ -70,8 +70,8 @@ for name, attrs in pairs {
 	VertSplit = { fg = a.ui },
 	WinSeparator = { fg = a.ui },
 
-	LineNr = { bg = "none" },
-	CursorLineNr = { fg = c.yellow },
+	LineNr = { fg = "#83866c", bg = "none" },
+	CursorLineNr = { fg = "#c5d6b9" },
 
 	Folded = { bg = "none" },
 	FoldColumn = 'LineNr',

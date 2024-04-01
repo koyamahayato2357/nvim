@@ -145,8 +145,6 @@ iab #b /******************************************
 iab # <Space>*<Space>
 iab #e <Space>******************************************/
 set cpoptions+=$Iv
-highlight LineNr guifg=#83866c
-highlight CursorLineNr guifg=#c5d6b9
 ]]
 
 function smart_tab()
