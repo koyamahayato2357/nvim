@@ -20,11 +20,8 @@ require('lazy').setup({
 	{ 'nvim-treesitter/nvim-treesitter', config = true, event = "VeryLazy", },
 	{ 'smoka7/hop.nvim', config = true, keys = { { "U", mode = "n", }, }, },
 	{ 'tpope/vim-repeat', keys = { { "U", mode = "n", }, }, },
-	'vim-jp/nvimdoc-ja',
 	'vim-jp/vimdoc-ja',
 	{ 'windwp/nvim-autopairs', config = true, keys = { { "U", mode = "n", }, }, },
-	{ 'savq/melange-nvim', keys = { { "c", mode = "c", }, }, },
-	{ 'kihachi2000/yash.nvim', keys = { { "c", mode = "c" }, }, },
 })
 
 require('colorscheme')
@@ -36,6 +33,7 @@ o.backspace = ""
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
 o.cursorline = true
+o.cmdheight = 0
 o.foldmethod = "manual"
 o.gdefault = true
 o.guicursor = "i:block"
@@ -47,7 +45,7 @@ o.incsearch = true
 o.laststatus = 2
 o.lazyredraw = true
 o.list = true
-o.listchars = "tab:>-,trail:*,extends:>,precedes:<,nbsp:+"
+o.listchars = "tab:┃ ,trail:×,extends:>,precedes:<,nbsp:+"
 o.matchpairs = "(:),{:},[:],<:>,=:;"
 o.mouse = ""
 o.number = true
@@ -109,6 +107,8 @@ vim.keymap.set('n', 'zi', '<C-i>')
 vim.keymap.set("n", "zs", "m'")
 vim.keymap.set('n', '<Space>', '<Nop>')
 vim.keymap.set('n', '<CR>', '<Nop>')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set({ 'o', 'v' }, 'K', '5k')
 vim.keymap.set({ 'o', 'v' }, 'J', '5j')
 vim.keymap.set({ "n", "v", "o" }, "L", "5l")
