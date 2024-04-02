@@ -145,7 +145,6 @@ iab #b /******************************************
 iab # <Space>*<Space>
 iab #e <Space>******************************************/
 set cpoptions+=$Iv
-autocmd BufEnter * lua lsp_config()
 ]]
 
 function smart_tab()
@@ -194,4 +193,8 @@ function lsp_config()
 		require('lspconfig').neocmake.setup{}
 	end
 end
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	callback = function() lsp_config() end
+})
 
