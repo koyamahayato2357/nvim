@@ -145,6 +145,7 @@ iab #b /******************************************
 iab # <Space>*<Space>
 iab #e <Space>******************************************/
 set cpoptions+=$Iv
+autocmd VimEnter * lua lsp_config()
 ]]
 
 function smart_tab()
@@ -161,24 +162,27 @@ function smart_tab()
 	end
 end
 
-local lspconfig = require("lspconfig")
-
-local ext = vim.fn.expand("%"):match("%.(%w+)$")
-if ext == "c" or ext == "cpp" then
-	lspconfig.clangd.setup{}
-elseif ext == "py" then
-	lspconfig.pylyzer.setup{}
-elseif ext == "js" or ext == "ts" then
-	lspconfig.tsserver.setup{}
-elseif ext == "rs" then
-	lspconfig.rust_analyzer.setup{}
-elseif ext == "lua" then
-	lspconfig.lua_ls.setup{}
-elseif ext == "tex" then
-	lspconfig.texlab.setup{}
-elseif ext == "asm" then
-	lspconfig.asm_lsp.setup{}
-elseif ext == "v" then
-	lspconfig.svls.setup{}
+function lsp_config()
+	local lspconfig = require("lspconfig")
+	local filetype = vim.bo.filetype
+	if filetype == "c" or filetype == "cpp" then
+		lspconfig.clangd.setup{}
+	elseif filetype == "python" then
+		lspconfig.pylyzer.setup{}
+	elseif filetype == "javascript" or filetype == "typescript" then
+		lspconfig.tsserver.setup{}
+	elseif filetype == "rust" then
+		lspconfig.rust_analyzer.setup{}
+	elseif filetype == "lua" then
+		lspconfig.lua_ls.setup{}
+	elseif filetype == "tex" then
+		lspconfig.texlab.setup{}
+	elseif filetype == "asm" then
+		lspconfig.asm_lsp.setup{}
+	elseif filetype == "verilog" then
+		lspconfig.svls.setup{}
+	elseif filetype == "make" or filetype == "cmake" then
+		lspconfig.neocmake.setup{}
+	end
 end
 
