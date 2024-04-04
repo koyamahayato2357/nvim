@@ -30,9 +30,10 @@ local o = vim.o
 
 o.autoread = true
 o.backspace = ""
+o.cmdheight = 0
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
-o.cmdheight = 0
+o.cursorline = true
 o.foldmethod = "manual"
 o.gdefault = true
 o.guicursor = "i:block"
@@ -148,8 +149,6 @@ iab #b /******************************************
 iab # <Space>*<Space>
 iab #e <Space>******************************************/
 set cpoptions+=$Iv
-highlight CursorLine gui=underline
-highlight CursorLineNr gui=underline
 ]]
 
 vim.g.netrw_liststyle = 3
@@ -206,9 +205,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 })
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-	command = ":set cursorline"
+	command = "hi CursorLine gui=underline | hi CursorLineNr gui=underline"
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-	command = ":set nocursorline"
+	command = "hi CursorLine gui=none | hi CursorLineNr gui=none"
 })
 
