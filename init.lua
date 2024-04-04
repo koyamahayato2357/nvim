@@ -1,3 +1,5 @@
+require('colorscheme')
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -24,15 +26,12 @@ require('lazy').setup({
 	{ 'windwp/nvim-autopairs', config = true, keys = { { "U", mode = "n", }, }, },
 })
 
-require('colorscheme')
-
 local o = vim.o
 
 o.autoread = true
 o.backspace = ""
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
-o.cursorline = true
 o.cmdheight = 0
 o.foldmethod = "manual"
 o.gdefault = true
@@ -45,7 +44,7 @@ o.incsearch = true
 o.laststatus = 2
 o.lazyredraw = true
 o.list = true
-o.listchars = "tab:┃ ,trail:×,extends:>,precedes:<,nbsp:+"
+o.listchars = "tab:│ ,trail:×,extends:>,precedes:<,nbsp:+"
 o.matchpairs = "(:),{:},[:],<:>,=:;"
 o.mouse = ""
 o.number = true
@@ -67,77 +66,81 @@ o.virtualedit = "onemore,insert"
 o.wildmenu = true
 o.writeany = true
 
-vim.keymap.set("n", "<Esc>", "<cmd>nohl<CR>")
-vim.keymap.set("n", "<BS>", "<C-b>")
-vim.keymap.set("n", "<Delete>", "<C-f>")
-vim.keymap.set('n', '<C-S-e>', '5<C-e>')
-vim.keymap.set('n', '<C-S-y>', '5<C-y>')
-vim.keymap.set('n', 'x', '<Nop>')
-vim.keymap.set('n', 'X', 'd^')
-vim.keymap.set('n', 'S', 'c^')
-vim.keymap.set("n", "xd", "<cmd>bd<CR>")
-vim.keymap.set("n", "xb", "<cmd>b#<CR>")
-vim.keymap.set('n', 'xq', '<cmd>make | cw<CR>')
-vim.keymap.set('n', '<Space>a', '<cmd>HopAnywhere<CR>')
-vim.keymap.set('n', '<Space>l', '<cmd>HopLine<CR>')
-vim.keymap.set("n", "<Space>w", "<cmd>HopWord<CR>")
-vim.keymap.set('n', '<Space><Space>', 'gg=G<C-o>')
-vim.keymap.set('n', 's', require("substitute").operator, { noremap = true })
-vim.keymap.set('n', 'ss', require("substitute").line, { noremap = true })
-vim.keymap.set('x', 's', require("substitute").visual, { noremap = true })
-vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-vim.keymap.set('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-vim.keymap.set('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-vim.keymap.set('n', 'ge', 'G')
-vim.keymap.set("n", "gQ", "q")
-vim.keymap.set("n", "q", "ZZ")
-vim.keymap.set("n", "K", "25k")
-vim.keymap.set("n", "J", "25j")
-vim.keymap.set('n', '^s', '<cmd>set spell!<CR>')
-vim.keymap.set('n', '^r', '<cmd>set relativenumber!<CR>')
-vim.keymap.set('n', 'zh', '<C-w>h')
-vim.keymap.set('n', 'zj', '<C-w>j')
-vim.keymap.set('n', 'zk', '<C-w>k')
-vim.keymap.set('n', 'zl', '<C-w>l')
-vim.keymap.set('n', 'zw', '<C-w>w')
-vim.keymap.set('n', 'zo', '<C-o>')
-vim.keymap.set('n', 'zi', '<C-i>')
-vim.keymap.set("n", "zs", "m'")
-vim.keymap.set('n', '<Space>', '<Nop>')
-vim.keymap.set('n', '<CR>', '<Nop>')
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
-vim.keymap.set({ 'o', 'v' }, 'K', '5k')
-vim.keymap.set({ 'o', 'v' }, 'J', '5j')
-vim.keymap.set({ "n", "v", "o" }, "L", "5l")
-vim.keymap.set({ "n", "v", "o" }, "H", "5h")
-vim.keymap.set({ "n", "v", "o" }, "gl", "$l")
-vim.keymap.set({ "n", "v", "o" }, "gh", "^")
+local map = vim.keymap.set
 
-vim.keymap.set('i', "<Tab>", 'v:lua.smart_tab()', { expr = true, noremap = true })
-vim.keymap.set('i', '<Esc>', '<Right><Esc>')
-vim.keymap.set('i', '<C-e>', '<C-x><C-e>')
-vim.keymap.set('i', '<C-y>', '<C-x><C-y>')
-vim.keymap.set('i', '<C-f>', '<C-x><C-f>')
-vim.keymap.set('i', 'e', 'pumvisible() ? "<C-e>" : "e"', { expr = true, noremap = true })
-vim.keymap.set('i', 'y', 'pumvisible() ? "<C-y>" : "y"', { expr = true, noremap = true })
-vim.keymap.set('i', 'n', 'pumvisible() ? "<C-n>" : "n"', { expr = true, noremap = true })
-vim.keymap.set('i', 'p', 'pumvisible() ? "<C-p>" : "p"', { expr = true, noremap = true })
+map("n", "<Esc>", "<cmd>nohl<CR>")
+map("n", "<BS>", "<C-b>")
+map("n", "<Delete>", "<C-f>")
+map('n', '<C-S-e>', '5<C-e>')
+map('n', '<C-S-y>', '5<C-y>')
+map('n', 'x', '<Nop>')
+map('n', 'X', 'd^')
+map('n', 'S', 'c^')
+map("n", "xd", "<cmd>bd<CR>")
+map("n", "xb", "<cmd>b#<CR>")
+map("n", "xe", "<cmd>Explore<CR>")
+map('n', 'xq', '<cmd>make | cw<CR>')
+map('n', 'ga', '<cmd>HopAnywhere<CR>')
+map('n', 'gL', '<cmd>HopLine<CR>')
+map("n", "gw", "<cmd>HopWord<CR>")
+map('n', '<Space><Space>', 'gg=G<C-o>')
+map('n', 's', require("substitute").operator, { noremap = true })
+map('n', 'ss', require("substitute").line, { noremap = true })
+map('n', 'S', require("substitute").eol, { noremap = true })
+map('x', 's', require("substitute").visual, { noremap = true })
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+map('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+map('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+map('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+map('n', 'ge', 'G')
+map("n", "Q", "q")
+map("n", "q", "ZZ")
+map("n", "K", "25k")
+map("n", "J", "25j")
+map('n', '^s', '<cmd>set spell!<CR>')
+map('n', '^r', '<cmd>set relativenumber!<CR>')
+map('n', 'zh', '<C-w>h')
+map('n', 'zj', '<C-w>j')
+map('n', 'zk', '<C-w>k')
+map('n', 'zl', '<C-w>l')
+map('n', 'zw', '<C-w>w')
+map('n', 'zo', '<C-o>')
+map('n', 'zi', '<C-i>')
+map("n", "zs", "m'")
+map('n', '<Space>', '<Nop>')
+map('n', '<CR>', '<Nop>')
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'Nzzzv')
+map({ 'o', 'v' }, 'K', '5k')
+map({ 'o', 'v' }, 'J', '5j')
+map({ "n", "v", "o" }, "L", "5l")
+map({ "n", "v", "o" }, "H", "5h")
+map({ "n", "v", "o" }, "gl", "$l")
+map({ "n", "v", "o" }, "gh", "^")
 
-vim.keymap.set('v', 'T', '<cmd>CarbonPaper<CR>')
-vim.keymap.set('v', '<C-k>', ":m '<-2<CR>gv=gv")
-vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'v', "<C-v>")
-vim.keymap.set('v', 'aa', 'VggoG')
+map('i', "<Tab>", 'v:lua.smart_tab()', { expr = true, noremap = true })
+map('i', '<Esc>', '<Right><Esc>')
+map('i', '<C-e>', '<C-x><C-e>')
+map('i', '<C-y>', '<C-x><C-y>')
+map('i', '<C-f>', '<C-x><C-f>')
+map('i', 'e', 'pumvisible() ? "<C-e>" : "e"', { expr = true, noremap = true })
+map('i', 'y', 'pumvisible() ? "<C-y>" : "y"', { expr = true, noremap = true })
+map('i', 'n', 'pumvisible() ? "<C-n>" : "n"', { expr = true, noremap = true })
+map('i', 'p', 'pumvisible() ? "<C-p>" : "p"', { expr = true, noremap = true })
 
-vim.keymap.set('o', '2', 'i"')
-vim.keymap.set('o', '7', "i'")
-vim.keymap.set('o', '9', 'i(')
-vim.keymap.set('o', ']', 'i]')
-vim.keymap.set('o', '}', 'i}')
-vim.keymap.set('o', '.', 'i>')
+map('v', 'T', '<cmd>CarbonPaper<CR>')
+map('v', '<C-k>', ":m '<-2<CR>gv=gv")
+map('v', '<C-j>', ":m '>+1<CR>gv=gv")
+map('v', 'v', "<C-v>")
+map('v', 'aa', 'VggoG')
+
+map('o', '2', 'i"')
+map('o', '7', "i'")
+map('o', '9', 'i(')
+map('o', ']', 'i]')
+map('o', '}', 'i}')
+map('o', '.', 'i>')
 
 vim.cmd[[
 cab nvimrc ~/.config/nvim/init.lua
@@ -145,7 +148,11 @@ iab #b /******************************************
 iab # <Space>*<Space>
 iab #e <Space>******************************************/
 set cpoptions+=$Iv
+highlight CursorLine gui=underline
+highlight CursorLineNr gui=underline
 ]]
+
+vim.g.netrw_liststyle = 3
 
 function smart_tab()
 	local col = vim.fn.col('.')
@@ -196,5 +203,12 @@ end
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	callback = function() lsp_config() end
+})
+
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+	command = ":set cursorline"
+})
+vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+	command = ":set nocursorline"
 })
 
