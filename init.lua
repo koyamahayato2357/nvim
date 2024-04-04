@@ -168,7 +168,7 @@ function smart_tab()
 	end
 end
 
-function lsp_config()
+function lsp_setup()
 	local filetype = vim.bo.filetype
 	if filetype == "c" or filetype == "cpp" then
 		require('lspconfig').clangd.setup{}
@@ -202,7 +202,7 @@ function lsp_config()
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	callback = function() lsp_config() end
+	callback = function() lsp_setup() end
 })
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
