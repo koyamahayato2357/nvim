@@ -153,7 +153,7 @@ set cpoptions+=$Iv
 
 vim.g.netrw_liststyle = 3
 
-function smart_tab()
+function Smart_tab()
 	local col = vim.fn.col('.')
 	if col <= 1 then
 		return "\t"
@@ -167,7 +167,7 @@ function smart_tab()
 	end
 end
 
-function lsp_setup()
+function Lsp_setup()
 	local filetype = vim.bo.filetype
 	if filetype == "c" or filetype == "cpp" then
 		require('lspconfig').clangd.setup{}
@@ -201,7 +201,7 @@ function lsp_setup()
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	callback = function() lsp_setup() end
+	callback = function() Lsp_setup() end
 })
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
