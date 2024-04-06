@@ -121,7 +121,7 @@ map({ "n", "v", "o" }, "H", "5h")
 map({ "n", "v", "o" }, "gl", "$l")
 map({ "n", "v", "o" }, "gh", "^")
 
-map('i', "<Tab>", 'v:lua.smart_tab()', { expr = true, noremap = true })
+map('i', "<Tab>", 'v:lua.Smart_tab()', { expr = true, noremap = true })
 map('i', '<Esc>', '<Right><Esc>')
 map('i', '<C-e>', '<C-x><C-e>')
 map('i', '<C-y>', '<C-x><C-y>')
