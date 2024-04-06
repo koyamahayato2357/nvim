@@ -29,9 +29,9 @@ function M.clearBlameVirtText()
   api.nvim_buf_clear_namespace(0, 2, 0, -1)
 end
 
-api.nvim_create_autocmd({ "CursorHold" }, {
-	callback = function() M.blameVirtText() end
-})
+-- api.nvim_create_autocmd({ "CursorHold" }, {
+-- 	callback = function() M.blameVirtText() end
+-- })
 
 api.nvim_create_autocmd({ "CursorMoved" }, {
 	callback = function() M.clearBlameVirtText() end
@@ -40,6 +40,8 @@ api.nvim_create_autocmd({ "CursorMoved" }, {
 api.nvim_create_autocmd({ "CursorMovedI" }, {
 	callback = function() M.clearBlameVirtText() end
 })
+
+vim.keymap.set('n', 'gb', function() M.blameVirtText() end)
 
 vim.cmd('hi! link GitLens Comment')
 
