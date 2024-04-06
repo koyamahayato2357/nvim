@@ -201,6 +201,8 @@ function Lsp_setup()
 	end
 end
 
+require('gitlens')
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	callback = function() Lsp_setup() end
 })
