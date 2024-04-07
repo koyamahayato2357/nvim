@@ -134,6 +134,7 @@ for name, attrs in pairs {
 	---- :help group-name --------------------------------------
 
 	Comment = { fg = a.com, italic = fv.italic },
+	GitLens = { fg = a.com, italic = fv.italic },
 	Identifier = { fg = a.fg },
 	Function = { fg = b.yellow },
 	Constant = { fg = c.magenta },

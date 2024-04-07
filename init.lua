@@ -70,7 +70,7 @@ o.writeany = true
 
 local map = vim.keymap.set
 
-map("n", "<Esc>", "<cmd>nohl<CR>")
+map("n", "<Esc>", function() Smart_esc() end)
 map("n", "<BS>", "<C-b>")
 map("n", "<Delete>", "<C-f>")
 map('n', '<C-S-e>', '5<C-e>')
@@ -131,7 +131,6 @@ map('i', 'y', 'pumvisible() ? "<C-y>" : "y"', { expr = true, noremap = true })
 map('i', 'n', 'pumvisible() ? "<C-n>" : "n"', { expr = true, noremap = true })
 map('i', 'p', 'pumvisible() ? "<C-p>" : "p"', { expr = true, noremap = true })
 
-map('v', 'T', '<cmd>CarbonPaper<CR>')
 map('v', '<C-k>', ":m '<-2<CR>gv=gv")
 map('v', '<C-j>', ":m '>+1<CR>gv=gv")
 map('v', 'v', "<C-v>")
@@ -168,6 +167,13 @@ function Smart_tab()
 	end
 end
 
+local gitlens = require('gitlens')
+map('n', 'gb', function() gitlens.blameVirtText() end)
+function Smart_esc()
+	gitlens.clearBlameVirtText()
+	vim.cmd('nohl')
+end
+
 function Lsp_setup()
 	local filetype = vim.bo.filetype
 	if filetype == "c" or filetype == "cpp" then
@@ -201,7 +207,6 @@ function Lsp_setup()
 	end
 end
 
-require('gitlens')
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	callback = function() Lsp_setup() end
