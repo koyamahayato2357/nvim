@@ -209,7 +209,7 @@ function Lsp_setup()
 end
 
 function Gitcommit_copilot()
-	vim.cmd[[r!git diff]]
+	vim.cmd[[r!git -C diff --cached]]
 	vim.cmd[[%s/^[^#]/#\0]]
 end
 
