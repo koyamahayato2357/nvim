@@ -175,51 +175,47 @@ function Smart_esc()
 	vim.cmd('nohl')
 end
 
-function Lsp_setup()
-	local filetype = vim.bo.filetype
-	if filetype == "c" or filetype == "cpp" then
-		require('lspconfig').clangd.setup{}
-	elseif filetype == "python" then
-		require('lspconfig').pylyzer.setup{}
-	elseif filetype == "javascript" or filetype == "typescript" then
-		require('lspconfig').tsserver.setup{}
-	elseif filetype == "rust" then
-		require('lspconfig').rust_analyzer.setup{}
-	elseif filetype == "lua" then
-		require('lspconfig').lua_ls.setup{
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = {
-							'vim'
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	callback = function()
+		local filetype = vim.bo.filetype
+		if filetype == "c" or filetype == "cpp" then
+			require('lspconfig').clangd.setup{}
+		elseif filetype == "python" then
+			require('lspconfig').pylyzer.setup{}
+		elseif filetype == "javascript" or filetype == "typescript" then
+			require('lspconfig').tsserver.setup{}
+		elseif filetype == "rust" then
+			require('lspconfig').rust_analyzer.setup{}
+		elseif filetype == "lua" then
+			require('lspconfig').lua_ls.setup{
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = {
+								'vim'
+							}
 						}
 					}
 				}
 			}
-		}
-	elseif filetype == "tex" then
-		require('lspconfig').texlab.setup{}
-	elseif filetype == "asm" then
-		require('lspconfig').asm_lsp.setup{}
-	elseif filetype == "verilog" then
-		require('lspconfig').svls.setup{}
-	elseif filetype == "make" or filetype == "cmake" then
-		require('lspconfig').neocmake.setup{}
+		elseif filetype == "tex" then
+			require('lspconfig').texlab.setup{}
+		elseif filetype == "asm" then
+			require('lspconfig').asm_lsp.setup{}
+		elseif filetype == "verilog" then
+			require('lspconfig').svls.setup{}
+		elseif filetype == "make" or filetype == "cmake" then
+			require('lspconfig').neocmake.setup{}
+		end
 	end
-end
-
-function Gitcommit_copilot()
-	vim.cmd[[r!git diff --cached]]
-	vim.cmd[[%s/^[^#]/#\0]]
-end
-
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	callback = function() Lsp_setup() end
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
-	callback = function() Gitcommit_copilot() end
+	callback = function()
+		vim.cmd[[r!git diff --cached]]
+		vim.cmd[[%s/^[^#]/#\0]]
+	end
 })
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
