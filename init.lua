@@ -24,7 +24,7 @@ require('lazy').setup({
 	{ 'tpope/vim-repeat', keys = { { "U", mode = "n", }, }, },
 	'vim-jp/vimdoc-ja',
 	{ 'windwp/nvim-autopairs', config = true, keys = { { "U", mode = "n", }, }, },
-	{ 'github/copilot.vim', event = "VeryLazy" },
+	{ 'github/copilot.vim', keys = { { "C", mode = "c"} } },
 })
 
 local o = vim.o
@@ -215,7 +215,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	callback = function()
 		vim.cmd[[r!git diff --cached]]
 		vim.cmd[[%s/^[^#]/#\0]]
-		vim.cmd[[Copilot enable]]
 	end
 })
 
