@@ -152,6 +152,7 @@ set cpoptions+=$Iv
 ]]
 
 vim.g.netrw_liststyle = 3
+vim.g.copilot_filetypes = { gitcommit = true, taml = true, markdown = true }
 
 function Smart_tab()
 	local col = vim.fn.col('.')
