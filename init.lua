@@ -208,9 +208,18 @@ function Lsp_setup()
 	end
 end
 
+function Gitcommit_copilot()
+	vim.cmd[[r!git diff]]
+	vim.cmd[[%s/^[^#]/#\0]]
+end
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	callback = function() Lsp_setup() end
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = "gitcommit",
+	callback = function() Gitcommit_copilot() end
 })
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
