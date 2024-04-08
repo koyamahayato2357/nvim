@@ -218,7 +218,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = "gitcommit",
+	pattern = "COMMIT_EDITMSG",
 	callback = function() Gitcommit_copilot() end
 })
 
