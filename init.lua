@@ -215,6 +215,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	callback = function()
 		vim.cmd[[r!git diff --cached]]
 		vim.cmd[[%s/^[^#]/#\0]]
+		vim.cmd[[Copilot enable]]
 	end
 })
 
