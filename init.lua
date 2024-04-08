@@ -24,7 +24,7 @@ require('lazy').setup({
 	{ 'tpope/vim-repeat', keys = { { "U", mode = "n", }, }, },
 	'vim-jp/vimdoc-ja',
 	{ 'windwp/nvim-autopairs', config = true, keys = { { "U", mode = "n", }, }, },
-	{ 'github/copilot.vim', keys = { { "C", mode = "c" }, }, },
+	{ 'github/copilot.vim', event = "VeryLazy" },
 })
 
 local o = vim.o
