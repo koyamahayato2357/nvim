@@ -1,3 +1,8 @@
+local autocmd = vim.api.nvim_create_autocmd
+local o = vim.o
+local gitlens = require('gitlens')
+local map = vim.keymap.set
+
 require('colorscheme')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -26,8 +31,6 @@ require('lazy').setup({
 	{ 'windwp/nvim-autopairs', config = true, keys = { { "U", mode = "n", }, }, },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c"} } },
 })
-
-local o = vim.o
 
 o.autoread = true
 o.backspace = ""
@@ -67,8 +70,6 @@ o.ttyfast = true
 o.virtualedit = "onemore,insert"
 o.wildmenu = true
 o.writeany = true
-
-local map = vim.keymap.set
 
 map("n", "<Esc>", function() Smart_esc() end)
 map("n", "<BS>", "<C-b>")
@@ -168,14 +169,13 @@ function Smart_tab()
 	end
 end
 
-local gitlens = require('gitlens')
 map('n', 'gb', function() gitlens.blameVirtText() end)
 function Smart_esc()
 	gitlens.clearBlameVirtText()
 	vim.cmd('nohl')
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+autocmd({ "BufEnter", "BufWinEnter" }, {
 	callback = function()
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
@@ -210,7 +210,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
 	callback = function()
 		vim.cmd[[r!git diff --cached]]
@@ -218,10 +218,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end
 })
 
-vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+autocmd({ "InsertEnter" }, {
 	command = "hi CursorLine gui=underline | hi CursorLineNr gui=underline"
 })
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+autocmd({ "InsertLeave" }, {
 	command = "hi CursorLine gui=none | hi CursorLineNr gui=none"
 })
 
