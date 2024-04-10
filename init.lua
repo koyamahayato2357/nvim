@@ -211,10 +211,11 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
 	end
 })
 
-autocmd({ "BufEnter", "BufWinEnter" }, {
+autocmd({ "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
 	callback = function()
 		vim.cmd[[r!git diff --cached]]
+		vim.cmd[[s/^[^#]/#\0]]
 	end
 })
 
