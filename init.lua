@@ -37,6 +37,7 @@ o.backspace = ""
 o.cmdheight = 0
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
+o.cpoptions = "aABceFs_$Iv"
 o.cursorline = true
 o.foldmethod = "manual"
 o.gdefault = true
@@ -146,10 +147,6 @@ map('o', '.', 'i>')
 
 vim.cmd[[
 cab nvimrc ~/.config/nvim/init.lua
-iab #b /******************************************
-iab # <Space>*<Space>
-iab #e <Space>******************************************/
-set cpoptions+=$Iv
 ]]
 
 vim.g.netrw_liststyle = 3
