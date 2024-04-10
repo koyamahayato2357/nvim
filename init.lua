@@ -220,9 +220,15 @@ autocmd({ "BufWinEnter" }, {
 })
 
 autocmd({ "InsertEnter" }, {
-	command = "hi CursorLine gui=underline | hi CursorLineNr gui=underline"
+	callback = function()
+		vim.api.nvim_set_hl(0, "CursorLine", { underline = true })
+		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = true })
+	end
 })
 autocmd({ "InsertLeave" }, {
-	command = "hi CursorLine gui=none | hi CursorLineNr gui=none"
+	callback = function()
+		vim.api.nvim_set_hl(0, "CursorLine", { underline = false })
+		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false })
+	end
 })
 
