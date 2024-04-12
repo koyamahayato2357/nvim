@@ -1,4 +1,4 @@
-local autocmd = vim.api.nvim_create_autocmd
+local au = vim.api.nvim_create_autocmd
 local o = vim.o
 local gitlens = require('gitlens')
 local map = vim.keymap.set
@@ -37,11 +37,12 @@ o.backspace = ""
 o.cmdheight = 0
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
-o.cpoptions = "aABceFs_$Iv"
+vim.opt.cpoptions:append("$Iv")
 o.cursorline = true
 o.foldmethod = "manual"
 o.gdefault = true
 o.guicursor = "i:block"
+o.guifont = "IBM Plex Mono,CaskaydiaCove Nerd Font Mono:h10"
 o.helplang = "ja,en"
 o.hidden = true
 o.hlsearch = true
@@ -176,7 +177,7 @@ function Smart_esc()
 	vim.cmd('nohl')
 end
 
-autocmd({ "BufEnter", "BufWinEnter" }, {
+au({ "BufEnter", "BufWinEnter" }, {
 	callback = function()
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
@@ -211,7 +212,7 @@ autocmd({ "BufEnter", "BufWinEnter" }, {
 	end
 })
 
-autocmd({ "BufWinEnter" }, {
+au({ "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
 	callback = function()
 		vim.cmd[[r!git diff --cached]]
@@ -219,13 +220,13 @@ autocmd({ "BufWinEnter" }, {
 	end
 })
 
-autocmd({ "InsertEnter" }, {
+au({ "InsertEnter" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "CursorLine", { underline = true })
 		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = true })
 	end
 })
-autocmd({ "InsertLeave" }, {
+au({ "InsertLeave" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "CursorLine", { underline = false })
 		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false })
