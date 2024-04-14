@@ -22,6 +22,7 @@ require('lazy').setup({
 })
 
 o.autoread = true
+o.autowrite = true
 o.backspace = ""
 o.cmdheight = 0
 o.complete = ".,w,b,u,t,kspell"
@@ -61,6 +62,7 @@ o.ttyfast = true
 o.virtualedit = "onemore,insert"
 o.wildmenu = true
 o.writeany = true
+o.wrap = false
 
 map("n", "<Esc>", function() Smart_esc() end)
 map("n", "<BS>", "<C-b>")
@@ -197,6 +199,8 @@ au({ "BufEnter", "BufWinEnter" }, {
 			require('lspconfig').svls.setup{}
 		elseif filetype == "make" or filetype == "cmake" then
 			require('lspconfig').neocmake.setup{}
+		elseif filetype == "markdown" then
+			require('lspconfig').markdown.setup{}
 		end
 	end
 })
