@@ -8,16 +8,16 @@ require('colorscheme')
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
 require('lazy').setup({
-	{ 'neovim/nvim-lspconfig', event = "VeryLazy", },
-	{ 'folke/flash.nvim', config = true, keys = { { "U", mode = "n" }, }, },
-	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, keys = { { "U", mode = "n", }, }, },
-	{ 'kylechui/nvim-surround', config = true, keys = { { "U", mode = "n", }, }, },
-	{ 'numToStr/Comment.nvim', config = true, keys = { { "U", mode = "n", }, }, },
-	{ 'nvim-treesitter/nvim-treesitter', config = true, event = "VeryLazy", },
-	{ 'smoka7/hop.nvim', config = true, keys = { { "U", mode = "n", }, }, },
-	{ 'tpope/vim-repeat', keys = { { "U", mode = "n", }, }, },
+	{ 'neovim/nvim-lspconfig', event = "VeryLazy" },
+	{ 'folke/flash.nvim', config = true, keys = { { "U", mode = "n" } } },
+	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, keys = { { "U", mode = "n" } } },
+	{ 'kylechui/nvim-surround', config = true, keys = { { "U", mode = "n" } } },
+	{ 'numToStr/Comment.nvim', config = true, keys = { { "U", mode = "n" } } },
+	{ 'nvim-treesitter/nvim-treesitter', config = true, event = "VeryLazy" },
+	{ 'smoka7/hop.nvim', config = true, keys = { { "U", mode = "n" } } },
+	{ 'tpope/vim-repeat', keys = { { "U", mode = "n" } } },
 	'vim-jp/vimdoc-ja',
-	{ 'windwp/nvim-autopairs', config = true, keys = { { "U", mode = "n", }, }, },
+	{ 'windwp/nvim-autopairs', config = true, keys = { { "U", mode = "n" } } },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c"} } },
 })
 
