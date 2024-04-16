@@ -8,6 +8,8 @@ local bg = vim.opt.background:get()
 -- local palette = require('melange/palettes/' .. bg)
 
 Purple = "#8040ff"
+DarkOrange = "#ff8c00"
+Orange = "#ffa500"
 
 A = {
 	bg      = "#292522",
@@ -70,8 +72,8 @@ for name, attrs in pairs {
 	VertSplit = { fg = A.ui },
 	WinSeparator = { fg = A.ui },
 
-	LineNr = { fg = "#83866c", bg = "none" },
-	CursorLineNr = { fg = "#c5d6b9" },
+	LineNr = { fg = "White", bg = "none" },
+	CursorLineNr = { fg = Orange },
 
 	Folded = { bg = "none" },
 	FoldColumn = 'LineNr',
@@ -137,8 +139,8 @@ for name, attrs in pairs {
 	GitLens = { fg = A.com, italic = fv.italic },
 	Identifier = { fg = A.fg },
 	Function = { fg = B.yellow },
-	Constant = { fg = C.magenta },
-	String = { fg = B.blue, italic = fv.italic },
+	Constant = { fg = B.blue },
+	String = { fg = DarkOrange, italic = fv.italic },
 	Character = { fg = C.blue },
 	Number = { fg = B.magenta },
 	Boolean = 'Number',
