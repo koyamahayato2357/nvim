@@ -9,15 +9,15 @@ vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
 require('lazy').setup({
 	{ 'neovim/nvim-lspconfig' },
-	{ 'folke/flash.nvim', config = true, keys = { { "-", mode = "n" } } },
-	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, keys = { { "-", mode = "n" } } },
-	{ 'kylechui/nvim-surround', config = true, keys = { { "-", mode = "n" } } },
-	{ 'numToStr/Comment.nvim', config = true, keys = { { "-", mode = "n" } } },
+	{ 'folke/flash.nvim', config = true, event = "CursorMoved" },
+	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, event = "CursorMoved" },
+	{ 'kylechui/nvim-surround', config = true, event = "CursorMoved" },
+	{ 'numToStr/Comment.nvim', config = true, event = "CursorMoved" },
 	{ 'nvim-treesitter/nvim-treesitter', build = "TSUpdate" },
-	{ 'smoka7/hop.nvim', config = true, keys = { { "-", mode = "n" } } },
-	{ 'tpope/vim-repeat', keys = { { "-", mode = "n" } } },
-	'vim-jp/vimdoc-ja',
-	{ 'windwp/nvim-autopairs', config = true, keys = { { "-", mode = "n" } } },
+	{ 'smoka7/hop.nvim', config = true, event = "CursorMoved" },
+	{ 'tpope/vim-repeat', event = "CursorMoved" },
+	{ 'vim-jp/vimdoc-ja' },
+	{ 'windwp/nvim-autopairs', config = true, event = "CursorMoved" },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c"} } },
 })
 
