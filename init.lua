@@ -18,7 +18,7 @@ require('lazy').setup({
 	{ 'tpope/vim-repeat', event = "CursorMoved" },
 	{ 'vim-jp/vimdoc-ja' },
 	{ 'windwp/nvim-autopairs', config = true, event = "CursorMoved" },
-	{ 'github/copilot.vim', keys = { { "C", mode = "c"} } },
+	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
 
 o.autoread = true
@@ -45,6 +45,7 @@ o.listchars = "tab:│ ,trail:×,extends:>,precedes:<,nbsp:+"
 o.matchpairs = "(:),{:},[:],<:>,=:;"
 o.mouse = ""
 o.number = true
+o.omnifunc = "v:lua.vim.lsp.omnifunc"
 o.path = ".,,,**"
 o.ruler = true
 o.scrolloff = 10
@@ -115,7 +116,7 @@ map({ "n", "v", "o" }, "H", "5h")
 map({ "n", "v", "o" }, "gl", "$l")
 map({ "n", "v", "o" }, "gh", "^")
 
-map('i', "<S-Tab>", 'v:lua.Smart_tab()', { expr = true, noremap = true })
+map('i', "<S-Tab>", '<C-x><C-o>' )
 map('i', '<Esc>', '<Right><Esc>')
 map('i', '<C-e>', '<C-x><C-e>')
 map('i', '<C-y>', '<C-x><C-y>')
@@ -147,20 +148,6 @@ vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_transparency = 0.7
 vim.g.transparency = 0.0
 vim.g.neovide_cursor_smooth_blink = true
-
-function Smart_tab()
-	local col = vim.fn.col('.')
-	if col <= 1 then
-		return "\t"
-	end
-	local preceding_char = vim.fn.getline('.'):sub(col-1, col-1)
-
-	if preceding_char == "\t" or preceding_char == " " then
-		return "\t"
-	else
-		return "<C-n>"
-	end
-end
 
 map('n', 'gb', function() gitlens.blameVirtText() end)
 function Smart_esc()
