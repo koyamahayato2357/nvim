@@ -133,7 +133,7 @@ for name, attrs in pairs {
 
 	---- :help group-name --------------------------------------
 
-	Comment = { fg = A.com, italic = fv.italic },
+	Comment = { fg = A.com },
 	GitLens = { fg = A.com, italic = fv.italic },
 	Identifier = { fg = A.fg },
 	Function = { fg = B.yellow },
