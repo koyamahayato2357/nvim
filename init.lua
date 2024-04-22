@@ -182,12 +182,8 @@ au({ "BufEnter", "BufWinEnter" }, {
 			require('lspconfig').texlab.setup{}
 		elseif filetype == "asm" then
 			require('lspconfig').asm_lsp.setup{}
-		elseif filetype == "verilog" then
-			require('lspconfig').svls.setup{}
 		elseif filetype == "make" or filetype == "cmake" then
 			require('lspconfig').neocmake.setup{}
-		elseif filetype == "markdown" then
-			require('lspconfig').markdown.setup{}
 		end
 	end
 })
