@@ -18,13 +18,14 @@ require('lazy').setup({
 	{ 'tpope/vim-repeat', event = "CursorMoved" },
 	{ 'vim-jp/vimdoc-ja' },
 	{ 'windwp/nvim-autopairs', config = true, event = "CursorMoved" },
+	{ 's417-lama/carbonpaper.vim' },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
 
 o.autoread = true
 o.autowrite = true
 o.backspace = ""
-o.cmdheight = 0
+o.cmdheight = 1
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
 vim.opt.cpoptions:append("$Iv")
@@ -109,6 +110,9 @@ map('n', '<Space>', '<Nop>')
 map('n', '<CR>', '<Nop>')
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
+map('n', 'M', ':w<CR>:make|cw<CR>')
+map('n', ']q', ':cn<CR>')
+map('n', '[q', ':cp<CR>')
 map({ 'o', 'v' }, 'K', '5k')
 map({ 'o', 'v' }, 'J', '5j')
 map({ "n", "v", "o" }, "L", "5l")
