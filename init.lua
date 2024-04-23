@@ -28,7 +28,7 @@ o.backspace = ""
 o.cmdheight = 1
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
-vim.opt.cpoptions:append("$Iv")
+vim.opt.cpoptions:append("$v")
 o.cursorline = true
 o.foldmethod = "manual"
 o.gdefault = true
