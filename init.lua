@@ -9,15 +9,15 @@ vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
 require('lazy').setup({
 	{ 'neovim/nvim-lspconfig' },
-	{ 'folke/flash.nvim', config = true, event = "CursorMoved" },
-	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, event = "CursorMoved" },
-	{ 'kylechui/nvim-surround', config = true, event = "CursorMoved" },
-	{ 'numToStr/Comment.nvim', config = true, event = "CursorMoved" },
-	{ 'nvim-treesitter/nvim-treesitter', build = "TSUpdate" },
-	{ 'smoka7/hop.nvim', config = true, event = "CursorMoved" },
-	{ 'vim-jp/vimdoc-ja' },
-	{ 'windwp/nvim-autopairs', config = true, event = "CursorMoved" },
-	{ 's417-lama/carbonpaper.vim' },
+	{ 'folke/flash.nvim', config = true, event = "VimEnter" },
+	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, event = "VimEnter" },
+	{ 'kylechui/nvim-surround', config = true, event = "VimEnter" },
+	{ 'numToStr/Comment.nvim', config = true, event = "VimEnter" },
+	{ 'nvim-treesitter/nvim-treesitter' },
+	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
+	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
+	{ 'windwp/nvim-autopairs', config = true, event = "InsertEnter" },
+	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
 
@@ -209,6 +209,12 @@ au({ "InsertLeave" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "CursorLine", { underline = false })
 		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false })
+	end
+})
+
+au({ "CursorMoved" }, {
+	callback = function()
+		vim.cmd('TSEnable highlight')
 	end
 })
 
