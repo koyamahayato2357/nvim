@@ -15,7 +15,6 @@ require('lazy').setup({
 	{ 'numToStr/Comment.nvim', config = true, event = "CursorMoved" },
 	{ 'nvim-treesitter/nvim-treesitter', build = "TSUpdate" },
 	{ 'smoka7/hop.nvim', config = true, event = "CursorMoved" },
-	{ 'tpope/vim-repeat', event = "CursorMoved" },
 	{ 'vim-jp/vimdoc-ja' },
 	{ 'windwp/nvim-autopairs', config = true, event = "CursorMoved" },
 	{ 's417-lama/carbonpaper.vim' },
