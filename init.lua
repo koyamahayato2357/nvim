@@ -159,7 +159,7 @@ function Smart_esc()
 	vim.cmd('nohl')
 end
 
-au({ "BufEnter", "BufWinEnter" }, {
+au({ "BufWinEnter" }, {
 	callback = function()
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
@@ -213,7 +213,7 @@ au({ "InsertLeave" }, {
 	end
 })
 
-au({ "CursorMoved" }, {
+au({ "VimEnter" }, {
 	callback = function()
 		vim.cmd('TSEnable highlight')
 	end
