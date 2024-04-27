@@ -147,7 +147,7 @@ syntax off
 ]]
 
 vim.g.netrw_liststyle = 3
-vim.g.copilot_filetypes = { gitcommit = true, taml = true, markdown = true }
+vim.g.copilot_filetypes = { gitcommit = true, yaml = true, markdown = true }
 vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_transparency = 0.7
 vim.g.transparency = 0.0
