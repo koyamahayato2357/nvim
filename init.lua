@@ -189,7 +189,7 @@ au({ "BufWinEnter" }, {
 		elseif filetype == "make" or filetype == "cmake" then
 			require('lspconfig').neocmake.setup{}
 		elseif filetype == "zsh" then
-			vim.cmd('set filetype=bash')
+			vim.bo.filetype = "bash"
 		end
 	end
 })
