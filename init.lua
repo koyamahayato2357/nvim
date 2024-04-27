@@ -16,7 +16,7 @@ require('lazy').setup({
 	{ 'nvim-treesitter/nvim-treesitter' },
 	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
-	{ 'windwp/nvim-autopairs', config = true, event = "InsertEnter" },
+	{ "altermo/ultimate-autopair.nvim", config = true, event = { "InsertEnter", "CmdlineEnter" }},
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
