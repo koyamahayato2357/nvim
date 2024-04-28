@@ -4,6 +4,7 @@ local gitlens = require('gitlens')
 local map = vim.keymap.set
 
 require('colorscheme')
+require('comment')
 
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
@@ -12,8 +13,18 @@ require('lazy').setup({
 	{ 'folke/flash.nvim', config = true, event = "VimEnter" },
 	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, event = "VimEnter" },
 	{ 'kylechui/nvim-surround', config = true, event = "VimEnter" },
-	{ 'numToStr/Comment.nvim', config = true, event = "VimEnter" },
-	{ 'nvim-treesitter/nvim-treesitter' },
+	{
+		'nvim-treesitter/nvim-treesitter',
+		config = function()
+			require('nvim-treesitter.configs').setup({
+				auto_install = true,
+				highlight = {
+					enable = true
+				},
+			})
+		end,
+		event = "VimEnter",
+	},
 	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ "altermo/ultimate-autopair.nvim", config = true, event = { "InsertEnter", "CmdlineEnter" }},
@@ -24,7 +35,7 @@ require('lazy').setup({
 o.autoread = true
 o.autowrite = true
 o.backspace = ""
-o.cmdheight = 1
+o.cmdheight = 0
 o.complete = ".,w,b,u,t,kspell"
 o.completeopt = "menu,longest,noselect"
 vim.opt.cpoptions:append("$v")
@@ -212,12 +223,6 @@ au({ "InsertLeave" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "CursorLine", { underline = false })
 		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false })
-	end
-})
-
-au({ "VimEnter" }, {
-	callback = function()
-		vim.cmd('TSEnable highlight')
 	end
 })
 

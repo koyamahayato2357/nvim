@@ -82,7 +82,7 @@ for name, attrs in pairs {
 	PmenuSbar = 'Pmenu',
 	PmenuThumb = 'PmenuSel',
 
-	StatusLine = 'PmenuSel',
+	StatusLine = { bg = "none" },
 	StatusLineNC = { fg = A.com, bg = A.float },
 	WildMenu = 'NormalFloat',
 
