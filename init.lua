@@ -24,7 +24,7 @@ require('lazy').setup({
 		end,
 		event = "VimEnter",
 	},
-	{ 'nvim-treesitter/nvim-treesitter-textobjects', event = "InsertEnter" },
+	{ 'nvim-treesitter/nvim-treesitter-textobjects', config = true, event = "InsertEnter" },
 	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
@@ -158,14 +158,6 @@ cab nvimrc ~/.config/nvim/init.lua
 syntax off
 ]]
 
-function Lsp_config(name, cmd)
-	vim.lsp.start({
-		name = name,
-		cmd = { cmd },
-		root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1])
-	})
-end
-
 vim.g.netrw_liststyle = 3
 vim.g.copilot_filetypes = { gitcommit = true, yaml = true, markdown = true }
 vim.g.neovide_hide_mouse_when_typing = true
@@ -177,6 +169,14 @@ map('n', 'gb', function() gitlens.blameVirtText() end)
 function Smart_esc()
 	gitlens.clearBlameVirtText()
 	vim.cmd('nohl')
+end
+
+function Lsp_config(name, cmd)
+	vim.lsp.start({
+		name = name,
+		cmd = { cmd },
+		root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1])
+	})
 end
 
 au({ "BufWinEnter" }, {
