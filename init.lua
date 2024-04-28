@@ -157,7 +157,7 @@ cab nvimrc ~/.config/nvim/init.lua
 syntax off
 ]]
 
-function lsp_config(name, cmd)
+function Lsp_config(name, cmd)
 	vim.lsp.start({
 		name = name,
 		cmd = { cmd },
@@ -182,17 +182,17 @@ au({ "BufWinEnter" }, {
 	callback = function()
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
-			lsp_config("clangd", "clangd")
+			Lsp_config("clangd", "clangd")
 		elseif filetype == "javascript" or filetype == "typescript" then
-			lsp_config("jsts", "tsserver")
+			Lsp_config("jsts", "tsserver")
 		elseif filetype == "rust" then
-			lsp_config("rust", "rust-analyzer")
+			Lsp_config("rust", "rust-analyzer")
 		elseif filetype == "lua" then
-			lsp_config("lua", "lua-language-server")
+			Lsp_config("lua", "lua-language-server")
 		elseif filetype == "tex" then
-			lsp_config("tex", "texlab")
+			Lsp_config("tex", "texlab")
 		elseif filetype == "asm" then
-			lsp_config("asm", "asm-lsp")
+			Lsp_config("asm", "asm-lsp")
 		elseif filetype == "zsh" then
 			vim.bo.filetype = "bash"
 		end
