@@ -170,11 +170,11 @@ function Smart_esc()
 	vim.cmd('nohl')
 end
 
-function Lsp_config(name, cmd, root_trigger)
+function Lsp_config(name, cmd, root)
 	vim.lsp.start({
 		name = name,
 		cmd = { cmd },
-		root_dir = vim.fs.dirname(vim.fs.find({ root_trigger }, { upward = true })[1])
+		root_dir = vim.fs.dirname(vim.fs.find({ root }, { upward = true })[1])
 	})
 end
 
