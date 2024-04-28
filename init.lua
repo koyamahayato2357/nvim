@@ -24,6 +24,7 @@ require('lazy').setup({
 		end,
 		event = "VimEnter",
 	},
+	{ 'nvim-treesitter/nvim-treesitter-textobjects', event = "InsertEnter" },
 	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
