@@ -9,7 +9,6 @@ require('comment')
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
 require('lazy').setup({
-	{ 'neovim/nvim-lspconfig' },
 	{ 'folke/flash.nvim', config = true, event = "VimEnter" },
 	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, event = "VimEnter" },
 	{ 'kylechui/nvim-surround', config = true, event = "VimEnter" },
@@ -27,6 +26,7 @@ require('lazy').setup({
 	},
 	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
+	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ "altermo/ultimate-autopair.nvim", config = true, event = { "InsertEnter", "CmdlineEnter" }},
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
@@ -157,6 +157,14 @@ cab nvimrc ~/.config/nvim/init.lua
 syntax off
 ]]
 
+function lsp_config(name, cmd)
+	vim.lsp.start({
+		name = name,
+		cmd = { cmd },
+		root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1])
+	})
+end
+
 vim.g.netrw_liststyle = 3
 vim.g.copilot_filetypes = { gitcommit = true, yaml = true, markdown = true }
 vim.g.neovide_hide_mouse_when_typing = true
@@ -174,31 +182,17 @@ au({ "BufWinEnter" }, {
 	callback = function()
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
-			require('lspconfig').clangd.setup{}
-		elseif filetype == "python" then
-			require('lspconfig').pylyzer.setup{}
+			lsp_config("clangd", "clangd")
 		elseif filetype == "javascript" or filetype == "typescript" then
-			require('lspconfig').tsserver.setup{}
+			lsp_config("jsts", "tsserver")
 		elseif filetype == "rust" then
-			require('lspconfig').rust_analyzer.setup{}
+			lsp_config("rust", "rust-analyzer")
 		elseif filetype == "lua" then
-			require('lspconfig').lua_ls.setup{
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = {
-								'vim'
-							}
-						}
-					}
-				}
-			}
+			lsp_config("lua", "lua-language-server")
 		elseif filetype == "tex" then
-			require('lspconfig').texlab.setup{}
+			lsp_config("tex", "texlab")
 		elseif filetype == "asm" then
-			require('lspconfig').asm_lsp.setup{}
-		elseif filetype == "make" or filetype == "cmake" then
-			require('lspconfig').neocmake.setup{}
+			lsp_config("asm", "asm-lsp")
 		elseif filetype == "zsh" then
 			vim.bo.filetype = "bash"
 		end
