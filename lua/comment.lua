@@ -21,4 +21,4 @@ function toggle_comment()
 	end
 end
 
-vim.keymap.set("n", "gm", function() toggle_comment() end)
+vim.keymap.set("n", "gc", function() toggle_comment() end)

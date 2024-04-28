@@ -170,11 +170,11 @@ function Smart_esc()
 	vim.cmd('nohl')
 end
 
-function Lsp_config(name, cmd)
+function Lsp_config(name, cmd, root_trigger)
 	vim.lsp.start({
 		name = name,
 		cmd = { cmd },
-		root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1])
+		root_dir = vim.fs.dirname(vim.fs.find({ root_trigger }, { upward = true })[1])
 	})
 end
 
@@ -182,15 +182,15 @@ au({ "BufWinEnter" }, {
 	callback = function()
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
-			Lsp_config("clangd", "clangd")
+			Lsp_config("clangd", "clangd", ".git")
 		elseif filetype == "javascript" or filetype == "typescript" then
-			Lsp_config("jsts", "tsserver")
+			Lsp_config("jsts", "tsserver", ".git")
 		elseif filetype == "rust" then
-			Lsp_config("rust", "rust-analyzer")
+			Lsp_config("rust", "rust-analyzer", "Cargo.toml")
 		elseif filetype == "lua" then
-			Lsp_config("lua", "lua-language-server")
+			Lsp_config("lua", "lua-language-server", ".luarc.json")
 		elseif filetype == "tex" then
-			Lsp_config("tex", "texlab")
+			Lsp_config("tex", "texlab", ".git")
 		elseif filetype == "asm" then
 			Lsp_config("asm", "asm-lsp")
 		elseif filetype == "zsh" then
