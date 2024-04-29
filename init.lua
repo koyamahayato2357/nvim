@@ -174,7 +174,7 @@ function Lsp_config(name, cmd, root)
 	vim.lsp.start({
 		name = name,
 		cmd = { cmd },
-		root_dir = vim.fs.dirname(vim.fs.find({ root }, { upward = true })[1])
+		root_dir = root
 	})
 end
 
@@ -182,15 +182,15 @@ au({ "BufWinEnter" }, {
 	callback = function()
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
-			Lsp_config("clangd", "clangd", ".git")
+			Lsp_config("clangd", "clangd")
 		elseif filetype == "javascript" or filetype == "typescript" then
-			Lsp_config("jsts", "tsserver", ".git")
+			Lsp_config("jsts", "tsserver")
 		elseif filetype == "rust" then
-			Lsp_config("rust", "rust-analyzer", "Cargo.toml")
+			Lsp_config("rust", "rust-analyzer")
 		elseif filetype == "lua" then
-			Lsp_config("lua", "lua-language-server", ".luarc.json")
+			Lsp_config("lua", "lua-language-server", "~/.config/nvim/.luarc.json")
 		elseif filetype == "tex" then
-			Lsp_config("tex", "texlab", ".git")
+			Lsp_config("tex", "texlab")
 		elseif filetype == "asm" then
 			Lsp_config("asm", "asm-lsp")
 		elseif filetype == "zsh" then
