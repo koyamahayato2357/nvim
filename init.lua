@@ -188,7 +188,7 @@ au({ "BufWinEnter" }, {
 		elseif filetype == "rust" then
 			Lsp_config("rust", "rust-analyzer")
 		elseif filetype == "lua" then
-			Lsp_config("lua", "lua-language-server", "~/.config/nvim/.luarc.json")
+			Lsp_config("lua", "lua-language-server", "/home/sundo/.config/nvim/")
 		elseif filetype == "tex" then
 			Lsp_config("tex", "texlab")
 		elseif filetype == "asm" then
