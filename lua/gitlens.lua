@@ -1,3 +1,4 @@
+local map = vim.keymap.set
 local M = {}
 local api = vim.api
 function M.blameVirtText()
@@ -25,5 +26,10 @@ function M.clearBlameVirtText()
 	api.nvim_buf_clear_namespace(0, 2, 0, -1)
 end
 
-return M
+function Smart_esc()
+	M.clearBlameVirtText()
+	vim.cmd('nohl')
+end
+
+map('n', 'gb', function() M.blameVirtText() end)
 
