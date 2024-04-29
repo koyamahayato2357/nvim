@@ -4,7 +4,6 @@ local gitlens = require('gitlens')
 local map = vim.keymap.set
 
 require('colorscheme')
-require('comment')
 
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
@@ -27,7 +26,18 @@ require('lazy').setup({
 	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
-	{ "altermo/ultimate-autopair.nvim", config = true, event = { "InsertEnter", "CmdlineEnter" }},
+	{
+		"altermo/ultimate-autopair.nvim",
+		branch = "v0.6",
+		opts = {
+			tabout = {
+				enable = true,
+				map = "<C-Tab>",
+				cmap = "<C-Tab>",
+			},
+		},
+		event = { "InsertEnter", "CmdlineEnter" },
+	},
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
