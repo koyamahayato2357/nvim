@@ -26,18 +26,8 @@ require('lazy').setup({
 	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
-	{
-		"altermo/ultimate-autopair.nvim",
-		branch = "v0.6",
-		opts = {
-			tabout = {
-				enable = true,
-				map = "<C-Tab>",
-				cmap = "<C-Tab>",
-			},
-		},
-		event = { "InsertEnter", "CmdlineEnter" },
-	},
+	{ "altermo/ultimate-autopair.nvim", branch = "v0.5", config = true, event = { "InsertEnter", "CmdlineEnter" } },
+	{ 'abecodes/tabout.nvim', config = true, event = "InsertEnter" },
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
