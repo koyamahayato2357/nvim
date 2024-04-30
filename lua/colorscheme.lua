@@ -254,7 +254,7 @@ for name, attrs in pairs {
 	['@markup.strike'] = { strikethrough = fv.strikethrough },
 	['@markup.underline'] = { underline = fv.underline },
 	['@markup.quote'] = 'Comment',
-	['@markup.math'] = { fg = "#000000", bg = "#ffffff" }, -- TODO
+	['@markup.math'] = { fg = "#ffffff", bg = "none" }, -- TODO
 	-- ['@markup.environment'] = {},
 	['@markup.link'] = { underline = fv.underline },
 	-- ['@markup.link.label'] = {},
