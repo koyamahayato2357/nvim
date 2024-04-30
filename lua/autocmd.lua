@@ -8,11 +8,12 @@ function Lsp_config(name, cmd, root)
 	})
 end
 
-au({ "BufWinEnter" }, {
+au({ "BufReadPost" }, {
 	callback = function()
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
 			Lsp_config("clangd", "clangd")
+			vim.treesitter.start()
 		elseif filetype == "rust" then
 			Lsp_config("rust", "rust-analyzer")
 			vim.treesitter.start()
@@ -20,6 +21,7 @@ au({ "BufWinEnter" }, {
 			Lsp_config("lua", "lua-language-server", "/home/sundo/.config/nvim/")
 		elseif filetype == "tex" then
 			Lsp_config("tex", "texlab")
+			vim.treesitter.start()
 		elseif filetype == "asm" then
 			Lsp_config("asm", "asm-lsp")
 		elseif filetype == "zsh" then
@@ -27,12 +29,16 @@ au({ "BufWinEnter" }, {
 			vim.treesitter.start()
 		elseif filetype == "go" then
 			Lsp_config("go", "gopls")
+			vim.treesitter.start()
 		elseif filetype == "html" then
 			Lsp_config("html", "vscode-html-languageserver")
+			vim.treesitter.start()
 		elseif filetype == "css" then
 			Lsp_config("css", "vscode-css-languageserver")
+			vim.treesitter.start()
 		elseif filetype == "javascript" or filetype == "typescript" then
 			Lsp_config("jsts", "typescript-language-server")
+			vim.treesitter.start()
 		end
 	end
 })
