@@ -27,7 +27,7 @@ function M.clearBlameVirtText()
 end
 
 map('n', '<Esc>', function()
-	M.clearBlameText()
+	M.clearBlameVirtText()
 	vim.cmd('nohl')
 end)
 map('n', 'gb', function() M.blameVirtText() end)
