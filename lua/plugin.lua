@@ -26,8 +26,10 @@ require('lazy').setup({
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
-map('n', 's', require("substitute").operator, { noremap = true })
-map('n', 'ss', require("substitute").line, { noremap = true })
-map('n', 'S', require("substitute").eol, { noremap = true })
-map('x', 's', require("substitute").visual, { noremap = true })
+
+local sub = require('substitute')
+map('n', 's', sub.operator, { noremap = true })
+map('n', 'ss', sub.line, { noremap = true })
+map('n', 'S', sub.eol, { noremap = true })
+map('x', 's', sub.visual, { noremap = true })
 

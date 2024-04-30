@@ -26,10 +26,9 @@ function M.clearBlameVirtText()
 	api.nvim_buf_clear_namespace(0, 2, 0, -1)
 end
 
-function Smart_esc()
-	M.clearBlameVirtText()
+map('n', '<Esc>', function()
+	M.clearBlameText()
 	vim.cmd('nohl')
-end
-
+end)
 map('n', 'gb', function() M.blameVirtText() end)
 

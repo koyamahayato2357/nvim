@@ -1,6 +1,5 @@
 local map = vim.keymap.set
 
-map("n", "<Esc>", function() Smart_esc() end)
 map("n", "<BS>", "<C-b>")
 map("n", "<Delete>", "<C-f>")
 map('n', '<C-S-e>', '5<C-e>')
@@ -50,7 +49,6 @@ map({ "n", "v", "o" }, "H", "5h")
 map({ "n", "v", "o" }, "gl", "$l")
 map({ "n", "v", "o" }, "gh", "^")
 
-map('i', "<F1>", function() vim.lsp.omnifunc() end)
 map('i', '<Esc>', '<Right><Esc>')
 map('i', '<C-e>', '<C-x><C-e>')
 map('i', '<C-y>', '<C-x><C-y>')
