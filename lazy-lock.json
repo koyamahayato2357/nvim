@@ -5,10 +5,9 @@
   "hop.nvim": { "branch": "master", "commit": "6ff23501a1fd1c75c91dfd99ff5befcfdb02c11d" },
   "lazy.nvim": { "branch": "main", "commit": "3f13f080434ac942b150679223d54f5ca91e0d52" },
   "nvim-surround": { "branch": "main", "commit": "a4e30d33add8a9743b4f518b3a788b3c8e5def71" },
-  "nvim-treesitter": { "branch": "master", "commit": "30ed7031afb4f15802eba2756162f81dddc27999" },
+  "nvim-treesitter": { "branch": "master", "commit": "121d0c4c6718833ccbaaa4c32a9be0d0a6aab7c1" },
   "nvimdoc-ja": { "branch": "master", "commit": "a590737064a863a8ce5620e556ce21aba5e68287" },
   "substitute.nvim": { "branch": "main", "commit": "17ffaeb5a1dc2dbef39cf0865d8a4b6000836714" },
-  "tabout.nvim": { "branch": "master", "commit": "26cf934f872e2fbfab55d572c5eb7dad0e82238e" },
   "ultimate-autopair.nvim": { "branch": "v0.5", "commit": "d548017a134eeb162eda9ac7078fd63d2031972a" },
-  "vimdoc-ja": { "branch": "master", "commit": "7c756033b2f4f2aeddbb6fbd0ec07dfd16c2c218" }
+  "vimdoc-ja": { "branch": "master", "commit": "3a4a282bf42dd4dad7eff0f9037666eed6ef6a66" }
 }

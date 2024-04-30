@@ -11,7 +11,6 @@ require('lazy').setup({
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ "altermo/ultimate-autopair.nvim", branch = "v0.5", config = true, event = { "InsertEnter", "CmdlineEnter" } },
-	{ 'abecodes/tabout.nvim', config = true, event = "InsertEnter" },
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
