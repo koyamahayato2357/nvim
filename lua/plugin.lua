@@ -3,7 +3,6 @@ local map = vim.keymap.set
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
 require('lazy').setup({
-	{ 'nvim-treesitter/nvim-treesitter' },
 	{ 'folke/flash.nvim', config = true, event = "VimEnter" },
 	{ 'gbprod/substitute.nvim', opts = { modifiers = nil }, event = "VimEnter" },
 	{ 'kylechui/nvim-surround', config = true, event = "VimEnter" },
