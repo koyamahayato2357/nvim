@@ -5,7 +5,6 @@
   "hop.nvim": { "branch": "master", "commit": "6ff23501a1fd1c75c91dfd99ff5befcfdb02c11d" },
   "lazy.nvim": { "branch": "main", "commit": "3f13f080434ac942b150679223d54f5ca91e0d52" },
   "nvim-surround": { "branch": "main", "commit": "a4e30d33add8a9743b4f518b3a788b3c8e5def71" },
-  "nvim-treesitter": { "branch": "master", "commit": "121d0c4c6718833ccbaaa4c32a9be0d0a6aab7c1" },
   "nvimdoc-ja": { "branch": "master", "commit": "a590737064a863a8ce5620e556ce21aba5e68287" },
   "substitute.nvim": { "branch": "main", "commit": "17ffaeb5a1dc2dbef39cf0865d8a4b6000836714" },
   "ultimate-autopair.nvim": { "branch": "v0.5", "commit": "d548017a134eeb162eda9ac7078fd63d2031972a" },
