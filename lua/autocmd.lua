@@ -27,6 +27,8 @@ au({ "BufReadPost" }, {
 		elseif filetype == "zsh" then
 			vim.bo.filetype = "bash"
 			vim.treesitter.start()
+		elseif filetype == "lisp" then
+			vim.treesitter.start()
 		elseif filetype == "go" then
 			Lsp_config("go", "gopls")
 			vim.treesitter.start()
