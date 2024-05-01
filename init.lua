@@ -5,8 +5,6 @@ require('plugin')
 require('autocmd')
 require('gitlens')
 
-vim.cmd[[
-cab nvimrc ~/.config/nvim/init.lua
-syntax off
-]]
+vim.cmd.syntax "off"
+vim.cmd.cabbrev { "nvimrc", "~/.config/nvim/init.lua" }
 
