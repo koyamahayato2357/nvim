@@ -16,6 +16,19 @@ require('lazy').setup({
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ "altermo/ultimate-autopair.nvim", branch = "v0.5", config = true, event = { "InsertEnter", "CmdlineEnter" } },
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
+	{ 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate", config = function()
+		require'nvim-treesitter'.setup({
+			highlight = {
+				enable = true
+			},
+			indent = {
+				enable = true
+			},
+			auto_install = true,
+			ensure_installed = { "c", "cpp", "rust", "vimdoc", "query", "vim", "commonlisp", "html", "javascript", "css", "python" },
+			addiional_vim_regex_highlighting = { "tex" },
+		})
+	end },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
 
