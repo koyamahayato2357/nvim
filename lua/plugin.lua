@@ -28,6 +28,7 @@ require('lazy').setup({
 			ensure_installed = { "c", "cpp", "rust", "vimdoc", "query", "vim", "commonlisp", "html", "javascript", "css", "python" },
 			addiional_vim_regex_highlighting = { "tex" },
 		})
+		vim.cmd('TSEnable highlight')
 	end },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
