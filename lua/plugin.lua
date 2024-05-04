@@ -30,6 +30,8 @@ require('lazy').setup({
 		})
 		vim.cmd('TSEnable highlight')
 	end },
+	{ 'mistweaverco/bluloco.nvim' },
+	{ 'catppuccin/nvim' },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })
 

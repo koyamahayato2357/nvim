@@ -1,4 +1,3 @@
-require('colorscheme')
 require('opt')
 require('map')
 require('plugin')
@@ -7,3 +6,4 @@ require('gitlens')
 
 vim.cmd.cabbrev { "nvimrc", "~/.config/nvim/init.lua" }
 
+vim.cmd.colorscheme'catppuccin'
