@@ -10,7 +10,6 @@ vim.opt.cpoptions:append("$v")
 o.cursorline = true
 o.foldmethod = "manual"
 o.gdefault = true
-o.guicursor = "i:block"
 o.guifont = "Plemol JP NF:h10"
 o.helplang = "ja,en"
 o.hidden = true
