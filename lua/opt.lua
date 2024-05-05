@@ -10,7 +10,7 @@ vim.opt.cpoptions:append("$v")
 o.cursorline = true
 o.foldmethod = "manual"
 o.gdefault = true
-o.guifont = "Plemol JP NF:h10"
+o.guifont = "PlemolJP35 Console NF:h10"
 o.helplang = "ja,en"
 o.hidden = true
 o.hlsearch = true
