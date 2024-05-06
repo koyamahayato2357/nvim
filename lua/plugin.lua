@@ -9,12 +9,12 @@ require('lazy').setup({
 		map('n', 'ss', sub.line, { noremap = true })
 		map('n', 'S', sub.eol, { noremap = true })
 		map('x', 's', sub.visual, { noremap = true })
-	end, opts = { modifiers = nil }, event = "VimEnter" },
-	{ 'kylechui/nvim-surround', config = true, event = "VimEnter" },
-	{ 'smoka7/hop.nvim', config = true, event = "VimEnter" },
+	end, opts = { modifiers = nil }, keys = { { "s", mode = { "n", "v" } } } },
+	{ 'kylechui/nvim-surround', config = true, keys = { { "s", mode = "o" } } },
+	{ 'smoka7/hop.nvim', config = true, keys = { { "g", mode = "n" } } },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
-	{ "altermo/ultimate-autopair.nvim", branch = "v0.5", config = true, event = { "InsertEnter", "CmdlineEnter" } },
+	{ "altermo/ultimate-autopair.nvim", branch = "v0.5", config = true, event = "InsertEnter" },
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
 	{ 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate", config = function()
 		require'nvim-treesitter'.setup({
@@ -28,9 +28,7 @@ require('lazy').setup({
 			ensure_installed = { "c", "cpp", "rust", "vimdoc", "query", "vim", "commonlisp", "html", "javascript", "css", "python" },
 			addiional_vim_regex_highlighting = { "tex" },
 		})
-		vim.cmd('TSEnable highlight')
 	end },
-	{ 'mistweaverco/bluloco.nvim' },
 	{ 'catppuccin/nvim' },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
 })

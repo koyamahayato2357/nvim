@@ -48,4 +48,3 @@ vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_transparency = 0.7
 vim.g.transparency = 0.0
 vim.g.neovide_cursor_smooth_blink = true
-

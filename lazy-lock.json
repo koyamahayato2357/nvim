@@ -1,5 +1,4 @@
 {
-  "bluloco.nvim": { "branch": "main", "commit": "4df71a9edcfd2383646edf2ba460332a7f61f142" },
   "carbonpaper.vim": { "branch": "master", "commit": "da85b633e9bcf9a4525aa46aa5113cf69c7c7568" },
   "copilot.vim": { "branch": "release", "commit": "b603990a639bb4b8651d054ef8d5a8fe5db56e0c" },
   "flash.nvim": { "branch": "main", "commit": "7bb4a9c75d1e20cd24185afedeaa11681829ba23" },
@@ -7,9 +6,9 @@
   "lazy.nvim": { "branch": "main", "commit": "d3974346b6cef2116c8e7b08423256a834cb7cbc" },
   "nvim": { "branch": "main", "commit": "6af91673ceccbd6e073b66c439e7fce239f72d24" },
   "nvim-surround": { "branch": "main", "commit": "6d0dc3dbb557bcc6a024969da461df4ba803fc48" },
-  "nvim-treesitter": { "branch": "master", "commit": "73fdd31377d76aa1eea63e66581a8c6b7a71da94" },
+  "nvim-treesitter": { "branch": "master", "commit": "268611e3ece8463bfb5b09044dcd1b76a28ffbb6" },
   "nvimdoc-ja": { "branch": "master", "commit": "a590737064a863a8ce5620e556ce21aba5e68287" },
   "substitute.nvim": { "branch": "main", "commit": "17ffaeb5a1dc2dbef39cf0865d8a4b6000836714" },
   "ultimate-autopair.nvim": { "branch": "v0.5", "commit": "d548017a134eeb162eda9ac7078fd63d2031972a" },
-  "vimdoc-ja": { "branch": "master", "commit": "5e8ee87d2edaeb6ac3c734c6de0d1b2e07fd8d8a" }
+  "vimdoc-ja": { "branch": "master", "commit": "4f5fbeb88bbc9d2c954e1be82dff56d706ed93c8" }
 }
