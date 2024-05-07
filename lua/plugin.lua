@@ -11,7 +11,6 @@ require('lazy').setup({
 		map('x', 's', sub.visual, { noremap = true })
 	end, opts = { modifiers = nil }, keys = { { "s", mode = { "n", "v" } } } },
 	{ 'kylechui/nvim-surround', config = true, keys = { { "s", mode = "o" } } },
-	{ 'smoka7/hop.nvim', config = true, keys = { { "g", mode = "n" } } },
 	{ 'vim-jp/vimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ "altermo/ultimate-autopair.nvim", branch = "v0.5", config = true, event = "InsertEnter" },
