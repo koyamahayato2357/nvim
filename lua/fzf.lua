@@ -4,7 +4,7 @@ local function get_files_recursive(directory, files)
 	local directory_files = vim.fn.readdir(directory)
 	for _, file in ipairs(directory_files) do
 		local full_path = directory .. '/' .. file
-		if vim.fn.isdirectory(full_path) ~= 0 and file ~= '.' and file ~= '..' then
+		if vim.fn.isdirectory(full_path) ~= 0 and file ~= '.' and file ~= '..' and file ~= '.git' and file ~= 'build' and file ~= 'bin' then
 			get_files_recursive(full_path, files)
 		else
 			table.insert(files, string.sub(full_path, curdir:len() + 2))
