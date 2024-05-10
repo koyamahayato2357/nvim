@@ -5,9 +5,9 @@
   "lazy.nvim": { "branch": "main", "commit": "d3974346b6cef2116c8e7b08423256a834cb7cbc" },
   "nvim": { "branch": "main", "commit": "d97387aea8264f484bb5d5e74f2182a06c83e0d8" },
   "nvim-surround": { "branch": "main", "commit": "6d0dc3dbb557bcc6a024969da461df4ba803fc48" },
-  "nvim-treesitter": { "branch": "master", "commit": "9e1cda4e71a763ba1f1ac099498c7ce40edc6dd2" },
+  "nvim-treesitter": { "branch": "master", "commit": "d6dcfe888724d271dcbaa6f2c80f9f706b39cd2a" },
   "nvimdoc-ja": { "branch": "master", "commit": "a590737064a863a8ce5620e556ce21aba5e68287" },
   "substitute.nvim": { "branch": "main", "commit": "17ffaeb5a1dc2dbef39cf0865d8a4b6000836714" },
   "ultimate-autopair.nvim": { "branch": "v0.5", "commit": "d548017a134eeb162eda9ac7078fd63d2031972a" },
-  "vimdoc-ja": { "branch": "master", "commit": "bcd344a4359700f2298a261a114975eb0fc39653" }
+  "vimdoc-ja": { "branch": "master", "commit": "c71bbaa86d79d8206f0ab994bfa58d0e24961057" }
 }
