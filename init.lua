@@ -9,8 +9,6 @@ vim.cmd.cabbrev { "nvimrc", "~/.config/nvim/init.lua" }
 
 vim.cmd.colorscheme'catppuccin'
 
--- vim.ui.input = require('floatw').input
-
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
 vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none" })
