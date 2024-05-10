@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 		map("n", "xb", "<cmd>b#<CR>")
 		map("n", "xe", "<cmd>Explore<CR>")
 		map('n', '<Space><Space>', 'gg=G<C-o>')
+		map('n', '<Space><CR>', 'a<CR><Esc>')
 		map('n', 'gd', vim.lsp.buf.definition)
 		map('n', 'gn', vim.lsp.buf.rename)
 		map('n', 'gr', vim.lsp.buf.references)
