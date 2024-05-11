@@ -1,6 +1,6 @@
 local function get_files_recursive(directory, files)
 	files = files or {}
-	local curdir = vim.fn.getcwd()
+	local curdir = vim.env.PWD
 	local directory_files = vim.fn.readdir(directory)
 	for _, file in ipairs(directory_files) do
 		local full_path = directory .. '/' .. file
@@ -18,7 +18,7 @@ function(opts)
 	vim.cmd.edit(opts.fargs[1])
 end,
 { nargs = 1, bar = true, complete = function(A)
-	local items = get_files_recursive(vim.fn.getcwd())
+	local items = get_files_recursive(vim.env.PWD)
 	if A:len() > 0 then
 		return vim.fn.matchfuzzy(items, A)
 	else
