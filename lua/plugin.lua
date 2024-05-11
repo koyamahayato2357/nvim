@@ -21,7 +21,7 @@ require('lazy').setup({
 	{ 'vim-jp/nvimdoc-ja', keys = { { "h", mode = "c" } } },
 	{ "altermo/ultimate-autopair.nvim", branch = "v0.5", config = true, event = "InsertEnter" },
 	{ 's417-lama/carbonpaper.vim', keys = { { "C", mode = "c" } } },
-	{ 'stevearc/oil.nvim', config = true, event = "CmdlineEnter" },
+	{ 'stevearc/oil.nvim', config = true },
 	{ 'nvim-tree/nvim-web-devicons' },
 	{ 'catppuccin/nvim' },
 	{ 'github/copilot.vim', keys = { { "C", mode = "c" } } },
