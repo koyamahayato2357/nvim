@@ -42,7 +42,6 @@ o.wildmenu = true
 o.writeany = true
 o.wrap = false
 
-vim.g.netrw_liststyle = 3
 vim.g.copilot_filetypes = { gitcommit = true, yaml = true, markdown = true }
 vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_transparency = 0.7

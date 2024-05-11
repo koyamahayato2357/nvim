@@ -3,9 +3,11 @@
   "copilot.vim": { "branch": "release", "commit": "dfa657c80c915a6a3eb6d9010046a0576ad25a37" },
   "flash.nvim": { "branch": "main", "commit": "7bb4a9c75d1e20cd24185afedeaa11681829ba23" },
   "lazy.nvim": { "branch": "main", "commit": "d3974346b6cef2116c8e7b08423256a834cb7cbc" },
-  "nvim": { "branch": "main", "commit": "24c96f57d0763c3d55d57396d0fb2697d075a497" },
+  "nvim": { "branch": "main", "commit": "fe30ead8fffe0565313adc91baea7734280e07ea" },
   "nvim-surround": { "branch": "main", "commit": "6d0dc3dbb557bcc6a024969da461df4ba803fc48" },
+  "nvim-web-devicons": { "branch": "master", "commit": "5b9067899ee6a2538891573500e8fd6ff008440f" },
   "nvimdoc-ja": { "branch": "master", "commit": "a590737064a863a8ce5620e556ce21aba5e68287" },
+  "oil.nvim": { "branch": "master", "commit": "010b44a79d497c697686e2727049d3dd215bbbd6" },
   "substitute.nvim": { "branch": "main", "commit": "17ffaeb5a1dc2dbef39cf0865d8a4b6000836714" },
   "ultimate-autopair.nvim": { "branch": "v0.5", "commit": "d548017a134eeb162eda9ac7078fd63d2031972a" },
   "vimdoc-ja": { "branch": "master", "commit": "c71bbaa86d79d8206f0ab994bfa58d0e24961057" }
