@@ -23,10 +23,8 @@ au({ "FileType" }, {
 			Lsp_config("asm", "asm-lsp")
 		elseif filetype == "zsh" then
 			vim.bo.filetype = "bash"
-			vim.treesitter.start()
 		elseif filetype == "lisp" then
 			vim.bo.filetype = "commonlisp"
-			vim.treesitter.start()
 		elseif filetype == "go" then
 			Lsp_config("go", "gopls")
 		elseif filetype == "html" then
