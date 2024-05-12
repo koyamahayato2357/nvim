@@ -6,7 +6,7 @@ local i = luasnip.insert_node
 
 luasnip.add_snippets("c", {
   s("inc", {
-    t("#include <"), 
+    t("#include <"),
     i(1),
     t({".h>", ""}),
     i(0),
@@ -23,7 +23,7 @@ luasnip.add_snippets("c", {
   s("if", {
       t("if ("),
       i(1, "expr"),
-      t({") {", "    "}),
+      t({") {", "	"}),
       i(2),
       t({"", "}"}),
       i(0)
@@ -32,14 +32,14 @@ luasnip.add_snippets("c", {
   s("eli", {
       t("else if ("),
       i(1, "expr"),
-      t({") {", "    "}),
+      t({") {", "	"}),
       i(2),
       t({"", "}"}),
       i(0),
   }),
 
   s("els", {
-      t({"else {", "    "}),
+      t({"else {", "	"}),
       i(1),
       t({"", "}"}),
       i(0),
@@ -52,7 +52,7 @@ luasnip.add_snippets("c", {
       i(2, "expr"),
       t("; "),
       i(3, "incr"),
-      t({") {", "    "}),
+      t({") {", "	"}),
       i(4),
       t({"", "}"}),
       i(0),
@@ -61,7 +61,7 @@ luasnip.add_snippets("c", {
   s("switch", {
       t("switch ("),
       i(1, "expr"),
-      t({") {", "    "}),
+      t({") {", "	"}),
       i(2),
       t({"", "}"}),
       i(0),
@@ -70,7 +70,7 @@ luasnip.add_snippets("c", {
   s("cas", {
       t("case "),
       i(1, "VALUE"),
-      t({":", "    "}),
+      t({":", "	"}),
       i(2),
       t({";", "break;"}),
       i(0)
@@ -103,7 +103,7 @@ luasnip.add_snippets("lua", {
     s('if', {
         t('if '),
         i(1, 'expr'),
-        t({' then', '    '}),
+        t({' then', '	'}),
         i(2),
         t({'', 'end'})
     }),
@@ -113,7 +113,7 @@ luasnip.add_snippets("lua", {
         i(1, 'f_name'),
         t('('),
         i(2),
-        t({')', '    '}),
+        t({')', '	'}),
         i(3),
         t({'', 'end'}),
     }),
@@ -121,7 +121,7 @@ luasnip.add_snippets("lua", {
     s("s", {
         t("s('"),
         i(1, "before"),
-        t({"', {", "    "}),
+        t({"', {", "	"}),
         i(2),
         t({"", "}),"}),
         i(0),
@@ -146,19 +146,19 @@ luasnip.add_snippets("python", {
     s('if', {
         t('if '),
         i(1, 'expr'),
-        t({':', '    '}),
+        t({':', '	'}),
         i(0, 'pass'),
     }),
 
     s('eli', {
         t('elif '),
         i(1, 'expr'),
-        t({':', '    '}),
+        t({':', '	'}),
         i(0, 'pass'),
     }),
 
     s('els', {
-        t({'else :', '    '}),
+        t({'else :', '	'}),
         i(0, 'pass'),
     }),
 
@@ -167,21 +167,21 @@ luasnip.add_snippets("python", {
         i(1, 'i'),
         t(' in '),
         i(2, 'arr'),
-        t({':', '    '}),
+        t({':', '	'}),
         i(0, 'pass')
     }),
 
     s('whi', {
         t('while '),
         i(1, 'expr'),
-        t({':', '    '}),
+        t({':', '	'}),
         i(0, 'pass'),
     }),
 
     s('de', {
         t('def '),
         i(1, 'f_name'),
-        t({':', '    '}),
+        t({':', '	'}),
         i(0, 'pass'),
     }),
 })
@@ -192,7 +192,7 @@ luasnip.add_snippets("rust", {
         i(1, 'fn_name'),
         t('('),
         i(2, 'arg'),
-        t({') {', '    '}),
+        t({') {', '	'}),
         i(3, 'statement;'),
         t('', '}', ''),
         i(0),
@@ -201,7 +201,7 @@ luasnip.add_snippets("rust", {
     s('if', {
         t('if '),
         i(1, 'expr'),
-        t({' {', '    '}),
+        t({' {', '	'}),
         i(2, 'statement;'),
         t({'', '}'}),
         i(0),
@@ -210,14 +210,14 @@ luasnip.add_snippets("rust", {
     s('eli', {
         t('else if '),
         i(1, 'expr'),
-        t({' {', '    '}),
+        t({' {', '	'}),
         i(2, 'statement;'),
         t({'', '}'}),
         i(0),
     }),
 
     s('els', {
-        t({'else {', '    '}),
+        t({'else {', '	'}),
         i(1, 'statement;'),
         t({'', '}'}),
         i(0),
@@ -228,7 +228,7 @@ luasnip.add_snippets("rust", {
         i(1, 'i'),
         t(' in '),
         i(2, 'arrs'),
-        t({' {', '    '}),
+        t({' {', '	'}),
         i(3, 'statement;'),
         t({'', '}'}),
         i(0),
@@ -237,7 +237,7 @@ luasnip.add_snippets("rust", {
     s('whi', {
         t('while '),
         i(1, 'expr'),
-        t({' {', '    '}),
+        t({' {', '	'}),
         i(2, 'statement;'),
         t({'', '}'}),
         i(0),
@@ -246,7 +246,7 @@ luasnip.add_snippets("rust", {
     s('mat', {
         t('match '),
         i(1, 'expr'),
-        t({' {', '    '}),
+        t({' {', '	'}),
         i(2, 'pattern'),
         t(' => '),
         i(3, 'statement'),
@@ -273,7 +273,7 @@ luasnip.add_snippets("tex", {
         i(3, 'author name'),
         t({'}', '\\date{'}),
         i(4),
-        t({'}', '', '\\begin{document}', '\\maketitle', '\\newpage', '    '}),
+        t({'}', '', '\\begin{document}', '\\maketitle', '\\newpage', '	'}),
         i(0, '% document'),
         t({'', '\\end{document}'})
     }),
@@ -283,7 +283,7 @@ luasnip.add_snippets("tex", {
         i(1),
         t('}'),
         i(0),
-        
+
     }),
 
     s('end', {
@@ -291,7 +291,7 @@ luasnip.add_snippets("tex", {
         i(1),
         t('}'),
         i(0),
-        
+
     }),
 
     s('sec', {
@@ -299,7 +299,7 @@ luasnip.add_snippets("tex", {
         i(1),
         t('}'),
         i(0),
-        
+
     }),
 
     s('sbs', {
