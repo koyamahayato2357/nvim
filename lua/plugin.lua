@@ -65,7 +65,13 @@ au({ "InsertEnter" }, {
 	callback = function()
 		vim.opt.runtimepath:append(pluginpath .. 'ultimate-autopair.nvim')
 		vim.opt.runtimepath:append(pluginpath .. 'copilot.nvim')
+		vim.opt.runtimepath:append(pluginpath .. 'LuaSnip')
 		require'ultimate-autopair'.setup()
+		local ls = require('luasnip')
+		require('snippets')
+		map('i', 'ŝ', function() ls.expand() end)
+		map('i', 'ĝ', function() ls.jump(1) end)
+		map('i', 'ĉ', function() ls.jump(-1) end)
 	end
 })
 
