@@ -43,8 +43,7 @@ au({ "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
 	callback = function()
 		for _, s in ipairs(vim.fn.systemlist('git diff --cached')) do
-			vim.cmd.normal('Go')
-			vim.api.nvim_buf_set_lines(0, -2, -1, false, { '# ' .. s })
+			vim.fn.append(vim.fn.line('$'), "# " .. s)
 		end
 	end
 })
