@@ -48,6 +48,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map({ "n", "v", "o" }, "gl", "$l")
 		map({ "n", "v", "o" }, "gh", "^")
 
+		map('i', '<S-Tab>', '<C-x><C-o>')
 		map('i', '<Esc>', '<Right><Esc>')
 		map('i', '<C-e>', '<C-x><C-e>')
 		map('i', '<C-y>', '<C-x><C-y>')
