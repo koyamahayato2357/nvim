@@ -42,11 +42,9 @@ au({ "FileType" }, {
 au({ "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
 	callback = function()
-		vim.api.nvim_buf_set_lines(0, 0, 1, vim.fn.systemlist('git diff --cached'))
-		for i, s in ipairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
-			if s[1] ~= '#' then
-				vim.api.nvim_buf_set_lines(0, i, i + 1, false, { '#' .. s })
-			end
+		for _, s in ipairs(vim.fn.systemlist('git diff --cached')) do
+			vim.cmd.normal('Go')
+			vim.api.nvim_buf_set_lines(0, -2, -1, false, { '# ' .. s })
 		end
 	end
 })
