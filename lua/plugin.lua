@@ -29,17 +29,11 @@ au({ 'VimEnter' }, {
 				map({ 'n', 'v', 'o' }, 'gS', flash.treesitter_search)
 			end
 		}
-
-		require'substitute'.setup {
-			config = function()
-				local sub = require('substitute')
-				map('n', 's', sub.operator)
-				map('n', 'ss', sub.line)
-				map('n', 'S', sub.eol)
-				map('x', 's', sub.visual)
-			end,
-			opts = { modifiers = nil },
-		}
+		local sub = require('substitute')
+		map('n', 's', sub.operator)
+		map('n', 'ss', sub.line)
+		map('n', 'S', sub.eol)
+		map('x', 's', sub.visual)
 		require'nvim-surround'.setup()
 		if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
 			addplug('oil.nvim')
