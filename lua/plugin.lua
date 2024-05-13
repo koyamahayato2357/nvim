@@ -1,5 +1,6 @@
 local au = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
+local hi = vim.api.nvim_set_hl
 
 ---@param plugname string
 local function addplug(plugname)
@@ -14,12 +15,12 @@ au({ 'VimEnter' }, {
 		addplug('nvim-surround')
 		addplug('nvim')
 		vim.cmd.colorscheme'catppuccin'
-		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-		vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-		vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
-		vim.api.nvim_set_hl(0, "CursorLineNC", { bg = "none" })
-		vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none" })
-		vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+		hi(0, "Normal", { bg = "none" })
+		hi(0, "NormalNC", { bg = "none" })
+		hi(0, "CursorLine", { bg = "none" })
+		hi(0, "CursorLineNC", { bg = "none" })
+		hi(0, "CursorLineNr", { bg = "none" })
+		hi(0, "StatusLine", { bg = "none" })
 		require'flash'.setup {
 			config = function()
 				local flash = require('flash')
