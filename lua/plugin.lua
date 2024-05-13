@@ -1,13 +1,18 @@
 local au = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
-local pluginpath = "/home/sundo/.local/share/nvim/plugins/"
+---@param plugname string
+local function addplug(plugname)
+	local pluginpath = "/home/sundo/.config/nvim/plugins/"
+	vim.opt.runtimepath(pluginpath .. plugname)
+end
+
 au({ 'VimEnter' }, {
 	callback = function()
-		vim.opt.runtimepath:append(pluginpath .. 'flash.nvim')
-		vim.opt.runtimepath:append(pluginpath .. 'substitute.nvim')
-		vim.opt.runtimepath:append(pluginpath .. 'nvim-surround')
-		vim.opt.runtimepath:append(pluginpath .. 'nvim')
+		addplug('flash.nvim')
+		addplug('substitute.nvim')
+		addplug('nvim-surround')
+		addplug('nvim')
 		vim.cmd.colorscheme'catppuccin'
 		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -36,16 +41,16 @@ au({ 'VimEnter' }, {
 		}
 		require'nvim-surround'.setup()
 		if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
-			vim.opt.runtimepath:append(pluginpath .. 'oil.nvim')
+			addplug('oil.nvim')
 			require'oil'.setup()
-			vim.opt.runtimepath:append(pluginpath .. 'nvim-web-devicons')
+			addplug('nvim-web-devicons')
 		else
 			au({ "CmdlineEnter" }, {
 				once = true,
 				callback = function()
-					vim.opt.runtimepath:append(pluginpath .. 'oil.nvim')
+					addplug('oil.nvim')
 					require'oil'.setup()
-					vim.opt.runtimepath:append(pluginpath .. 'nvim-web-devicons')
+					addplug('nvim-web-devicons')
 				end
 			})
 		end
@@ -55,18 +60,18 @@ au({ 'VimEnter' }, {
 au({ "CmdlineEnter" }, {
 	once = true,
 	callback = function()
-		vim.opt.runtimepath:append(pluginpath .. 'vimdoc-ja')
-		vim.opt.runtimepath:append(pluginpath .. 'nvimdoc-ja')
-		vim.opt.runtimepath:append(pluginpath .. 'carbonpaper.vim')
+		addplug('vimdoc-ja')
+		addplug('nvimdoc-ja')
+		addplug('carbonpaper.vim')
 	end
 })
 
 au({ "InsertEnter" }, {
 	once = true,
 	callback = function()
-		vim.opt.runtimepath:append(pluginpath .. 'ultimate-autopair.nvim')
-		vim.opt.runtimepath:append(pluginpath .. 'copilot.nvim')
-		vim.opt.runtimepath:append(pluginpath .. 'LuaSnip')
+		addplug('ultimate-autopair.nvim')
+		addplug('copilot.nvim')
+		addplug('LuaSnip')
 		require'ultimate-autopair'.setup()
 		local ls = require('luasnip')
 		require('snippets')
