@@ -4,7 +4,7 @@ local map = vim.keymap.set
 ---@param plugname string
 local function addplug(plugname)
 	local pluginpath = "/home/sundo/.config/nvim/plugins/"
-	vim.opt.runtimepath(pluginpath .. plugname)
+	vim.opt.runtimepath:append(pluginpath .. plugname)
 end
 
 au({ 'VimEnter' }, {
