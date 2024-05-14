@@ -14,14 +14,15 @@ function M.blameVirtText()
 	if hash == '00000000' then
 		Text = 'Not Committed Yet'
 	else
-		local cmd = string.format("git show %s ", hash).."--format='%an | %ar | %s'"
+		local cmd = string.format("git show %s ", hash) .. "--format='%an | %ar | %s'"
 		Text = vim.split(vim.fn.system(cmd), '\n')[1]
 		if Text:find("fatal") then
 			Text = 'Not Committed Yet'
 		end
 	end
-	api.nvim_buf_set_virtual_text(0, 2, line[1] - 1, {{ Text,'GitLens' }}, {})
+	api.nvim_buf_set_virtual_text(0, 2, line[1] - 1, { { Text, 'GitLens' } }, {})
 end
+
 function M.clearBlameVirtText()
 	api.nvim_buf_clear_namespace(0, 2, 0, -1)
 end
@@ -31,4 +32,3 @@ map('n', '<Esc>', function()
 	vim.cmd('nohl')
 end)
 map('n', 'gb', function() M.blameVirtText() end)
-

@@ -17,14 +17,18 @@ local function get_files_recursive(directory, files)
 end
 
 vim.api.nvim_create_user_command("F",
-function(opts)
-	vim.cmd.edit(opts.fargs[1])
-end,
-{ nargs = 1, bar = true, complete = function(A)
-	local items = get_files_recursive(vim.env.PWD, {})
-	if A:len() > 0 then
-		return vim.fn.matchfuzzy(items, A)
-	else
-		return items
-	end
-end })
+	function(opts)
+		vim.cmd.edit(opts.fargs[1])
+	end,
+	{
+		nargs = 1,
+		bar = true,
+		complete = function(A)
+			local items = get_files_recursive(vim.env.PWD, {})
+			if A:len() > 0 then
+				return vim.fn.matchfuzzy(items, A)
+			else
+				return items
+			end
+		end
+	})
