@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('n', 'X', 'd^')
 		map('n', 'S', 'c^')
 		map("n", "x", vim.cmd.bdelete)
-		map('n', '<Space><Space>', 'gg=G<C-o>')
+		map('n', '<Space><Space>', vim.lsp.buf.format)
 		map('n', '<Space><CR>', 'a<CR><Esc>')
 		map('n', 'gd', vim.lsp.buf.definition)
 		map('n', 'gn', vim.lsp.buf.rename)
