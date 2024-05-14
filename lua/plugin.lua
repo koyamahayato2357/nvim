@@ -36,16 +36,16 @@ au({ 'VimEnter' }, {
 		map('x', 's', sub.visual)
 		require'nvim-surround'.setup()
 		if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
+			addplug('nvim-web-devicons')
 			addplug('oil.nvim')
 			require'oil'.setup()
-			addplug('nvim-web-devicons')
 		else
 			au({ "CmdlineEnter" }, {
 				once = true,
 				callback = function()
+					addplug('nvim-web-devicons')
 					addplug('oil.nvim')
 					require'oil'.setup()
-					addplug('nvim-web-devicons')
 				end
 			})
 		end
