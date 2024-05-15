@@ -67,6 +67,11 @@ au({ "CmdlineEnter" }, {
 		require('noice').setup {
 			messages = {
 				enabled = false
+			},
+			lsp = {
+				hover = {
+					enabled = false
+				}
 			}
 		}
 	end
