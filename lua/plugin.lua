@@ -68,10 +68,8 @@ au({ "CmdlineEnter" }, {
 		})
 		vim.api.nvim_create_user_command("B", sidebar.toggle, {})
 		require('noice').setup {
-			opts = {
-				messages = {
-					enabled = false
-				}
+			messages = {
+				enabled = false
 			}
 		}
 	end
