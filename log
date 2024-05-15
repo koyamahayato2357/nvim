@@ -1,0 +1,52 @@
+Extra options: []
+Measured: 1000 times
+
+Total Average: 8.562845 msec
+Total Max:     17.262000 msec
+Total Min:     7.307000 msec
+
+ AVERAGE      MAX      MIN
+---------------------------
+2.295033 9.687000 1.877000: /home/sundo/.config/nvim/init.lua
+1.102150 2.707000 0.758000: require('vim._defaults')
+0.784712 3.060000 0.636000: sourcing vimrc file(s)
+0.771173 3.348000 0.624000: require('opt')
+0.720341 1.334000 0.566000: init lua interpreter
+0.472553 1.008000 0.376000: inits 1
+0.461361 1.143000 0.373000: loading rtp plugins
+0.427791 1.684000 0.346000: /usr/local/nvim/share/nvim/runtime/syntax/syntax.vim
+0.419301 0.716000 0.325000: event init
+0.414332 0.811000 0.345000: init highlight
+0.373573 0.947000 0.172000: require('gitlens')
+0.371133 1.193000 0.291000: require('vim._init_packages')
+0.260963 6.773000 0.162000: require('plugin')
+0.246821 1.555000 0.194000: require('map')
+0.244254 0.646000 0.201000: require('vim._editor')
+0.201041 0.748000 0.163000: loading packages
+0.191529 0.540000 0.156000: /usr/local/nvim/share/nvim/runtime/filetype.lua
+0.187075 0.854000 0.116000: require('autocmd')
+0.184952 1.008000 0.131000: require('dmacro')
+0.158607 0.405000 0.119000: early init
+0.141276 0.465000 0.087000: require('fzf')
+0.120265 0.764000 0.095000: /usr/local/nvim/share/nvim/runtime/syntax/synload.vim
+0.101153 1.178000 0.076000: opening buffers
+0.080756 0.419000 0.055000: init first window
+0.076815 0.411000 0.057000: locale set
+0.072195 0.271000 0.059000: require('vim.inspect')
+0.071138 1.476000 0.053000: /usr/local/nvim/share/nvim/runtime/ftplugin.vim
+0.067568 0.377000 0.053000: require('vim.shared')
+0.065662 0.191000 0.054000: require('vim._options')
+0.051152 0.205000 0.039000: expanding arguments
+0.047742 0.341000 0.036000: /usr/local/nvim/share/nvim/runtime/indent.vim
+0.032680 0.275000 0.023000: inits 2
+0.020287 0.114000 0.008000: clear screen
+0.016493 0.171000 0.010000: require('vim.keymap')
+0.014492 0.084000 0.011000: window checked
+0.011084 0.192000 0.008000: inits 3
+0.009438 0.223000 0.006000: init default mappings & autocommands
+0.009264 0.181000 0.006000: --- NVIM STARTED ---
+0.005860 0.100000 0.003000: parsing arguments
+0.004266 0.045000 0.002000: editing files in windows
+0.002770 0.040000 0.001000: loading after plugins
+0.002696 0.085000 0.002000: BufEnter autocommands
+0.001316 0.025000 0.001000: --- NVIM STARTING ---

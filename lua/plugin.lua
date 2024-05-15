@@ -58,6 +58,13 @@ au({ "CmdlineEnter" }, {
 		addplug('vimdoc-ja')
 		addplug('nvimdoc-ja')
 		addplug('carbonpaper.vim')
+		addplug('sidebar.nvim')
+		local sidebar = require('sidebar-nvim')
+		sidebar.setup({
+			open = false,
+			initial_width = 20,
+		})
+		vim.api.nvim_create_user_command("B", sidebar.toggle, {})
 	end
 })
 
