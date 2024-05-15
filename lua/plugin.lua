@@ -14,6 +14,9 @@ au({ 'VimEnter' }, {
 		addplug('substitute.nvim')
 		addplug('nvim-surround')
 		addplug('nvim')
+		addplug('toggleterm.nvim')
+		addplug('nvim-web-devicons')
+		addplug('oil.nvim')
 		vim.cmd.colorscheme 'catppuccin'
 		hi(0, "Normal", { bg = "none" })
 		hi(0, "NormalNC", { bg = "none" })
@@ -35,20 +38,14 @@ au({ 'VimEnter' }, {
 		map('n', 'S', sub.eol)
 		map('x', 's', sub.visual)
 		require 'nvim-surround'.setup()
-		if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
-			addplug('nvim-web-devicons')
-			addplug('oil.nvim')
-			require 'oil'.setup()
-		else
-			au({ "CmdlineEnter" }, {
-				once = true,
-				callback = function()
-					addplug('nvim-web-devicons')
-					addplug('oil.nvim')
-					require 'oil'.setup()
-				end
-			})
-		end
+		local oil = require('oil')
+		oil.setup()
+		map('n', '^o', function() oil.toggle_float() end)
+		local toggleterm = require('toggleterm')
+		toggleterm.setup {
+			direction = "float"
+		}
+		map('n', '^t', function() toggleterm.toggle() end)
 	end
 })
 
