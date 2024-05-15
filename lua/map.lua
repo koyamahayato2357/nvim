@@ -69,7 +69,6 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('o', '7', "i'")
 		map('o', '9', 'i(')
 		map('o', ']', 'i]')
-		map('o', '}', 'i}')
 		map('o', '.', 'i>')
 	end
 })
