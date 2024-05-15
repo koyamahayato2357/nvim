@@ -9,6 +9,11 @@ function Lsp_config(name, cmd, root)
 	local caps = vim.lsp.protocol.make_client_capabilities()
 	caps.textDocument.completion.completionItem.snippetSupport = true
 	vim.lsp.protocol.resolve_capabilities(caps)
+	au({ 'BufWritePre' }, {
+		callback = function()
+			vim.lsp.buf.format()
+		end
+	})
 end
 
 au({ "FileType" }, {
@@ -30,12 +35,6 @@ au({ "FileType" }, {
 			vim.bo.filetype = "commonlisp"
 		elseif filetype == "go" then
 			Lsp_config("go", "gopls")
-		elseif filetype == "html" then
-			Lsp_config("html", "vscode-html-languageserver")
-		elseif filetype == "css" then
-			Lsp_config("css", "vscode-css-languageserver")
-		elseif filetype == "javascript" or filetype == "typescript" then
-			Lsp_config("jsts", "typescript-language-server")
 		end
 	end
 })

@@ -14,14 +14,14 @@ au({ 'VimEnter' }, {
 		addplug('substitute.nvim')
 		addplug('nvim-surround')
 		addplug('nvim')
-		vim.cmd.colorscheme'catppuccin'
+		vim.cmd.colorscheme 'catppuccin'
 		hi(0, "Normal", { bg = "none" })
 		hi(0, "NormalNC", { bg = "none" })
 		hi(0, "CursorLine", { bg = "none" })
 		hi(0, "CursorLineNC", { bg = "none" })
 		hi(0, "CursorLineNr", { bg = "none" })
 		hi(0, "StatusLine", { bg = "none" })
-		require'flash'.setup {
+		require 'flash'.setup {
 			config = function()
 				local flash = require('flash')
 				map('n', 'gw', flash.remote)
@@ -34,18 +34,18 @@ au({ 'VimEnter' }, {
 		map('n', 'ss', sub.line)
 		map('n', 'S', sub.eol)
 		map('x', 's', sub.visual)
-		require'nvim-surround'.setup()
+		require 'nvim-surround'.setup()
 		if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
-			addplug('oil.nvim')
-			require'oil'.setup()
 			addplug('nvim-web-devicons')
+			addplug('oil.nvim')
+			require 'oil'.setup()
 		else
 			au({ "CmdlineEnter" }, {
 				once = true,
 				callback = function()
-					addplug('oil.nvim')
-					require'oil'.setup()
 					addplug('nvim-web-devicons')
+					addplug('oil.nvim')
+					require 'oil'.setup()
 				end
 			})
 		end
@@ -67,7 +67,7 @@ au({ "InsertEnter" }, {
 		addplug('ultimate-autopair.nvim')
 		addplug('copilot.nvim')
 		addplug('LuaSnip')
-		require'ultimate-autopair'.setup()
+		require 'ultimate-autopair'.setup()
 		local ls = require('luasnip')
 		require('snippets')
 		map('i', 'ŝ', function() ls.expand() end)
@@ -75,4 +75,3 @@ au({ "InsertEnter" }, {
 		map('i', 'ĉ', function() ls.jump(-1) end)
 	end
 })
-
