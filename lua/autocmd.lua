@@ -6,6 +6,11 @@ function Lsp_config(name, cmd, root)
 		cmd = { cmd },
 		root_dir = root
 	})
+	au({ 'BufWritePre' }, {
+		callback = function()
+			vim.lsp.buf.format()
+		end
+	})
 end
 
 au({ "FileType" }, {
