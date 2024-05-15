@@ -89,3 +89,11 @@ au({ "InsertEnter" }, {
 		map('i', 'ĉ', function() ls.jump(-1) end)
 	end
 })
+
+au({ "CursorMoved" }, {
+	once = true,
+	callback = function()
+		addplug('mini.indentscope')
+		require('mini.indentscope').setup {}
+	end
+})
