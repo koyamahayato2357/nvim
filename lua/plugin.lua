@@ -39,7 +39,14 @@ au({ 'VimEnter' }, {
 		map('x', 's', sub.visual)
 		require 'nvim-surround'.setup()
 		local oil = require('oil')
-		oil.setup()
+		oil.setup {
+			columns = {
+				'icon',
+				'permission',
+				'size',
+				'mtime'
+			},
+		}
 		map('n', '^o', function() oil.toggle_float() end)
 		local toggleterm = require('toggleterm')
 		toggleterm.setup {
@@ -65,14 +72,12 @@ au({ "CmdlineEnter" }, {
 		})
 		vim.api.nvim_create_user_command("B", sidebar.toggle, {})
 		require('noice').setup {
+			notify = {
+				enabled = false
+			},
 			messages = {
 				enabled = false
 			},
-			lsp = {
-				hover = {
-					enabled = false
-				}
-			}
 		}
 	end
 })
