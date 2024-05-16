@@ -85,10 +85,8 @@ au({ "CmdlineEnter" }, {
 au({ "InsertEnter" }, {
 	once = true,
 	callback = function()
-		addplug('ultimate-autopair.nvim')
 		addplug('copilot.nvim')
 		addplug('LuaSnip')
-		require 'ultimate-autopair'.setup()
 		local ls = require('luasnip')
 		require('snippets')
 		map('i', 'ŝ', function() ls.expand() end)
@@ -97,10 +95,20 @@ au({ "InsertEnter" }, {
 	end
 })
 
+au({ "InsertEnter", "CmdlineEnter" }, {
+	once = true,
+	callback = function()
+		addplug('ultimate-autopair.nvim')
+		require('ultimate-autopair').setup()
+	end
+})
+
 au({ "CursorMoved" }, {
 	once = true,
 	callback = function()
 		addplug('mini.indentscope')
+		addplug('sentiment.nvim')
 		require('mini.indentscope').setup {}
+		require('sentiment').setup()
 	end
 })
