@@ -4,7 +4,7 @@ o.autoread = true
 o.autowrite = true
 o.backspace = ""
 o.cmdheight = 0
-o.complete = ".,w,b,u,t,kspell"
+o.complete = "w,i,d,kspell"
 o.completeopt = "menu,longest,noselect"
 vim.opt.cpoptions:append("$")
 o.cursorline = true
