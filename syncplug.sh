@@ -17,6 +17,7 @@ plugs=(
 	"akinsho/toggleterm.nvim"
 	"altermo/ultimate-autopair.nvim"
 	"vim-jp/vimdoc-ja"
+	"hachy/cmdpalette.nvim"
 )
 
 plugdir="plugins/"
