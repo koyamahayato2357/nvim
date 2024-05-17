@@ -62,29 +62,12 @@ map('n', ':', function()
 	addplug 'carbonpaper.vim'
 	addplug 'sidebar.nvim'
 	-- addplug 'nui.nvim'
-	addplug 'telescope-cmdline.nvim'
-	addplug 'telescope.nvim'
-	addplug 'plenary.nvim'
 	local sidebar = require 'sidebar-nvim'
 	sidebar.setup({
 		open = false,
 		initial_width = 20,
 	})
 	vim.api.nvim_create_user_command("B", sidebar.toggle, {})
-	require 'telescope'.setup {
-		extensions = {
-			cmdline = {
-				picker = {
-					layout_config = {
-						width = 120,
-						height = 8,
-					}
-				}
-			}
-		}
-	}
-	map('n', ':', function() require 'telescope.command'.load_command('cmdline') end)
-	require 'telescope.command'.load_command('cmdline')
 end
 )
 
