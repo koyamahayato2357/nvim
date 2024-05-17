@@ -56,26 +56,25 @@ au({ 'VimEnter' }, {
 	end
 })
 
-au({ "CmdlineEnter" }, {
-	once = true,
-	callback = function()
-		addplug 'vimdoc-ja'
-		addplug 'nvimdoc-ja'
-		addplug 'carbonpaper.vim'
-		addplug 'sidebar.nvim'
-		-- addplug 'nui.nvim'
-		addplug 'cmdpalette.nvim'
-		local sidebar = require 'sidebar-nvim'
-		sidebar.setup({
-			open = false,
-			initial_width = 20,
-		})
-		vim.api.nvim_create_user_command("B", sidebar.toggle, {})
-		local cmdpalette = require 'cmdpalette'
-		cmdpalette.setup {}
-		map('n', ':', cmdpalette.open)
-	end
-})
+map('n', ':', function()
+	addplug 'vimdoc-ja'
+	addplug 'nvimdoc-ja'
+	addplug 'carbonpaper.vim'
+	addplug 'sidebar.nvim'
+	-- addplug 'nui.nvim'
+	addplug 'cmdpalette.nvim'
+	local sidebar = require 'sidebar-nvim'
+	sidebar.setup({
+		open = false,
+		initial_width = 20,
+	})
+	vim.api.nvim_create_user_command("B", sidebar.toggle, {})
+	local cmdpalette = require 'cmdpalette'
+	cmdpalette.setup {}
+	map('n', ':', cmdpalette.open)
+	cmdpalette.open()
+end
+)
 
 au({ "InsertEnter" }, {
 	once = true,
