@@ -20,7 +20,6 @@ o.laststatus = 3
 o.lazyredraw = true
 o.mouse = ""
 o.number = true
-o.omnifunc = "v:lua.vim.lsp.omnifunc"
 o.path = ".,,,**"
 o.ruler = true
 o.scrolloff = 10
