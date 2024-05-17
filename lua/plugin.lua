@@ -63,7 +63,7 @@ au({ "CmdlineEnter" }, {
 		addplug 'nvimdoc-ja'
 		addplug 'carbonpaper.vim'
 		addplug 'sidebar.nvim'
-		addplug 'nui.nvim'
+		-- addplug 'nui.nvim'
 		addplug 'cmdpalette.nvim'
 		local sidebar = require 'sidebar-nvim'
 		sidebar.setup({
