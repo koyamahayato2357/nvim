@@ -31,12 +31,16 @@ cd "$plugdir" || exit
 
 for plugname in "${plugs[@]}"; do
 	reponame=$(basename "$plugname")
-	if [ -d "$reponame" ] && [ "$1" = "update" ] || [ -z "$1" ]; then
-		cd "$reponame"
-		git pull
-		cd ..
-	elif [ "$1" = "install" ] && [ -z "$1" ]; then
-		git clone "$githuburl$plugname"
+	if [ -d "$reponame" ]; then
+		if [ "$1" = "update" ] || [ -z "$1" ]; then
+			cd "$reponame"
+			git pull
+			cd ..
+		fi
+	else
+		if [ "$1" = "install" ] || [ -z "$1" ]; then
+			git clone "$githuburl$plugname"
+		fi
 	fi
 done
 
