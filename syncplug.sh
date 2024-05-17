@@ -17,7 +17,9 @@ plugs=(
 	"akinsho/toggleterm.nvim"
 	"altermo/ultimate-autopair.nvim"
 	"vim-jp/vimdoc-ja"
-	"hachy/cmdpalette.nvim"
+	"nvim-telescope/telescope.nvim"
+	"nvim-lua/plenary.nvim"
+	"jonarrien/telescope-cmdline.nvim"
 )
 
 plugdir="plugins/"
