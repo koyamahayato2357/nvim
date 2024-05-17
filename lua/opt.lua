@@ -3,7 +3,7 @@ local o = vim.o
 o.autoread = true
 o.autowrite = true
 o.backspace = ""
-o.cmdheight = 0
+o.cmdheight = 1
 o.complete = "w,i,d,kspell"
 o.completeopt = "menu,longest,noselect"
 vim.opt.cpoptions:append("$")
