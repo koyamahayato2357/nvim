@@ -81,18 +81,12 @@ au({ "InsertEnter" }, {
 	callback = function()
 		addplug 'copilot.nvim'
 		addplug 'LuaSnip'
+		addplug 'ultimate-autopair.nvim'
 		local ls = require 'luasnip'
 		require 'snippets'
 		map('i', 'ŝ', function() ls.expand() end)
 		map('i', 'ĝ', function() ls.jump(1) end)
 		map('i', 'ĉ', function() ls.jump(-1) end)
-	end
-})
-
-au({ "InsertEnter", "CmdlineEnter" }, {
-	once = true,
-	callback = function()
-		addplug 'ultimate-autopair.nvim'
 		require 'ultimate-autopair'.setup()
 	end
 })
