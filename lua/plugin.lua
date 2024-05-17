@@ -73,7 +73,14 @@ map('n', ':', function()
 	vim.api.nvim_create_user_command("B", sidebar.toggle, {})
 	require 'telescope'.setup {
 		extensions = {
-			cmdline = {}
+			cmdline = {
+				picker = {
+					layout_config = {
+						width = 120,
+						height = 8,
+					}
+				}
+			}
 		}
 	}
 	map('n', ':', function() require 'telescope.command'.load_command('cmdline') end)
