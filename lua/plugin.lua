@@ -64,21 +64,12 @@ au({ "CmdlineEnter" }, {
 		addplug 'carbonpaper.vim'
 		addplug 'sidebar.nvim'
 		addplug 'nui.nvim'
-		addplug 'noice.nvim'
 		local sidebar = require 'sidebar-nvim'
 		sidebar.setup({
 			open = false,
 			initial_width = 20,
 		})
 		vim.api.nvim_create_user_command("B", sidebar.toggle, {})
-		require 'noice'.setup {
-			notify = {
-				enabled = false
-			},
-			messages = {
-				enabled = false
-			},
-		}
 	end
 })
 
