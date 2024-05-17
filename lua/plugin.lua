@@ -14,6 +14,9 @@ au({ 'VimEnter' }, {
 		addplug('substitute.nvim')
 		addplug('nvim-surround')
 		addplug('nvim')
+		addplug('toggleterm.nvim')
+		addplug('nvim-web-devicons')
+		addplug('oil.nvim')
 		vim.cmd.colorscheme 'catppuccin'
 		hi(0, "Normal", { bg = "none" })
 		hi(0, "NormalNC", { bg = "none" })
@@ -35,20 +38,21 @@ au({ 'VimEnter' }, {
 		map('n', 'S', sub.eol)
 		map('x', 's', sub.visual)
 		require 'nvim-surround'.setup()
-		if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
-			addplug('nvim-web-devicons')
-			addplug('oil.nvim')
-			require 'oil'.setup()
-		else
-			au({ "CmdlineEnter" }, {
-				once = true,
-				callback = function()
-					addplug('nvim-web-devicons')
-					addplug('oil.nvim')
-					require 'oil'.setup()
-				end
-			})
-		end
+		local oil = require('oil')
+		oil.setup {
+			columns = {
+				'icon',
+				'permission',
+				'size',
+				'mtime'
+			},
+		}
+		map('n', '^o', function() oil.toggle_float() end)
+		local toggleterm = require('toggleterm')
+		toggleterm.setup {
+			direction = "float"
+		}
+		map('n', '^t', function() toggleterm.toggle() end)
 	end
 })
 
@@ -58,20 +62,53 @@ au({ "CmdlineEnter" }, {
 		addplug('vimdoc-ja')
 		addplug('nvimdoc-ja')
 		addplug('carbonpaper.vim')
+		addplug('sidebar.nvim')
+		addplug('nui.nvim')
+		addplug('noice.nvim')
+		local sidebar = require('sidebar-nvim')
+		sidebar.setup({
+			open = false,
+			initial_width = 20,
+		})
+		vim.api.nvim_create_user_command("B", sidebar.toggle, {})
+		require('noice').setup {
+			notify = {
+				enabled = false
+			},
+			messages = {
+				enabled = false
+			},
+		}
 	end
 })
 
 au({ "InsertEnter" }, {
 	once = true,
 	callback = function()
-		addplug('ultimate-autopair.nvim')
 		addplug('copilot.nvim')
 		addplug('LuaSnip')
-		require 'ultimate-autopair'.setup()
 		local ls = require('luasnip')
 		require('snippets')
 		map('i', 'ŝ', function() ls.expand() end)
 		map('i', 'ĝ', function() ls.jump(1) end)
 		map('i', 'ĉ', function() ls.jump(-1) end)
+	end
+})
+
+au({ "InsertEnter", "CmdlineEnter" }, {
+	once = true,
+	callback = function()
+		addplug('ultimate-autopair.nvim')
+		require('ultimate-autopair').setup()
+	end
+})
+
+au({ "CursorMoved" }, {
+	once = true,
+	callback = function()
+		addplug('mini.indentscope')
+		addplug('sentiment.nvim')
+		require('mini.indentscope').setup {}
+		require('sentiment').setup()
 	end
 })

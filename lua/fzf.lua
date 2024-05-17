@@ -18,7 +18,7 @@ end
 
 vim.api.nvim_create_user_command("F",
 	function(opts)
-		vim.cmd.edit(opts.fargs[1])
+		vim.cmd.tabnew(opts.fargs[1])
 	end,
 	{
 		nargs = 1,
