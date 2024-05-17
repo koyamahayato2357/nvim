@@ -21,6 +21,8 @@ plugs=(
 
 plugdir="plugins/"
 
+githuburl="https://github.com/"
+
 root=$(pwd)
 
 [ -d "$plugdir" ] || mkdir -p "$plugdir"
@@ -28,12 +30,12 @@ cd "$plugdir"
 
 for plugname in "${plugs[@]}"; do
 	reponame=$(basename "$plugname")
-	if [ -d "$plugname" ]; then
-		cd "$plugname"
+	if [ -d "$reponame" ]; then
+		cd "$reponame"
 		git pull
 		cd ..
 	else
-		git clone "http://github.com/$plugurl"
+		git clone "$githuburl$plugname"
 	fi
 done
 
