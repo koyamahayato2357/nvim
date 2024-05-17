@@ -26,8 +26,8 @@ githuburl="https://github.com/"
 
 root=$(pwd)
 
-[ -d "$plugdir" ] || mkdir -p "$plugdir"
-cd "$plugdir"
+mkdir -p "$plugdir"
+cd "$plugdir" || exit
 
 for plugname in "${plugs[@]}"; do
 	reponame=$(basename "$plugname")
@@ -40,4 +40,4 @@ for plugname in "${plugs[@]}"; do
 	fi
 done
 
-cd "$root"
+cd "$root" || exit
