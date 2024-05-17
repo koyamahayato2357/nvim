@@ -39,8 +39,8 @@ au({ "FileType" }, {
 au({ "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
 	callback = function()
-		for _, s in ipairs(vim.fn.systemlist('git diff --cached')) do
-			vim.fn.append(vim.fn.line('$'), "# " .. s)
+		for i, s in ipairs(vim.fn.systemlist('git diff --cached')) do
+			vim.fn.append(i - 1, "# " .. s)
 		end
 	end
 })
