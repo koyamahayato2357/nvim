@@ -92,7 +92,6 @@ au({ "InsertEnter" }, {
 	once = true,
 	callback = function()
 		addplug 'ultimate-autopair.nvim'
-		require 'snippets'
 		require 'ultimate-autopair'.setup()
 	end
 })
