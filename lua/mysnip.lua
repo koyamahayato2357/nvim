@@ -12,10 +12,23 @@ elseif filetype == 'lua' then
 	mysnip['if'] = 'if $1 then\n\t$2\nend\n$0'
 	mysnip['eli'] = 'elseif $1 then\n$0'
 	mysnip['els'] = 'else\n\t$0'
-	mysnip['fun'] = 'function $1($2)\n$3\nend\n$0'
+	mysnip['dfn'] = 'function $1($2)\n\t$3\nend\n$0'
+	mysnip['fun'] = 'function($1)\n\t$2\nend\n$0'
 end
 
 map('i', 'ŝ', function()
-	vim.snippet.expand(mysnip[vim.fn.input('Input snippet: ')])
+	local snip = mysnip[vim.fn.input('Input snippet: ')]
+	if snip then
+		vim.snippet.expand(snip)
+	else
+		print('snippet not found')
+	end
 end)
 
+map({ 'i', 's' }, '<Tab>', function()
+	if vim.snippet.active({ direction = 1 }) then
+		return '<cmd>lua vim.snippet.jump(1)<CR>'
+	else
+		return '<Tab>'
+	end
+end, { expr = true })
