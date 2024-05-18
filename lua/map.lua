@@ -47,10 +47,15 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 
 		map('i', '<S-Tab>', '<C-x><C-o>')
 		map('i', '<Esc>', '<Right><Esc>')
-		map('i', '<C-e>', '<C-x><C-e>')
-		map('i', '<C-y>', '<C-x><C-y>')
 		map('i', '<C-f>', '<C-x><C-f>')
 
+        vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+           if vim.snippet.active({ direction = 1 }) then
+             return '<cmd>lua vim.snippet.jump(1)<cr>'
+           else
+             return '<Tab>'
+           end
+         end, { expr = true })
 		map('v', '<C-k>', ":m '<-2<CR>gv=gv")
 		map('v', '<C-j>', ":m '>+1<CR>gv=gv")
 		map('v', 'v', "<C-v>")
