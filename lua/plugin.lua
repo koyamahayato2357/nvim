@@ -88,7 +88,6 @@ end
 au({ "InsertEnter" }, {
 	once = true,
 	callback = function()
-		addplug 'copilot.nvim'
 		addplug 'LuaSnip'
 		addplug 'ultimate-autopair.nvim'
 		local ls = require 'luasnip'
