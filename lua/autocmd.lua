@@ -1,4 +1,5 @@
 local au = vim.api.nvim_create_autocmd
+local map = vim.keymap.set
 
 function Lsp_config(name, cmd, root)
 	vim.lsp.start({
@@ -33,6 +34,16 @@ au({ "FileType" }, {
 		elseif filetype == "go" then
 			Lsp_config("go", "gopls")
 		end
+	end
+})
+
+au({ "Filetype" }, {
+	pattern = 'help',
+	callback = function()
+		map('n', '<Space>', '<C-f>', { buffer = 0 })
+		map('n', '<CR>', '<C-e>', { buffer = 0 })
+		map('n', '<BS>', '<C-y>', { buffer = 0 })
+		map('n', 'b', '<C-b>', { buffer = 0 })
 	end
 })
 
