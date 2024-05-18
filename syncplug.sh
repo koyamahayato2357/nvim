@@ -11,6 +11,7 @@ plugs=(
 	"github/copilot.vim"
 	"nvim-surround"
 	"nvim-tree/nvim-web-devicons"
+	"nvimdev/dashboard-nvim"
 	"s417-lama/carbonpaper.vim"
 	"sidebar-nvim/sidebar.nvim"
 	"stevearc/oil.nvim"
