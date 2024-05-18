@@ -24,14 +24,12 @@ au({ 'VimEnter' }, {
 		hi(0, "CursorLineNC", { bg = "none" })
 		hi(0, "CursorLineNr", { bg = "none" })
 		hi(0, "StatusLine", { bg = "none" })
-		require 'flash'.setup {
-			config = function()
-				local flash = require 'flash'
-				map('n', 'gw', flash.remote)
-				map({ 'n', 'v', 'o' }, 'gs', flash.treesitter)
-				map({ 'n', 'v', 'o' }, 'gS', flash.treesitter_search)
-			end
-		}
+		local flash = require 'flash'
+		flash.setup {}
+		flash.toggle(true)
+		map('n', 'gw', flash.remote)
+		map({ 'n', 'v', 'o' }, 'gs', flash.treesitter)
+		map({ 'n', 'v', 'o' }, 'gS', flash.treesitter_search)
 		local sub = require 'substitute'
 		map('n', 's', sub.operator)
 		map('n', 'ss', sub.line)
@@ -61,25 +59,33 @@ map('n', ':', function()
 	addplug 'nvimdoc-ja'
 	addplug 'carbonpaper.vim'
 	addplug 'sidebar.nvim'
-	-- addplug 'nui.nvim'
-	addplug 'cmdpalette.nvim'
+	addplug 'nui.nvim'
+	addplug 'noice.nvim'
 	local sidebar = require 'sidebar-nvim'
 	sidebar.setup({
 		open = false,
 		initial_width = 20,
 	})
 	vim.api.nvim_create_user_command("B", sidebar.toggle, {})
-	local cmdpalette = require 'cmdpalette'
-	cmdpalette.setup {}
-	map('n', ':', cmdpalette.open)
-	cmdpalette.open()
+	require 'noice'.setup {
+		cmdline = {
+			view = "cmdline"
+		},
+		messages = {
+			enabled = false
+		},
+		notify = {
+			enabled = false
+		}
+	}
+	map('n', ':', ':')
+	vim.api.nvim_input ':'
 end
 )
 
 au({ "InsertEnter" }, {
 	once = true,
 	callback = function()
-		addplug 'copilot.nvim'
 		addplug 'LuaSnip'
 		addplug 'ultimate-autopair.nvim'
 		local ls = require 'luasnip'

@@ -1,4 +1,5 @@
 local au = vim.api.nvim_create_autocmd
+local map = vim.keymap.set
 
 function Lsp_config(name, cmd, root)
 	vim.lsp.start({
@@ -9,11 +10,7 @@ function Lsp_config(name, cmd, root)
 	local caps = vim.lsp.protocol.make_client_capabilities()
 	caps.textDocument.completion.completionItem.snippetSupport = true
 	vim.lsp.protocol.resolve_capabilities(caps)
-	au({ 'BufWritePre' }, {
-		callback = function()
-			vim.lsp.buf.format()
-		end
-	})
+	au({ 'BufWritePre' }, { callback = vim.lsp.buf.format })
 end
 
 au({ "FileType" }, {
@@ -36,6 +33,16 @@ au({ "FileType" }, {
 		elseif filetype == "go" then
 			Lsp_config("go", "gopls")
 		end
+	end
+})
+
+au({ "Filetype" }, {
+	pattern = 'help',
+	callback = function()
+		map('n', '<Space>', '<C-f>', { buffer = 0 })
+		map('n', '<CR>', '<C-e>', { buffer = 0 })
+		map('n', '<BS>', '<C-y>', { buffer = 0 })
+		map('n', 'b', '<C-b>', { buffer = 0 })
 	end
 })
 
