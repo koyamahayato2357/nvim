@@ -20,6 +20,7 @@ plugs=(
 	"nvim-telescope/telescope.nvim"
 	"nvim-lua/plenary.nvim"
 	"jonarrien/telescope-cmdline.nvim"
+	"folke/noice.nvim"
 )
 
 plugdir="plugins/"

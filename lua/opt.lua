@@ -17,7 +17,6 @@ o.hlsearch = true
 o.ignorecase = true
 o.incsearch = true
 o.laststatus = 3
-o.lazyredraw = true
 o.mouse = ""
 o.number = true
 o.path = ".,,,**"
