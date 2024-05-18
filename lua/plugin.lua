@@ -8,6 +8,11 @@ local function addplug(plugname)
 	vim.opt.runtimepath:append(pluginpath .. plugname)
 end
 
+if vim.fn.argc() == 0 then
+	addplug 'dashboard-nvim'
+	require 'dashboard'.setup {}
+end
+
 au({ 'VimEnter' }, {
 	callback = function()
 		addplug 'flash.nvim'
