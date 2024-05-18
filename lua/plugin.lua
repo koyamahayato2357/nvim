@@ -24,14 +24,12 @@ au({ 'VimEnter' }, {
 		hi(0, "CursorLineNC", { bg = "none" })
 		hi(0, "CursorLineNr", { bg = "none" })
 		hi(0, "StatusLine", { bg = "none" })
-		require 'flash'.setup {
-			config = function()
-				local flash = require 'flash'
-				map('n', 'gw', flash.remote)
-				map({ 'n', 'v', 'o' }, 'gs', flash.treesitter)
-				map({ 'n', 'v', 'o' }, 'gS', flash.treesitter_search)
-			end
-		}
+		local flash = require 'flash'
+		flash.setup {}
+		flash.toggle(true)
+		map('n', 'gw', flash.remote)
+		map({ 'n', 'v', 'o' }, 'gs', flash.treesitter)
+		map({ 'n', 'v', 'o' }, 'gS', flash.treesitter_search)
 		local sub = require 'substitute'
 		map('n', 's', sub.operator)
 		map('n', 'ss', sub.line)
