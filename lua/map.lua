@@ -50,14 +50,6 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('i', '<C-e>', '<C-x><C-e>')
 		map('i', '<C-y>', '<C-x><C-y>')
 		map('i', '<C-f>', '<C-x><C-f>')
-		map('i', 'e', function() if vim.fn.pumvisible() ~= 0 then return "<C-e>" else return "e" end end,
-			{ expr = true, noremap = true })
-		map('i', 'y', function() if vim.fn.pumvisible() ~= 0 then return "<C-y>" else return "y" end end,
-			{ expr = true, noremap = true })
-		map('i', 'n', function() if vim.fn.pumvisible() ~= 0 then return "<C-n>" else return "n" end end,
-			{ expr = true, noremap = true })
-		map('i', 'p', function() if vim.fn.pumvisible() ~= 0 then return "<C-p>" else return "p" end end,
-			{ expr = true, noremap = true })
 
 		map('v', '<C-k>', ":m '<-2<CR>gv=gv")
 		map('v', '<C-j>', ":m '>+1<CR>gv=gv")
