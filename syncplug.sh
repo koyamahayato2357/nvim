@@ -7,7 +7,6 @@ plugs=(
 	"folke/flash.nvim"
 	"folke/noice.nvim"
 	"gbprod/substitute.nvim"
-	"github/copilot.vim"
 	"nvim-surround"
 	"nvim-tree/nvim-web-devicons"
 	"nvimdev/dashboard-nvim"
