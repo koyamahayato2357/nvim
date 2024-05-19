@@ -29,8 +29,6 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('n', 'zk', '<C-w>k')
 		map('n', 'zl', '<C-w>l')
 		map('n', 'zw', '<C-w>w')
-		map('n', 'zo', '<C-o>')
-		map('n', 'zi', '<C-i>')
 		map("n", "zs", "m'")
 		map('n', '<Space>', '<Nop>')
 		map('n', '<CR>', '<Nop>')
