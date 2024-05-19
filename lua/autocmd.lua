@@ -17,11 +17,13 @@ au({ "FileType" }, {
 			vim.o.expandtab = true
 			vim.o.shiftwidth = 2
 			vim.o.tabstop = 2
-			map('i', '<C-l>', '<C-o>A;')
+			map({ 'n', 'i' }, '<C-l>', '<C-o>A;')
 		elseif filetype == "rust" then
 			Lsp_config("rust", "rust-analyzer")
+			map({ 'n', 'i' }, '<C-l>', '<C-o>A;')
 		elseif filetype == "lua" then
 			Lsp_config("lua", "lua-language-server", "/home/sundo/.config/nvim/")
+			map({ 'n', 'i' }, '<C-l>', '<C-o>A,')
 		elseif filetype == "tex" then
 			Lsp_config("tex", "texlab")
 		elseif filetype == "asm" then
