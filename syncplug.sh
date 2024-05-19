@@ -1,5 +1,4 @@
 plugs=(
-	"L3MON4D3/LuaSnip"
 	"MunifTanjim/nui.nvim"
 	"akinsho/toggleterm.nvim"
 	"altermo/ultimate-autopair.nvim"
