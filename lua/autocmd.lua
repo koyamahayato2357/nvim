@@ -18,6 +18,10 @@ au({ "FileType" }, {
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
 			Lsp_config("clangd", "clangd")
+			vim.o.expandtab = true
+			vim.o.shiftwidth = 2
+			vim.o.tabstop = 2
+			map('i', '<C-l>', '<C-o>A;')
 		elseif filetype == "rust" then
 			Lsp_config("rust", "rust-analyzer")
 		elseif filetype == "lua" then
