@@ -59,6 +59,12 @@ au({ "BufWinEnter" }, {
 	end
 })
 
+au({ "BufEnter" }, {
+	callback = function()
+		require 'mysnip'
+	end
+})
+
 au({ "InsertEnter" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "CursorLine", { underline = true })
@@ -69,12 +75,5 @@ au({ "InsertLeave" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "CursorLine", { underline = false })
 		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false })
-	end
-})
-
-au({ "InsertEnter" }, {
-	once = true,
-	callback = function()
-		require 'mysnip'
 	end
 })
