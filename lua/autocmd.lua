@@ -7,10 +7,6 @@ function Lsp_config(name, cmd, root)
 		cmd = { cmd },
 		root_dir = root
 	})
-	local caps = vim.lsp.protocol.make_client_capabilities()
-	caps.textDocument.completion.completionItem.snippetSupport = true
-	vim.lsp.protocol.resolve_capabilities(caps)
-	au({ 'BufWritePre' }, { callback = vim.lsp.buf.format })
 end
 
 au({ "FileType" }, {
