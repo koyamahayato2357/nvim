@@ -123,10 +123,8 @@ local function addplug(plugname)
 		vim.opt.runtimepath:append(pluginpath .. plugname)
 		if opts and modname then require(modname).setup(opts) end
 		if callback then callback() end
-	else
-		return
+		plugopts[plugname] = nil
 	end
-	plugopts[plugname] = nil
 end
 
 if vim.fn.argc() == 0 then
