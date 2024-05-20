@@ -7,7 +7,7 @@ plugs=(
 	"folke/flash.nvim"
 	"folke/noice.nvim"
 	"gbprod/substitute.nvim"
-	"nvim-surround"
+	"kylechui/nvim-surround"
 	"nvim-tree/nvim-web-devicons"
 	"nvimdev/dashboard-nvim"
 	"s417-lama/carbonpaper.vim"
