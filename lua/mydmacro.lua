@@ -30,8 +30,14 @@ end
 
 local function record_macro(_, typed)
 	if typed:upper() ~= dmacro_key:upper() then
-		vim.b.keyhist = vim.b.keyhist .. typed
-		macro = ''
+		local mod = vim.fn.mode()
+		if mod ~= 'c' then
+			vim.b.keyhist = vim.b.keyhist .. typed
+			macro = ''
+		end
+	end
+	if #vim.b.keyhist > 300 then
+		vim.b.keyhist = vim.b.keyhist:sub(#vim.b.keyhist - 300)
 	end
 end
 
