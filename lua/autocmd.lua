@@ -14,9 +14,9 @@ au({ "FileType" }, {
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
 			Lsp_config("clangd", "clangd")
-			vim.o.expandtab = true
-			vim.o.shiftwidth = 2
-			vim.o.tabstop = 2
+			vim.bo.expandtab = true
+			vim.bo.shiftwidth = 2
+			vim.bo.tabstop = 2
 			map({ 'n', 'i' }, '<C-l>', '<C-o>A;')
 		elseif filetype == "rust" then
 			Lsp_config("rust", "rust-analyzer")
@@ -32,6 +32,9 @@ au({ "FileType" }, {
 			vim.bo.filetype = "bash"
 		elseif filetype == "lisp" then
 			vim.bo.filetype = "commonlisp"
+			vim.bo.expandtab = true
+			vim.bo.shiftwidth = 2
+			vim.bo.tabstop = 2
 		elseif filetype == "go" then
 			Lsp_config("go", "gopls")
 		end
