@@ -1,54 +1,52 @@
 local dmacro_key = '<C-t>'
-local macro = ''
 vim.b.keyhist = ''
 
-local function guess_macro1()
+local function guess_macro()
 	local keyhist = vim.b.keyhist
-	for i = #keyhist, 1, -1 do
-		for j = #keyhist - i, i + 1, -1 do
-			local curspan = keyhist:byte(i, #keyhist)
-			local cmpspan = keyhist:byte(j - i, j)
+	for i = math.ceil(#keyhist / 2) + 1, #keyhist do
+		local curspan = keyhist:sub(i, #keyhist)
+		local cmpspan = keyhist:sub(#keyhist - 2 * i, i - 1)
+		if curspan == cmpspan then
+			vim.fn.feedkeys(curspan)
+			vim.b.prev_macro = curspan
+			vim.b.debug_macro = vim.b.prev_macro
+			return
+		end
+	end
+	for i = math.ceil(#keyhist / 2) + 1, #keyhist do
+		for j = 1, 2 * i - #keyhist do
+			local curspan = keyhist:sub(i, #keyhist)
+			local cmpspan = keyhist:sub(j, j + #keyhist - i)
 			if curspan == cmpspan then
-				return keyhist:sub(j, i)
+				local curmacro = keyhist:sub(j + #keyhist - i + 1, i - 1)
+				vim.fn.feedkeys(curmacro)
+				vim.b.prev_macro = cmpspan .. curmacro
+				vim.b.debug_macro = vim.b.prev_macro
+				return
 			end
 		end
 	end
-	return ''
-end
-
-local function guess_macro2()
-	local keyhist = vim.b.keyhist
-	for i = #keyhist, math.floor(#keyhist / 2), -1 do
-		local curspan = keyhist:byte(i, #keyhist)
-		local cmpspan = keyhist:byte(2 * i - #keyhist, i + 1)
-		if curspan == cmpspan then
-			return keyhist:sub(i, #keyhist)
-		end
-	end
-	return ''
 end
 
 local function record_macro(_, typed)
-	if typed:upper() ~= dmacro_key:upper() then
+	if vim.fn.keytrans(typed):upper() ~= dmacro_key:upper() then
 		local mod = vim.fn.mode()
-		if mod ~= 'c' then
+		if mod ~= 'c' and not (mod == 'n' and typed == ':') then
 			vim.b.keyhist = vim.b.keyhist .. typed
-			macro = ''
+			vim.b.prev_macro = ''
+			if #vim.b.keyhist > 100 then
+				vim.b.keyhist = vim.b.keyhist:sub(-100)
+			end
 		end
-	end
-	if #vim.b.keyhist > 300 then
-		vim.b.keyhist = vim.b.keyhist:sub(#vim.b.keyhist - 300)
 	end
 end
 
 local function play_macro()
-	if macro == '' then
-		macro = guess_macro1()
-		if macro == '' then
-			macro = guess_macro2()
-		end
+	if vim.b.prev_macro == '' then
+		guess_macro()
+	else
+		vim.fn.feedkeys(vim.b.prev_macro)
 	end
-	if macro ~= '' then vim.fn.feedkeys(macro) end
 end
 
 vim.on_key(record_macro)
