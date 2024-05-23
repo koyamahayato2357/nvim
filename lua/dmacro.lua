@@ -17,15 +17,17 @@ local function guess_macro()
 end
 
 local function record_macro(_, typed)
-	if typed ~= nil and typed ~= '' and vim.fn.keytrans(typed) ~= dmacro_key then
-		local mod = vim.fn.mode()
-		if mod ~= 'c' and not (mod == 'n' and typed == ':') then
-			vim.b.keyhist = vim.b.keyhist .. typed
-			vim.b.prev_macro = ''
-			if #vim.b.keyhist > 100 then
-				vim.b.keyhist = vim.b.keyhist:sub(-100)
-			end
-		end
+	if typed == nil or typed == '' or vim.fn.keytrans(typed) == dmacro_key then
+		return
+	end
+	local mod = vim.fn.mode()
+	if mod == 'n' and typed == ':' or mod == 'c' then
+		return
+	end
+	vim.b.keyhist = vim.b.keyhist .. typed
+	vim.b.prev_macro = ''
+	if #vim.b.keyhist > 100 then
+		vim.b.keyhist = vim.b.keyhist:sub(-100)
 	end
 end
 
