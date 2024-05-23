@@ -6,7 +6,6 @@ require 'plugin'
 require 'autocmd'
 require 'gitlens'
 require 'fzf'
--- require 'dmacro'
-require 'mydmacro'
+require 'dmacro'
 
 vim.cmd.cabbrev { "nvimrc", "~/.config/nvim/init.lua" }
