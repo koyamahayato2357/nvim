@@ -1,4 +1,4 @@
-local dmacro_key = '<C-t>'
+local dmacro_key = '<C-T>'
 vim.b.keyhist = ''
 
 local function guess_macro()
@@ -29,7 +29,7 @@ local function guess_macro()
 end
 
 local function record_macro(_, typed)
-	if vim.fn.keytrans(typed):upper() ~= dmacro_key:upper() then
+	if vim.fn.keytrans(typed) ~= dmacro_key then
 		local mod = vim.fn.mode()
 		if mod ~= 'c' and not (mod == 'n' and typed == ':') then
 			vim.b.keyhist = vim.b.keyhist .. typed
