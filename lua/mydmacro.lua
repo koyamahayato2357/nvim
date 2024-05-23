@@ -3,16 +3,15 @@ vim.b.keyhist = ''
 
 local function guess_macro()
 	local keyhist = vim.b.keyhist
-	for i = math.ceil(#keyhist / 2) + 1, #keyhist do
-		local curspan = keyhist:sub(i, #keyhist)
-		local cmpspan = keyhist:sub(#keyhist - 2 * i, i - 1)
-		if curspan == cmpspan then
-			vim.fn.feedkeys(curspan)
-			vim.b.prev_macro = curspan
-			vim.b.debug_macro = vim.b.prev_macro
-			return
-		end
-	end
+	-- for i = math.ceil(#keyhist / 2) + 1, #keyhist do
+	-- 	local curspan = keyhist:sub(i, #keyhist)
+	-- 	local cmpspan = keyhist:sub(#keyhist - 2 * i, i - 1)
+	-- 	if curspan == cmpspan then
+	-- 		vim.fn.feedkeys(curspan)
+	-- 		vim.b.prev_macro = curspan
+	-- 		return
+	-- 	end
+	-- end
 	for i = math.ceil(#keyhist / 2) + 1, #keyhist do
 		for j = 1, 2 * i - #keyhist do
 			local curspan = keyhist:sub(i, #keyhist)
@@ -20,8 +19,8 @@ local function guess_macro()
 			if curspan == cmpspan then
 				local curmacro = keyhist:sub(j + #keyhist - i + 1, i - 1)
 				vim.fn.feedkeys(curmacro)
-				vim.b.prev_macro = cmpspan .. curmacro
-				vim.b.debug_macro = vim.b.prev_macro
+				vim.b.prev_macro = curspan .. curmacro
+				vim.b.keyhist = vim.b.keyhist .. curmacro
 				return
 			end
 		end
