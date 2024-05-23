@@ -7,3 +7,17 @@ comments wherever necessary to explain what each line does. Feel free to use
 this configuration file as a starting point for your own Neovim configuration.
 If you have any suggestions or improvements, please feel free to open an issue
 or a pull request. I would love to hear your feedback. Happy coding!
+
+# Features
+- Unique plugin manager (fusion of shell script and lua)
+- Blazing fast (but rich UI)
+  + Advanced autocmd hacking
+- Well thought out keymaps
+- Out of the box
+- Made with lua
+- Minimal and scalable
+
+# Installation
+1. clone this repository and cd to it
+2. run ```$ ./syncplug.sh install```
+3. run ```$ nvim```
