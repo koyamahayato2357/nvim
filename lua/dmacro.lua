@@ -1,62 +1,43 @@
-local dmacro_key = '<C-t>'
+local dmacro_key = '<C-T>'
+vim.b.keyhist = ''
 
-local function guess_macro_1()
-	local hist = vim.b.dmacro_history
-	for i = math.floor(#hist / 2), 1, -1 do
-		local span = vim.list_slice(hist, 1, i)
-		local spanspan = vim.fn.extend(span, span)
-		local double = vim.list_slice(hist, 1, i * 2)
-		if vim.deep_equal(double, spanspan) then
-			return span
-		end
-	end
-	return nil
-end
-
-local function guess_macro_2()
-	local hist = vim.b.dmacro_history
-	for i = math.floor(#hist / 2), 1, -1 do
-		local span = vim.list_slice(hist, 1, i)
-		for j = #span, #hist - #span do
-			local prevspan = vim.list_slice(hist, j + 1, j + #span)
-			if vim.deep_equal(prevspan, span) then
-				return vim.list_slice(hist, #span + 1, j)
+local function guess_macro()
+	local keyhist = vim.b.keyhist
+	for i = math.ceil(#keyhist / 2) + 1, #keyhist do
+		for j = 1, 2 * i - #keyhist do
+			local curspan = keyhist:sub(i, #keyhist)
+			local cmpspan = keyhist:sub(j, j + #keyhist - i)
+			if curspan == cmpspan then
+				local curmacro = keyhist:sub(j + #keyhist - i + 1, i - 1)
+				vim.b.prev_macro = curspan .. curmacro
+				return curmacro
 			end
 		end
 	end
-	return nil
 end
 
 local function record_macro(_, typed)
-	if typed ~= "" and typed ~= nil then
-		vim.b.dmacro_history = vim.fn.extend({ typed }, vim.b.dmacro_history or {})
-		if string.upper(vim.fn.keytrans(typed)) ~= string.upper(dmacro_key) then
-			if vim.b.dmacro_prev_macro then
-				vim.b.dmacro_prev_macro = nil
-				vim.b.dmacro_history = {}
+	if typed ~= nil and typed ~= '' and vim.fn.keytrans(typed) ~= dmacro_key then
+		local mod = vim.fn.mode()
+		if mod ~= 'c' and not (mod == 'n' and typed == ':') then
+			vim.b.keyhist = vim.b.keyhist .. typed
+			vim.b.prev_macro = ''
+			if #vim.b.keyhist > 100 then
+				vim.b.keyhist = vim.b.keyhist:sub(-100)
 			end
 		end
 	end
 end
 
 local function play_macro()
-	vim.b.dmacro_history = vim.list_slice(vim.b.dmacro_history or {}, 2)
-	local macro = vim.b.dmacro_prev_macro
-	macro = macro or guess_macro_1()
-	if macro then
-		vim.fn.feedkeys(table.concat(vim.fn.reverse(macro)))
-		vim.b.dmacro_history = vim.fn.extend(macro, vim.b.dmacro_history)
-		vim.b.dmacro_prev_macro = macro
-		return
-	end
-	macro = macro or guess_macro_2()
-	if macro then
-		vim.fn.feedkeys(table.concat(vim.fn.reverse(macro)))
-		vim.b.dmacro_history = vim.fn.extend(macro, vim.b.dmacro_history)
-		vim.b.dmacro_prev_macro = nil
-		return
+	if vim.b.prev_macro == '' then
+		local curmacro = guess_macro()
+		vim.fn.feedkeys(curmacro)
+		vim.b.keyhist = vim.b.keyhist .. curmacro
+	else
+		vim.fn.feedkeys(vim.b.prev_macro)
 	end
 end
 
 vim.on_key(record_macro)
-vim.keymap.set({ "i", "n" }, dmacro_key, play_macro)
+vim.keymap.set({ 'i', 'n' }, dmacro_key, play_macro)
