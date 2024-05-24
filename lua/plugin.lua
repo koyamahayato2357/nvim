@@ -68,6 +68,7 @@ local plugopts = {
 	['dashboard-nvim'] = {
 		modname = 'dashboard',
 		opts = {},
+		callback = vim.cmd.rshada
 	},
 	['vimdoc-ja'] = {},
 	['nvimdoc-ja'] = {},
