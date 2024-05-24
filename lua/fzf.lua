@@ -10,7 +10,7 @@ local function get_files_recursive(directory, files)
 		if vim.fn.isdirectory(full_path) ~= 0 and file ~= '.' and file ~= '..' and file ~= '.git' and file ~= 'build' and file ~= 'bin' and file ~= 'plugins' then
 			get_files_recursive(full_path, files)
 		else
-			table.insert(files, string.sub(full_path, curdir:len() + 2))
+			table.insert(files, string.sub(full_path, #curdir + 2))
 		end
 	end
 	return files
@@ -25,7 +25,7 @@ vim.api.nvim_create_user_command("F",
 		bar = true,
 		complete = function(A)
 			local items = get_files_recursive(vim.env.PWD, {})
-			if A:len() > 0 then
+			if #A > 0 then
 				return vim.fn.matchfuzzy(items, A)
 			else
 				return items
