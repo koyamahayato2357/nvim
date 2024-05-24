@@ -62,5 +62,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 			vim.cmd.rshada()
 			map('c', '<Up>', '<Up>')
 		end)
+
+		map('t', '<C-\\>', '<C-\\><C-n>')
 	end
 })
