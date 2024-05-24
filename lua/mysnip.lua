@@ -39,7 +39,7 @@ $0
 	mysnip['sbs'] = '\\subsection{$1}\n$0'
 end
 
-map('i', 'ŝ', function()
+map('n', 'sn', function()
 	local snip = mysnip[vim.fn.input('Input snippet: ')]
 	if snip then
 		vim.snippet.expand(snip)
