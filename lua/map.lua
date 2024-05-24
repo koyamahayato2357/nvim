@@ -57,5 +57,10 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('o', '9', 'i(')
 		map('o', ']', 'i]')
 		map('o', '.', 'i>')
+
+		map('c', '<Up>', function()
+			vim.cmd.rshada()
+			map('c', '<Up>', '<Up>')
+		end)
 	end
 })
