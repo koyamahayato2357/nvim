@@ -21,6 +21,7 @@ o.number = true
 o.path = ".,,,**"
 o.ruler = true
 o.scrolloff = 10
+o.shada = ''
 o.shiftwidth = 4
 o.signcolumn = "yes"
 o.smartcase = true
