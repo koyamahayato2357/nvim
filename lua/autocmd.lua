@@ -62,7 +62,7 @@ au({ "BufWinEnter" }, {
 
 au({ "BufEnter" }, {
 	callback = function()
-		require 'mysnip'
+		require 'snippet'
 	end
 })
 
