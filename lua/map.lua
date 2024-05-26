@@ -1,5 +1,15 @@
 local map = vim.keymap.set
 
+local function smart_gf()
+	local fpath = vim.fn.expand('<cfile>')
+	if fpath:sub(1, 8) == 'https://' then
+		vim.cmd.term('w3m ' .. fpath)
+		vim.cmd.startinsert()
+	else
+		vim.cmd.normal 'gF'
+	end
+end
+
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 	callback = function()
 		map("n", "<BS>", "<C-b>")
@@ -19,6 +29,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map("n", "q", "ZZ")
 		map("n", "gk", "25k")
 		map("n", "gj", "25j")
+		map('n', 'gf', smart_gf)
 		map('n', 'K', '5k')
 		map('n', 'J', '5j')
 		map("n", "^b", function() vim.cmd.buf '#' end)
