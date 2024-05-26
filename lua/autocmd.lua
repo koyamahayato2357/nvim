@@ -78,3 +78,9 @@ au({ "InsertLeave" }, {
 		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false })
 	end
 })
+
+au({ 'VimLeave' }, {
+	callback = function()
+		vim.cmd.wshada()
+	end
+})
