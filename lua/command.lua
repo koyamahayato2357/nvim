@@ -5,9 +5,6 @@ command('M', function(opts)
 	vim.cmd.term('man ' .. args .. '| bat -p -l man')
 	vim.cmd.startinsert()
 end, {
-	nargs = 1,
+	nargs = '*',
 	bar = true,
-	complete = function(A)
-		return vim.fn.systemlist('man -k ' .. A)
-	end
 })
