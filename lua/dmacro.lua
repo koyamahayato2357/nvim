@@ -1,21 +1,21 @@
 local dmacro_key = '<C-T>'
 vim.g.keyhist = ''
 
+---@return string
 local function guess_macro()
 	local keyhist = vim.g.keyhist
 	for i = math.ceil(#keyhist / 2) + 1, #keyhist do
-		for j = 1, 2 * i - #keyhist do
-			local curspan = keyhist:sub(i, #keyhist)
-			local cmpspan = keyhist:sub(j, j + #curspan - 1)
-			if curspan == cmpspan then
-				local curmacro = keyhist:sub(j + #curspan, i - 1)
-				vim.g.prev_macro = curspan .. curmacro
-				return curmacro
-			end
+		local curspan = keyhist:sub(i)
+		local srchspan = keyhist:sub(1, i - 1)
+		local start, fin = srchspan:find(curspan, 1, true)
+		if start and fin then
+			vim.g.prev_macro = srchspan:sub(start)
+			return srchspan:sub(fin + 1)
 		end
 	end
 end
 
+---@param typed string
 local function record_macro(_, typed)
 	if typed and typed ~= '' and vim.fn.keytrans(typed) ~= dmacro_key then
 		vim.g.keyhist = vim.g.keyhist .. typed
