@@ -7,5 +7,6 @@ require 'autocmd'
 require 'gitlens'
 require 'fzf'
 require 'dmacro'
+require 'command'
 
 vim.cmd.cabbrev { "nvimrc", "~/.config/nvim/init.lua" }
