@@ -154,7 +154,7 @@ map('n', ':', function()
 	addplug 'nui.nvim'
 	addplug 'noice.nvim'
 	map('n', ':', ':')
-	vim.api.nvim_input ':'
+	vim.fn.feedkeys ':'
 end
 )
 
