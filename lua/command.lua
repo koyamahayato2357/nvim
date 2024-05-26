@@ -8,3 +8,11 @@ end, {
 	nargs = '*',
 	bar = true,
 })
+
+command('W', function(opts)
+	vim.cmd.term('w3m ' .. opts.fargs[1])
+	vim.cmd.startinsert()
+end, {
+	nargs = 1,
+	bar = true
+})
