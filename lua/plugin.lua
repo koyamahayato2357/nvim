@@ -111,7 +111,12 @@ local plugopts = {
 		modname = 'sentiment',
 		opts = {},
 	},
-	['nvim-web-devicons'] = {}
+	['nvim-web-devicons'] = {},
+	['copilot.vim'] = {
+		callback = function()
+			vim.cmd.source '~/.config/nvim/plugins/copilot.vim/plugin/copilot.vim'
+		end
+	},
 }
 
 ---@param plugname string
@@ -153,6 +158,7 @@ map('n', ':', function()
 	addplug 'sidebar.nvim'
 	addplug 'nui.nvim'
 	addplug 'noice.nvim'
+	addplug 'copilot.vim'
 	map('n', ':', ':')
 	vim.fn.feedkeys ':'
 end
