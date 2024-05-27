@@ -17,6 +17,10 @@ or a pull request. I would love to hear your feedback. Happy coding!
 - Made with lua
 - Minimal and scalable
 
+# Dependencies
+- [w3m] (https://github.com/acg/w3m)
+- [bat] (https://github.com/sharkdp/bat)
+
 # Installation
 1. clone this repository and cd to it
 2. run ```$ ./syncplug.sh install```
