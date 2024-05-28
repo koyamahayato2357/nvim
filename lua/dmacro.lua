@@ -4,7 +4,7 @@ vim.g.keyhist = ''
 ---@return string
 local function guess_macro()
 	local keyhist = vim.g.keyhist
-	for i = #keyhist / 2, #keyhist do
+	for i = #keyhist / 2, #keyhist - 1 do
 		local curspan = keyhist:sub(i)
 		local srchspan = keyhist:sub(1, i - 1)
 		local start, fin = srchspan:find(curspan, 1, true)
@@ -13,6 +13,7 @@ local function guess_macro()
 			return srchspan:sub(fin + 1)
 		end
 	end
+	return ''
 end
 
 ---@param typed string
