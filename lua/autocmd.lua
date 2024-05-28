@@ -7,6 +7,7 @@ function Lsp_config(name, cmd, root)
 		cmd = { cmd },
 		root_dir = root
 	})
+	map('n', '=', vim.lsp.buf.format)
 end
 
 au({ "FileType" }, {

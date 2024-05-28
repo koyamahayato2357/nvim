@@ -19,7 +19,6 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('n', 'X', 'd^')
 		map('n', 'S', 'c^')
 		map("n", "x", vim.cmd.bdelete)
-		map('n', '=', vim.lsp.buf.format)
 		map('n', 'gd', vim.lsp.buf.definition)
 		map('n', 'gn', vim.lsp.buf.rename)
 		map('n', 'gr', vim.lsp.buf.references)
