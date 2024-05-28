@@ -1,6 +1,24 @@
 {
+	"$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+	"runtime": {
+		"version": "LuaJIT"
+	},
+	"workspace": {
+		"library": [
+			"runtime/lua",
+			"${3rd}/busted/library",
+			"${3rd}/luv/library"
+	],
+	"ignoreDir": [
+		"test"
+	],
+	"checkThirdParty": "Disable"
+	},
 	"diagnostics": {
 		"globals": ["vim"],
-		"hint.enable": false
+		"hint.enable": false,
+		"disable": [
+			"luadoc-miss-see-name"
+		]
 	}
 }
