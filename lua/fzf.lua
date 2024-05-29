@@ -23,10 +23,10 @@ vim.api.nvim_create_user_command("F",
 	{
 		nargs = 1,
 		bar = true,
-		complete = function(A)
+		complete = function(trigger)
 			local items = get_files_recursive(vim.env.PWD, {})
-			if #A > 0 then
-				return vim.fn.matchfuzzy(items, A)
+			if #trigger > 0 then
+				return vim.fn.matchfuzzy(items, trigger)
 			else
 				return items
 			end
