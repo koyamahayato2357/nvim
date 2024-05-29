@@ -8,6 +8,8 @@ plugs=(
 	"folke/noice.nvim"
 	"gbprod/substitute.nvim"
 	"kylechui/nvim-surround"
+	"nvim-lua/plenary.nvim"
+	"nvim-telescope/telescope.nvim"
 	"nvim-tree/nvim-web-devicons"
 	"nvimdev/dashboard-nvim"
 	"s417-lama/carbonpaper.vim"
@@ -16,6 +18,8 @@ plugs=(
 	"utilyre/sentiment.nvim"
 	"vim-jp/nvimdoc-ja"
 	"vim-jp/vimdoc-ja"
+	"niuiic/core.nvim"
+	"niuiic/track.nvim"
 )
 
 plugdir="plugins/"
