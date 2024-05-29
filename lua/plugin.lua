@@ -117,6 +117,27 @@ local plugopts = {
 			vim.cmd.source '~/.config/nvim/plugins/copilot.vim/plugin/copilot.vim'
 		end
 	},
+	['core.nvim'] = {},
+	['track.nvim'] = {
+		modname = 'track',
+		opts = {},
+		callback = function()
+			local track = require 'track'
+			local markfile = '/home/sundo/.config/nvim/marks/mark.json'
+			map('n', 'mm', track.toggle)
+			map('n', 'md', track.remove)
+			map('n', 'mk', track.jump_to_prev)
+			map('n', 'mj', track.jump_to_next)
+			map('n', 'me', track.edit)
+			map('n', 'ms', function() track.store(markfile) end)
+			map('n', 'mr', function() track.restore(markfile) end)
+		end
+	},
+	['plenary.nvim'] = {},
+	['telescope.nvim'] = {
+		modname = 'telescope',
+		opts = {},
+	},
 }
 
 ---@param plugname string
@@ -161,8 +182,16 @@ map('n', ':', function()
 	addplug 'copilot.vim'
 	map('n', ':', ':')
 	vim.fn.feedkeys ':'
-end
-)
+end)
+
+map('n', 'm', function()
+	addplug 'plenary.nvim'
+	addplug 'telescope.nvim'
+	addplug 'core.nvim'
+	addplug 'track.nvim'
+	map('n', 'm', 'm')
+	vim.fn.feedkeys 'm'
+end)
 
 au({ "InsertEnter" }, {
 	once = true,
