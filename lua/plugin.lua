@@ -123,7 +123,7 @@ local plugopts = {
 		opts = {},
 		callback = function()
 			local track = require 'track'
-			local markfile = '/home/sundo/.config/nvim/marks/mark.json'
+			local markfile = vim.fn.stdpath('config') .. '/marks/mark.json'
 			map('n', 'mm', track.toggle)
 			map('n', 'md', track.remove)
 			map('n', 'mk', track.jump_to_prev)
@@ -143,7 +143,7 @@ local plugopts = {
 ---@param plugname string
 local function addplug(plugname)
 	if plugopts[plugname] then
-		local pluginpath = "/home/sundo/.config/nvim/plugins/"
+		local pluginpath = vim.fn.stdpath('config') .. "/plugins/"
 		local modname = plugopts[plugname].modname
 		local opts = plugopts[plugname].opts
 		local callback = plugopts[plugname].callback

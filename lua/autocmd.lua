@@ -23,7 +23,7 @@ au({ "FileType" }, {
 			Lsp_config("rust", "rust-analyzer")
 			map({ 'n', 'i' }, '<C-l>', '<C-o>A;')
 		elseif filetype == "lua" then
-			Lsp_config("lua", "lua-language-server", "/home/sundo/.config/nvim/")
+			Lsp_config("lua", "lua-language-server", vim.fn.stdpath('config'))
 			map({ 'n', 'i' }, '<C-l>', '<C-o>A,')
 		elseif filetype == "tex" then
 			Lsp_config("tex", "texlab")
