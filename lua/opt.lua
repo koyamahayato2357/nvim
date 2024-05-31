@@ -5,7 +5,6 @@ o.autowrite = true
 o.cmdheight = 1
 o.complete = "w,i,d,kspell"
 o.completeopt = "menu,longest,noselect"
-vim.opt.cpoptions:append("$")
 o.cursorline = true
 o.foldmethod = "manual"
 o.gdefault = true
