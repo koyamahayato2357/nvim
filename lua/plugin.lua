@@ -14,16 +14,6 @@ local plugopts = {
 			map({ 'n', 'v', 'o' }, 'gS', flash.treesitter_search)
 		end
 	},
-	['substitute.nvim'] = {
-		modname = 'substitute',
-		callback = function()
-			local sub = require 'substitute'
-			map('n', 's', sub.operator)
-			map('n', 'ss', sub.line)
-			map('n', 'S', sub.eol)
-			map('x', 's', sub.visual)
-		end
-	},
 	['nvim-surround'] = {
 		modname = 'nvim-surround',
 		opts = {},
@@ -163,7 +153,6 @@ end
 au({ 'VimEnter' }, {
 	callback = function()
 		addplug 'flash.nvim'
-		addplug 'substitute.nvim'
 		addplug 'nvim-surround'
 		addplug 'nvim'
 		addplug 'toggleterm.nvim'
