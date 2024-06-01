@@ -20,6 +20,7 @@ plugs=(
 	"vim-jp/vimdoc-ja"
 	"niuiic/core.nvim"
 	"niuiic/track.nvim"
+	"hadronized/hop.nvim"
 )
 
 plugdir="plugins/"

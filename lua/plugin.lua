@@ -9,9 +9,6 @@ local plugopts = {
 		callback = function()
 			local flash = require 'flash'
 			flash.toggle(true)
-			map('n', 'gw', flash.remote)
-			map({ 'n', 'v', 'o' }, 'gs', flash.treesitter)
-			map({ 'n', 'v', 'o' }, 'gS', flash.treesitter_search)
 		end
 	},
 	['substitute.nvim'] = {
@@ -136,6 +133,15 @@ local plugopts = {
 		modname = 'telescope',
 		opts = {},
 	},
+	['hop.nvim'] = {
+		modname = 'hop',
+		opts = {},
+		callback = function()
+			local hop = require 'hop'
+			map('n', 'gw', hop.hint_words)
+			map('n', 'ga', hop.hint_anywhere)
+		end
+	}
 }
 
 ---@param plugname string
@@ -203,5 +209,6 @@ au({ "CursorMoved" }, {
 	callback = function()
 		addplug 'mini.indentscope'
 		addplug 'sentiment.nvim'
+		addplug 'hop.nvim'
 	end
 })
