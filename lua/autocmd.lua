@@ -19,12 +19,16 @@ au({ "FileType" }, {
 			vim.bo.shiftwidth = 2
 			vim.bo.tabstop = 2
 			map({ 'n', 'i' }, '<C-l>', '<C-o>A;')
+			vim.treesitter.start()
 		elseif filetype == "rust" then
 			Lsp_config("rust", "rust-analyzer")
 			map({ 'n', 'i' }, '<C-l>', '<C-o>A;')
+			vim.treesitter.start()
 		elseif filetype == "lua" then
 			Lsp_config("lua", "lua-language-server", vim.fn.stdpath('config'))
 			map({ 'n', 'i' }, '<C-l>', '<C-o>A,')
+		elseif filetype == 'markdown' then
+			vim.treesitter.start()
 		elseif filetype == "tex" then
 			Lsp_config("tex", "texlab")
 		elseif filetype == "asm" then
