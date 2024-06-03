@@ -3,7 +3,7 @@ local filetype = vim.bo.filetype
 local map = vim.keymap.set
 
 if filetype == 'c' then
-	mysnip['in'] = '#include <$1>\n$0'
+	mysnip['in'] = '#include <$1.h>\n$0'
 	mysnip['i'] = 'if ($1) {\n  $2\n}\n$0'
 	mysnip['f'] = 'for ($1; $2; $3) {\n  $4\n}\n$0'
 	mysnip['s'] = 'switch ($1) {\n  $2\n}\n$0'
