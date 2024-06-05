@@ -41,6 +41,10 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map({ "n", "v", "o" }, "H", "5h")
 		map({ "n", "v", "o" }, "gl", "$l")
 		map({ "n", "v", "o" }, "gh", "^")
+		map({ "n", "v", "o" }, "]b", "])")
+		map({ "n", "v", "o" }, "[b", "[(")
+		map({ "n", "v", "o" }, "]B", "]}")
+		map({ "n", "v", "o" }, "[B", "[{")
 
 		map('i', '<S-Tab>', '<C-x><C-o>')
 		map('i', '<Esc>', '<Right><Esc>')
