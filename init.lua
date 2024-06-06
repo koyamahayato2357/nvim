@@ -1,4 +1,4 @@
-vim.opt.runtimepath = "~/.config/nvim,/usr/local/nvim/share/nvim/runtime,/usr/local/nvim/lib/nvim"
+vim.opt.runtimepath = "~/.config/nvim,/usr/local/share/nvim/runtime,/usr/local/lib/nvim"
 
 require 'opt'
 require 'map'
