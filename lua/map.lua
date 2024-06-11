@@ -35,6 +35,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('n', '<CR>', '<Nop>')
 		map('n', 'n', 'nzzzv')
 		map('n', 'N', 'Nzzzv')
+		map('n', '<Esc>', vim.cmd.nohl)
 		map('n', ']q', vim.cmd.cnext)
 		map('n', '[q', vim.cmd.cprev)
 		map({ 'o', 'v' }, 'K', '5k')
