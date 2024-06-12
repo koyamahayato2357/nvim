@@ -1,12 +1,11 @@
 local dmacro_key = '<C-T>'
-vim.g.keyhist = ''
+vim.g.key_log = ''
 
 ---@return string
-local function guess_macro()
-	local keyhist = vim.g.keyhist
-	for i = #keyhist / 2, #keyhist do
-		local curspan = keyhist:sub(i)
-		local srchspan = keyhist:sub(1, i - 1)
+local function guess_macro(key_log)
+	for i = #key_log / 2, #key_log do
+		local curspan = key_log:sub(i)
+		local srchspan = key_log:sub(1, i - 1)
 		local start, fin = srchspan:find(curspan, 1, true)
 		if start and fin then
 			vim.g.prev_macro = srchspan:sub(start)
@@ -17,14 +16,14 @@ local function guess_macro()
 end
 
 ---@param typed string
-local function record_macro(_, typed)
+local function key_logger(_, typed)
 	if typed ~= '' and vim.fn.keytrans(typed) ~= dmacro_key then
-		vim.g.keyhist = vim.g.keyhist .. typed
+		vim.g.key_log = vim.g.key_log .. typed
 		vim.g.prev_macro = nil
 	end
 end
 
-vim.on_key(record_macro)
+vim.on_key(key_logger)
 vim.keymap.set({ 'i', 'n', 'v', 'o', 'c', 't' }, dmacro_key, function()
-	vim.api.nvim_feedkeys(vim.g.prev_macro or guess_macro(), 'm', true)
+	vim.api.nvim_feedkeys(vim.g.prev_macro or guess_macro(vim.g.key_log), 'm', true)
 end)
