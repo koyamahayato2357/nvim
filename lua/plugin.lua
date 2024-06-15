@@ -44,6 +44,8 @@ local plugopts = {
 		modname = 'nvim',
 		callback = function()
 			vim.cmd.colorscheme 'catppuccin'
+			hi(0, "Normal", { bg = "None" })
+			hi(0, "NormalNC", { bg = "None" })
 			hi(0, "CursorLine", { bg = "none" })
 			hi(0, "CursorLineNC", { bg = "none" })
 			hi(0, "CursorLineNr", { bg = "none" })
