@@ -96,7 +96,14 @@ local plugopts = {
 	},
 	['ultimate-autopair.nvim'] = {
 		modname = 'ultimate-autopair',
-		opts = {},
+		opts = {
+			tabout = {
+				enable = true,
+				map = '<S-Tab>',
+				cmap = '<S-Tab>',
+				hopout = true,
+			}
+		},
 	},
 	['mini.indentscope'] = {
 		modname = 'mini.indentscope',
