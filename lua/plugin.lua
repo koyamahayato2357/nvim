@@ -219,8 +219,10 @@ map('n', ':', function()
 	addplug 'noice.nvim'
 	addplug 'codic-vim'
 	addplug 'plenary.nvim'
-	addplug 'copilot.lua'
-	addplug 'CopilotChat.nvim'
+	vim.loop.new_async(vim.schedule_wrap(function()
+		addplug 'copilot.lua'
+		addplug 'CopilotChat.nvim'
+	end)):send()
 	map('n', ':', ':')
 	vim.fn.feedkeys ':'
 end)
