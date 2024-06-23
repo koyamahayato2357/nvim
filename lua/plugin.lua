@@ -116,11 +116,6 @@ local plugopts = {
 		opts = {},
 	},
 	['nvim-web-devicons'] = {},
-	['copilot.vim'] = {
-		callback = function()
-			vim.cmd.source '~/.config/nvim/plugins/copilot.vim/plugin/copilot.vim'
-		end
-	},
 	['core.nvim'] = {},
 	['track.nvim'] = {
 		modname = 'track',
@@ -156,6 +151,27 @@ local plugopts = {
 			vim.cmd.source '~/.config/nvim/plugins/codic-vim/plugin/codic.vim'
 		end,
 	},
+	['copilot.lua'] = {
+		modname = 'copilot',
+		opts = {
+			suggestion = {
+				enabled = false,
+				auto_trigger = true,
+				keymap = {
+					accept = '<C-y>',
+					next = '<C-n>',
+					prev = '<C-p>',
+					dismiss = '<C-e>',
+				}
+			},
+			filetypes = {
+				gitcommit = true
+			}
+		},
+		callback = function()
+			vim.cmd.luafile '~/.config/nvim/plugins/copilot.lua/plugin/copilot.lua'
+		end
+	}
 }
 
 ---@param plugname string
@@ -197,8 +213,8 @@ map('n', ':', function()
 	addplug 'sidebar.nvim'
 	addplug 'nui.nvim'
 	addplug 'noice.nvim'
-	addplug 'copilot.vim'
 	addplug 'codic-vim'
+	addplug 'copilot.lua'
 	map('n', ':', ':')
 	vim.fn.feedkeys ':'
 end)

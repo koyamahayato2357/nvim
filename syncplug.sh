@@ -22,6 +22,7 @@ plugs=(
 	"niuiic/track.nvim"
 	"hadronized/hop.nvim"
 	"koron/codic-vim"
+	"zbirenbaum/copilot.lua"
 )
 
 plugdir="plugins/"
