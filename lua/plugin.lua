@@ -171,7 +171,11 @@ local plugopts = {
 		callback = function()
 			vim.cmd.luafile '~/.config/nvim/plugins/copilot.lua/plugin/copilot.lua'
 		end
-	}
+	},
+	['CopilotChat.nvim'] = {
+		modname = 'CopilotChat',
+		opts = {},
+	},
 }
 
 ---@param plugname string
@@ -214,7 +218,9 @@ map('n', ':', function()
 	addplug 'nui.nvim'
 	addplug 'noice.nvim'
 	addplug 'codic-vim'
+	addplug 'plenary.nvim'
 	addplug 'copilot.lua'
+	addplug 'CopilotChat.nvim'
 	map('n', ':', ':')
 	vim.fn.feedkeys ':'
 end)
@@ -228,7 +234,7 @@ map('n', 'm', function()
 	vim.fn.feedkeys 'm'
 end)
 
-au({ "InsertEnter" }, {
+au({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()
 		addplug 'ultimate-autopair.nvim'
