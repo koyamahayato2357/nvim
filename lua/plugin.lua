@@ -150,7 +150,12 @@ local plugopts = {
 			map('n', 'gw', hop.hint_words)
 			map('n', 'ga', hop.hint_anywhere)
 		end
-	}
+	},
+	['codic-vim'] = {
+		callback = function()
+			vim.cmd.source '~/.config/nvim/plugins/codic-vim/plugin/codic.vim'
+		end,
+	},
 }
 
 ---@param plugname string
@@ -193,6 +198,7 @@ map('n', ':', function()
 	addplug 'nui.nvim'
 	addplug 'noice.nvim'
 	addplug 'copilot.vim'
+	addplug 'codic-vim'
 	map('n', ':', ':')
 	vim.fn.feedkeys ':'
 end)
