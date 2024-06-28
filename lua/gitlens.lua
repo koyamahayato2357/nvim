@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 local api = vim.api
 
-function BlameVirtText()
+function PrintBlameText()
 	local ft = vim.fn.expand('%:h:t')
 	if ft == '' or ft == 'bin' then
 		return
@@ -22,4 +22,4 @@ function BlameVirtText()
 	print(Text)
 end
 
-map('n', 'gb', BlameVirtText)
+map('n', 'gb', PrintBlameText)
