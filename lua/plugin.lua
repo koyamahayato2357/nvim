@@ -129,7 +129,7 @@ local plugopts = {
 			map('n', 'mj', track.jump_to_next)
 			map('n', 'me', track.edit)
 			map('n', 'ms', function() track.store(markfile) end)
-			map('n', 'mr', function() track.restore(markfile) end)
+			track.restore(markfile)
 		end
 	},
 	['plenary.nvim'] = {},
