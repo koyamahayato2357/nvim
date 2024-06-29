@@ -155,7 +155,7 @@ local plugopts = {
 		modname = 'copilot',
 		opts = {
 			suggestion = {
-				enabled = false,
+				enabled = true,
 				auto_trigger = true,
 				keymap = {
 					accept = '<C-y>',
@@ -168,9 +168,6 @@ local plugopts = {
 				gitcommit = true
 			}
 		},
-		callback = function()
-			vim.cmd.luafile '~/.config/nvim/plugins/copilot.lua/plugin/copilot.lua'
-		end
 	},
 	['CopilotChat.nvim'] = {
 		modname = 'CopilotChat',
