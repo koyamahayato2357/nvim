@@ -40,12 +40,20 @@ local plugopts = {
 			map('n', '^o', function() oil.toggle_float() end)
 		end
 	},
-	['nvim'] = {
-		modname = 'nvim',
+	['yash.nvim'] = {
 		callback = function()
-			vim.cmd.colorscheme 'catppuccin'
+			vim.cmd.colorscheme 'yash'
 			hi(0, "Normal", { bg = "None" })
 			hi(0, "NormalNC", { bg = "None" })
+			hi(0, "ErrMsg", { bg = "None" })
+			hi(0, "DiagnosticError", { fg = "Red", bg = "None", bold = true })
+			hi(0, "DiagnosticLineNRError", { fg = "Red", bg = "None", bold = true })
+			hi(0, "DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true})
+			hi(0, "DiagnosticLineNRWarn", { fg = "Yellow", bg = "None", bold = true})
+			hi(0, "DiagnosticHint", { fg = "Yellow", bg = "None", bold = true})
+			hi(0, "DiagnosticLineNRHint", { fg = "Yellow", bg = "None", bold = true})
+			hi(0, "DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true})
+			hi(0, "DiagnosticLineNRInfo", { fg = "Yellow", bg = "None", bold = true})
 			hi(0, "CursorLine", { bg = "none" })
 			hi(0, "CursorLineNC", { bg = "none" })
 			hi(0, "CursorLineNr", { bg = "none" })
@@ -200,7 +208,7 @@ au({ 'VimEnter' }, {
 		addplug 'flash.nvim'
 		addplug 'substitute.nvim'
 		addplug 'nvim-surround'
-		addplug 'nvim'
+		addplug 'yash.nvim'
 		addplug 'toggleterm.nvim'
 		addplug 'nvim-web-devicons'
 		addplug 'oil.nvim'

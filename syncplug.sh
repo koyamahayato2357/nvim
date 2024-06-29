@@ -2,7 +2,7 @@ plugs=(
 	"MunifTanjim/nui.nvim"
 	"akinsho/toggleterm.nvim"
 	"altermo/ultimate-autopair.nvim"
-	"catppuccin/nvim"
+	"kihachi2000/yash.nvim"
 	"echasnovski/mini.indentscope"
 	"folke/flash.nvim"
 	"folke/noice.nvim"
