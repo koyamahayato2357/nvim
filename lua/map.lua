@@ -61,8 +61,8 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 
 		map('c', '<Up>', function()
 			vim.cmd.rshada()
-			vim.api.nvim_input('<Up>')
-			map('c', '<Up>', '<Up>')
+			vim.keymap.del('c', '<Up>')
+			vim.fn.feedkeys '<Up>'
 		end)
 
 		map('t', '<C-\\>', '<C-\\><C-n>')

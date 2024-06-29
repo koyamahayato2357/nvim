@@ -220,7 +220,7 @@ map('n', ':', function()
 		addplug 'copilot.lua'
 		addplug 'CopilotChat.nvim'
 	end)):send()
-	map('n', ':', ':')
+	vim.keymap.del('n', ':')
 	vim.fn.feedkeys ':'
 end)
 
@@ -229,7 +229,7 @@ map('n', 'm', function()
 	addplug 'telescope.nvim'
 	addplug 'core.nvim'
 	addplug 'track.nvim'
-	map('n', 'm', 'm')
+	vim.keymap.del('n', 'm')
 	vim.fn.feedkeys 'm'
 end)
 
