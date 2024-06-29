@@ -19,6 +19,9 @@ end
 local function key_logger(_, typed)
 	if typed ~= '' and vim.fn.keytrans(typed) ~= dmacro_key then
 		vim.g.key_log = vim.g.key_log .. typed
+		if #vim.g.key_log > 100 then
+			vim.g.key_log = vim.g.key_log:sub(#vim.g.key_log - 100)
+		end
 		vim.g.prev_macro = nil
 	end
 end
