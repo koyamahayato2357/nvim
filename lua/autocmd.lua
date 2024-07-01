@@ -68,14 +68,14 @@ au({ "BufEnter" }, {
 
 au({ "InsertEnter" }, {
 	callback = function()
-		vim.api.nvim_set_hl(0, "CursorLine", { underline = true })
-		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = true })
+		vim.api.nvim_set_hl(0, "CursorLine", { underline = true, bg = "None" })
+		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = true, bg = "None" })
 	end
 })
 au({ "InsertLeave" }, {
 	callback = function()
-		vim.api.nvim_set_hl(0, "CursorLine", { underline = false })
-		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false })
+		vim.api.nvim_set_hl(0, "CursorLine", { underline = false, bg = "None" })
+		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false, bg = "None" })
 	end
 })
 
