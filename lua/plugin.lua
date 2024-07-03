@@ -182,6 +182,10 @@ local plugopts = {
 		modname = 'CopilotChat',
 		opts = {},
 	},
+	['nvim-treesitter'] = {
+		modname = 'nvim-treesitter',
+		opts = { ensure_installed = 'all' },
+	}
 }
 
 ---@param plugname string

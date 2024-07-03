@@ -18,10 +18,8 @@ au({ "FileType" }, {
 			vim.bo.expandtab = true
 			vim.bo.shiftwidth = 2
 			vim.bo.tabstop = 2
-			vim.treesitter.start()
 		elseif filetype == "rust" then
 			Lsp_config("rust", "rust-analyzer")
-			vim.treesitter.start()
 		elseif filetype == "lua" then
 			Lsp_config("lua", "lua-language-server", vim.fn.stdpath('config'))
 		elseif filetype == "tex" then
@@ -63,6 +61,9 @@ au({ "BufWinEnter" }, {
 au({ "BufEnter" }, {
 	callback = function()
 		require 'snippet'
+		vim.loop.new_async(vim.schedule_wrap(function()
+			vim.treesitter.start()
+		end)):send()
 	end
 })
 
