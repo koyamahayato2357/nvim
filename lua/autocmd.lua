@@ -58,12 +58,20 @@ au({ "BufWinEnter" }, {
 	end
 })
 
+au({ 'VimEnter' }, {
+	callback = function()
+		local filetype = vim.bo.filetype
+		if filetype ~= 'oil' and filetype ~= 'plaintex' and filetype ~= 'tex' then
+			vim.loop.new_async(vim.schedule_wrap(function()
+				vim.treesitter.start()
+			end)):send()
+		end
+	end
+})
+
 au({ "BufEnter" }, {
 	callback = function()
 		require 'snippet'
-		vim.loop.new_async(vim.schedule_wrap(function()
-			vim.treesitter.start()
-		end)):send()
 	end
 })
 
