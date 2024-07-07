@@ -35,6 +35,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('n', '<CR>', '<Nop>')
 		map('n', 'n', 'nzzzv')
 		map('n', 'N', 'Nzzzv')
+		map('n', 'grh', vim.lsp.buf.hover)
 		map({ 'o', 'v' }, 'K', '5k')
 		map({ 'o', 'v' }, 'J', '5j')
 		map({ "n", "v", "o" }, "L", "5l")
