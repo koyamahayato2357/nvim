@@ -10,8 +10,30 @@ function Lsp_config(name, cmd, root)
 	map('n', '=', vim.lsp.buf.format)
 end
 
+function Treesitter_config()
+	local installed = vim.fn.readdir('/usr/local/share/nvim/runtime/queries')
+	local left = 1
+	local right = #installed
+	while left <= right do
+		local mid = math.floor((left + right) / 2)
+		if installed[mid] == vim.o.filetype then
+			vim.treesitter.start()
+			return
+		elseif installed[mid] < vim.o.filetype then
+			left = mid + 1
+		else
+			right = mid - 1
+		end
+	end
+	print("Filetype not found in installed parsers")
+end
+
 au({ "FileType" }, {
 	callback = function()
+		vim.loop.new_async(vim.schedule_wrap(function()
+			Treesitter_config()
+		end)):send()
+
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
 			Lsp_config("clangd", "clangd")
