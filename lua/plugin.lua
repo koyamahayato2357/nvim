@@ -59,6 +59,7 @@ local plugopts = {
 			hi(0, "CursorLineNC", { bg = "none" })
 			hi(0, "CursorLineNr", { bg = "none" })
 			hi(0, "StatusLine", { bg = "none" })
+			hi(0, 'LspInlayHint', { fg = 'DarkCyan' })
 		end
 	},
 	['toggleterm.nvim'] = {
