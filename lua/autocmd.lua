@@ -8,6 +8,8 @@ function Lsp_config(name, cmd, root)
 		root_dir = root
 	})
 	map('n', '=', vim.lsp.buf.format)
+	vim.lsp.inlay_hint.enable(true)
+	vim.api.nvim_set_hl(0, 'LspInlayHint', { bg = 'DarkCyan' })
 end
 
 function Treesitter_config()
