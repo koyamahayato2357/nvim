@@ -26,7 +26,6 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 		map('n', 'gf', smart_gf)
 		map('n', 'K', '5k')
 		map('n', 'J', '5j')
-		map('n', 'ga', vim.lsp.buf.code_action)
 		map('n', 'gd', vim.lsp.buf.definition)
 		map("n", "^b", function() vim.cmd.buf '#' end)
 		map('n', '^s', function() vim.o.spell = not vim.o.spell end)
