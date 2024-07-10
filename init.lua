@@ -1,12 +1,12 @@
 vim.opt.runtimepath = "~/.config/nvim,/usr/local/share/nvim/runtime,/usr/local/lib/nvim"
 
-require 'opt'
-require 'map'
-require 'plugin'
 require 'autocmd'
-require 'gitlens'
-require 'fzf'
-require 'dmacro'
 require 'command'
+require 'dmacro'
+require 'fzf'
+require 'gitlens'
+require 'map'
+require 'opt'
+require 'plugin'
 
 vim.cmd.cabbrev { "nvimrc", "~/.config/nvim/init.lua" }
