@@ -31,6 +31,18 @@ function Treesitter_config()
 	print("Filetype not found in installed parsers")
 end
 
+local function is_exist_file_in_parent_dir(file)
+	local curdir = vim.fn.getcwd()
+	while curdir ~= '/' do
+		local full_path = curdir .. '/' .. file
+		if vim.fn.filereadable(full_path) == 1 then
+			return true
+		end
+		curdir = vim.fn.fnamemodify(curdir, ':h')
+	end
+	return false
+end
+
 au({ "FileType" }, {
 	callback = function()
 		vim.loop.new_async(vim.schedule_wrap(function()
@@ -39,7 +51,15 @@ au({ "FileType" }, {
 
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
-			Lsp_config("clangd", "clangd")
+			if is_exist_file_in_parent_dir("platformio.ini") then
+				vim.lsp.start({
+					name = "clangd",
+					cmd = { "clangd", "--background-index",
+						"--query-driver=/home/sundo/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin/arm-none-eabi-g++" }
+				})
+			else
+				Lsp_config("clangd", "clangd")
+			end
 			vim.bo.expandtab = true
 			vim.bo.shiftwidth = 2
 			vim.bo.tabstop = 2
