@@ -24,6 +24,7 @@ plugs=(
 	"koron/codic-vim"
 	"zbirenbaum/copilot.lua"
 	"CopilotC-Nvim/CopilotChat.nvim"
+	"ThePrimeagen/refactoring.nvim"
 )
 
 plugdir="plugins/"

@@ -197,7 +197,11 @@ local plugopts = {
 	['nvim-treesitter'] = {
 		modname = 'nvim-treesitter',
 		opts = { ensure_installed = 'all' },
-	}
+	},
+	['refactoring.nvim'] = {
+		modname = 'refactoring.command',
+		opts = {}
+	},
 }
 
 ---@param plugname string
@@ -241,6 +245,7 @@ map('n', ':', function()
 	addplug 'noice.nvim'
 	addplug 'codic-vim'
 	addplug 'plenary.nvim'
+	addplug 'refactoring.nvim'
 	vim.loop.new_async(vim.schedule_wrap(function()
 		addplug 'copilot.lua'
 		addplug 'CopilotChat.nvim'
