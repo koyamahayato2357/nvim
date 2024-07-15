@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+vim.g.mapleader = ' '
 
 local function smart_gf()
 	local fpath = vim.fn.expand('<cfile>')
@@ -37,6 +38,9 @@ vim.loop.new_async(vim.schedule_wrap(function()
 	map({ 'o', 'v' }, 'K', '5k')
 	map({ 'o', 'v' }, 'J', '5j')
 	map({ "n", "v" }, "]]", "<C-]>")
+	map({ "n", "v" }, "<Leader>y", [["+y]])
+	map({ "n", "v" }, "<Leader>Y", [["+Y]])
+	map({ "n", "v" }, "<Leader>d", [["_d]])
 	map({ "n", "v", "o" }, "L", "5l")
 	map({ "n", "v", "o" }, "H", "5h")
 	map({ "n", "v", "o" }, "gl", "$l")
@@ -53,6 +57,7 @@ vim.loop.new_async(vim.schedule_wrap(function()
 	map('v', '<C-j>', ":m '>+1<CR>gv=gv")
 	map('v', 'v', "<C-v>")
 	map('v', 'aa', 'VggoG')
+	map('v', '<Leader>p', [["_dP"]])
 
 	map('o', '2', 'i"')
 	map('o', '7', "i'")
