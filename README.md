@@ -16,6 +16,7 @@ or a pull request. I would love to hear your feedback. Happy coding!
 - Out of the box
 - Made with lua
 - Minimal and scalable
+- Async plugin loading
 
 # Dependencies
 - [w3m] (https://github.com/acg/w3m)
