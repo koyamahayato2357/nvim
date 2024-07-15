@@ -114,6 +114,17 @@ local plugopts = {
 				map = '<S-Tab>',
 				cmap = '<S-Tab>',
 				hopout = true,
+			},
+			bs = {
+				indent_ignore = true,
+			},
+			space2 = {
+				enable = true,
+			},
+			extensions = {
+				fly = {
+					enable = true
+				},
 			}
 		},
 	},
