@@ -13,6 +13,7 @@ o.guifont = "PlemolJP35 Console NF:h10"
 o.helplang = "ja,en"
 o.hidden = true
 o.ignorecase = true
+o.hlsearch = false
 o.incsearch = true
 o.laststatus = 3
 o.mouse = ""
