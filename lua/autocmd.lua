@@ -80,6 +80,8 @@ au({ "FileType" }, {
 			vim.bo.tabstop = 2
 		elseif filetype == "go" then
 			Lsp_config("go", "gopls")
+		elseif filetype == "zig" then
+			Lsp_config("zig", "zls")
 		end
 	end
 })
