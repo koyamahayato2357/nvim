@@ -30,6 +30,8 @@ o.tabstop = 4
 o.termguicolors = true
 o.textwidth = 79
 o.timeout = false
+o.undodir = vim.fn.stdpath("data") .. "/undo"
+o.undofile = true
 o.wildmenu = true
 o.wrap = false
 
