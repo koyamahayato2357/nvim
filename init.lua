@@ -2,7 +2,6 @@ vim.opt.runtimepath = "~/.config/nvim,/usr/local/share/nvim/runtime,/usr/local/l
 
 require 'autocmd'
 require 'command'
-require 'dmacro'
 require 'fzf'
 require 'gitlens'
 require 'map'

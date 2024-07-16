@@ -95,12 +95,6 @@ au({ "BufWinEnter" }, {
 	end
 })
 
-au({ "BufEnter" }, {
-	callback = function()
-		require 'snippet'
-	end
-})
-
 au({ "InsertEnter" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "CursorLine", { underline = true, bg = "None" })
