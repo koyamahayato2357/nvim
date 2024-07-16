@@ -202,6 +202,10 @@ local plugopts = {
 		modname = 'refactoring.command',
 		opts = {}
 	},
+	['lualine.nvim'] = {
+		modname = 'lualine',
+		opts = {}
+	},
 }
 
 ---@param plugname string
