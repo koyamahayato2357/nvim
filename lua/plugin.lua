@@ -221,6 +221,8 @@ function Addplug(plugname)
 	end
 end
 
+Addplug 'statusline.lua'
+
 if vim.fn.argc() == 0 then
 	Addplug 'nvim-web-devicons'
 	Addplug 'oil.nvim'
