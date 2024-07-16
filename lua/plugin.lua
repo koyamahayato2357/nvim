@@ -208,7 +208,7 @@ local plugopts = {
 }
 
 ---@param plugname string
-local function addplug(plugname)
+function Addplug(plugname)
 	if plugopts[plugname] then
 		local pluginpath = vim.fn.stdpath('config') .. "/plugins/"
 		local modname = plugopts[plugname].modname
@@ -222,46 +222,48 @@ local function addplug(plugname)
 end
 
 if vim.fn.argc() == 0 then
-	addplug 'nvim-web-devicons'
-	addplug 'oil.nvim'
-	addplug 'dashboard-nvim'
+	Addplug 'nvim-web-devicons'
+	Addplug 'oil.nvim'
+	Addplug 'dashboard-nvim'
 end
 
 au({ 'VimEnter' }, {
 	callback = function()
-		addplug 'flash.nvim'
-		addplug 'substitute.nvim'
-		addplug 'nvim-surround'
-		addplug 'yash.nvim'
-		addplug 'toggleterm.nvim'
-		addplug 'nvim-web-devicons'
-		addplug 'oil.nvim'
+		Addplug 'flash.nvim'
+		Addplug 'substitute.nvim'
+		Addplug 'nvim-surround'
+		Addplug 'yash.nvim'
+		Addplug 'toggleterm.nvim'
+		Addplug 'nvim-web-devicons'
+		Addplug 'oil.nvim'
 	end
 })
 
 map('n', ':', function()
-	addplug 'vimdoc-ja'
-	addplug 'nvimdoc-ja'
-	addplug 'carbonpaper.vim'
-	addplug 'sidebar.nvim'
-	addplug 'nui.nvim'
-	addplug 'noice.nvim'
-	addplug 'codic-vim'
-	addplug 'plenary.nvim'
-	addplug 'refactoring.nvim'
+	Addplug 'command'
+	Addplug 'fzf'
+	Addplug 'vimdoc-ja'
+	Addplug 'nvimdoc-ja'
+	Addplug 'carbonpaper.vim'
+	Addplug 'sidebar.nvim'
+	Addplug 'nui.nvim'
+	Addplug 'noice.nvim'
+	Addplug 'codic-vim'
+	Addplug 'plenary.nvim'
+	Addplug 'refactoring.nvim'
 	vim.loop.new_async(vim.schedule_wrap(function()
-		addplug 'copilot.lua'
-		addplug 'CopilotChat.nvim'
+		Addplug 'copilot.lua'
+		Addplug 'CopilotChat.nvim'
 	end)):send()
 	vim.keymap.del('n', ':')
 	vim.fn.feedkeys ':'
 end)
 
 map('n', 'm', function()
-	addplug 'plenary.nvim'
-	addplug 'telescope.nvim'
-	addplug 'core.nvim'
-	addplug 'track.nvim'
+	Addplug 'plenary.nvim'
+	Addplug 'telescope.nvim'
+	Addplug 'core.nvim'
+	Addplug 'track.nvim'
 	vim.keymap.del('n', 'm')
 	vim.fn.feedkeys 'm'
 end)
@@ -269,15 +271,15 @@ end)
 au({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()
-		addplug 'ultimate-autopair.nvim'
+		Addplug 'ultimate-autopair.nvim'
 	end
 })
 
 au({ "CursorMoved" }, {
 	once = true,
 	callback = function()
-		addplug 'mini.indentscope'
-		addplug 'sentiment.nvim'
-		addplug 'hop.nvim'
+		Addplug 'mini.indentscope'
+		Addplug 'sentiment.nvim'
+		Addplug 'hop.nvim'
 	end
 })
