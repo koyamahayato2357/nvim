@@ -86,16 +86,6 @@ au({ "FileType" }, {
 	end
 })
 
-au({ "Filetype" }, {
-	pattern = 'help',
-	callback = function()
-		map('n', '<Space>', '<C-f>', { buffer = 0 })
-		map('n', '<CR>', '<C-e>', { buffer = 0 })
-		map('n', '<BS>', '<C-y>', { buffer = 0 })
-		map('n', 'b', '<C-b>', { buffer = 0 })
-	end
-})
-
 au({ "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
 	callback = function()
