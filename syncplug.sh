@@ -2,7 +2,6 @@ plugs=(
 	"MunifTanjim/nui.nvim"
 	"akinsho/toggleterm.nvim"
 	"altermo/ultimate-autopair.nvim"
-	"kihachi2000/yash.nvim"
 	"echasnovski/mini.indentscope"
 	"folke/flash.nvim"
 	"folke/noice.nvim"
@@ -26,6 +25,7 @@ plugs=(
 	"CopilotC-Nvim/CopilotChat.nvim"
 	"ThePrimeagen/refactoring.nvim"
 	"beauwilliams/statusline.lua"
+	"marko-cerovac/material.nvim"
 )
 
 plugdir="plugins/"

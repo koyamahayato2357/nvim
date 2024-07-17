@@ -40,28 +40,6 @@ local plugopts = {
 			map('n', '^o', function() oil.toggle_float() end)
 		end
 	},
-	['yash.nvim'] = {
-		callback = function()
-			vim.cmd.colorscheme 'yash'
-			hi(0, "Normal", { bg = "None" })
-			hi(0, "NormalNC", { bg = "None" })
-			hi(0, "SignColumn", { bg = "None" })
-			hi(0, "ErrMsg", { bg = "None" })
-			hi(0, "DiagnosticError", { fg = "Red", bg = "None", bold = true })
-			hi(0, "DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
-			hi(0, "DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "CursorLine", { bg = "none" })
-			hi(0, "CursorLineNC", { bg = "none" })
-			hi(0, "CursorLineNr", { bg = "none" })
-			hi(0, "StatusLine", { bg = "none" })
-			hi(0, 'LspInlayHint', { fg = 'DarkCyan' })
-		end
-	},
 	['toggleterm.nvim'] = {
 		modname = 'toggleterm',
 		opts = {
@@ -204,6 +182,25 @@ local plugopts = {
 	},
 	['statusline.lua'] = {
 		modname = 'statusline',
+	},
+	['material.nvim'] = {
+		callback = function()
+			vim.cmd.colorscheme 'material-deep-ocean'
+			hi(0, "SignColumn", { bg = "None" })
+			hi(0, "ErrMsg", { bg = "None" })
+			hi(0, "DiagnosticError", { fg = "Red", bg = "None", bold = true })
+			hi(0, "DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
+			hi(0, "DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
+			hi(0, "DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
+			hi(0, "DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
+			hi(0, "DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
+			hi(0, "DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
+			hi(0, "DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
+			hi(0, "CursorLine", { bg = "none" })
+			hi(0, "CursorLineNC", { bg = "none" })
+			hi(0, "StatusLine", { bg = "none" })
+			hi(0, 'LspInlayHint', { fg = 'DarkCyan' })
+		end
 	}
 }
 
@@ -234,7 +231,7 @@ au({ 'VimEnter' }, {
 		Addplug 'flash.nvim'
 		Addplug 'substitute.nvim'
 		Addplug 'nvim-surround'
-		Addplug 'yash.nvim'
+		Addplug 'material.nvim'
 		Addplug 'toggleterm.nvim'
 		Addplug 'nvim-web-devicons'
 		Addplug 'oil.nvim'
