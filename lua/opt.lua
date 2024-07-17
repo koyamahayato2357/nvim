@@ -23,6 +23,7 @@ o.ruler = true
 o.scrolloff = 10
 o.shada = ''
 o.shiftwidth = 4
+o.showmode = false
 o.signcolumn = "yes"
 o.smartcase = true
 o.smartindent = true
