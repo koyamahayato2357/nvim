@@ -52,7 +52,15 @@ local plugopts = {
 	},
 	['dashboard-nvim'] = {
 		modname = 'dashboard',
-		opts = {},
+		opts = {
+			shortcut_type = 'number',
+			config = {
+				week_header = {
+					enable = true
+				}
+			},
+			change_to_vcs_root = true
+		},
 		callback = vim.cmd.rshada
 	},
 	['vimdoc-ja'] = {},
