@@ -129,7 +129,7 @@ local plugopts = {
 		opts = {},
 		callback = function()
 			local track = require 'track'
-			local markfile = vim.fn.stdpath('config') .. '/marks/mark.json'
+			local markfile = vim.fn.stdpath('data') .. '/marks/mark.json'
 			map('n', 'mm', track.toggle)
 			map('n', 'md', track.remove)
 			map('n', 'mk', track.jump_to_prev)
