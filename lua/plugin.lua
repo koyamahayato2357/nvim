@@ -191,9 +191,11 @@ local plugopts = {
 	['statusline.lua'] = {
 		modname = 'statusline',
 	},
-	['material.nvim'] = {
+	['citruszest.nvim'] = {
 		callback = function()
-			vim.cmd.colorscheme 'material-deep-ocean'
+			vim.cmd.colorscheme 'citruszest'
+			hi(0, "Normal", { bg = "None" })
+			hi(0, "NormalNC", { bg = "None" })
 			hi(0, "SignColumn", { bg = "None" })
 			hi(0, "ErrMsg", { bg = "None" })
 			hi(0, "DiagnosticError", { fg = "Red", bg = "None", bold = true })
@@ -239,7 +241,7 @@ au({ 'VimEnter' }, {
 		Addplug 'flash.nvim'
 		Addplug 'substitute.nvim'
 		Addplug 'nvim-surround'
-		Addplug 'material.nvim'
+		Addplug 'citruszest.nvim'
 		Addplug 'toggleterm.nvim'
 		Addplug 'nvim-web-devicons'
 		Addplug 'oil.nvim'

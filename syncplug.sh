@@ -25,7 +25,7 @@ plugs=(
 	"CopilotC-Nvim/CopilotChat.nvim"
 	"ThePrimeagen/refactoring.nvim"
 	"beauwilliams/statusline.lua"
-	"marko-cerovac/material.nvim"
+	"zootedb0t/citruszest.nvim"
 )
 
 plugdir="plugins/"
