@@ -248,25 +248,27 @@ au({ 'VimEnter' }, {
 	end
 })
 
-map('n', ':', function()
-	Addplug 'command'
-	Addplug 'fzf'
-	Addplug 'vimdoc-ja'
-	Addplug 'nvimdoc-ja'
-	Addplug 'carbonpaper.vim'
-	Addplug 'sidebar.nvim'
-	Addplug 'nui.nvim'
-	Addplug 'noice.nvim'
-	Addplug 'codic-vim'
-	Addplug 'plenary.nvim'
-	Addplug 'refactoring.nvim'
-	vim.loop.new_async(vim.schedule_wrap(function()
-		Addplug 'copilot.lua'
-		Addplug 'CopilotChat.nvim'
-	end)):send()
-	vim.keymap.del('n', ':')
-	vim.fn.feedkeys ':'
-end)
+for _, enter_cmdline_c in ipairs({ ':', '/', '?' }) do
+	map({ 'n', 'v' }, enter_cmdline_c, function()
+		Addplug 'command'
+		Addplug 'fzf'
+		Addplug 'vimdoc-ja'
+		Addplug 'nvimdoc-ja'
+		Addplug 'carbonpaper.vim'
+		Addplug 'sidebar.nvim'
+		Addplug 'nui.nvim'
+		Addplug 'noice.nvim'
+		Addplug 'codic-vim'
+		Addplug 'plenary.nvim'
+		Addplug 'refactoring.nvim'
+		vim.loop.new_async(vim.schedule_wrap(function()
+			Addplug 'copilot.lua'
+			Addplug 'CopilotChat.nvim'
+		end)):send()
+		vim.keymap.del({ 'n', 'v' }, enter_cmdline_c)
+		vim.fn.feedkeys(enter_cmdline_c)
+	end)
+end
 
 map('n', 'm', function()
 	Addplug 'plenary.nvim'
