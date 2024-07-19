@@ -82,6 +82,9 @@ au({ "FileType" }, {
 			Lsp_config("go", "gopls")
 		elseif filetype == "zig" then
 			Lsp_config("zig", "zls")
+			vim.bo.expandtab = true
+			vim.bo.shiftwidth = 4
+			vim.bo.tabstop = 4
 		end
 	end
 })
