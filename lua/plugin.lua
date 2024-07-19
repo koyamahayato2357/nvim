@@ -256,8 +256,9 @@ au({ 'VimEnter' }, {
 	end
 })
 
-for _, enter_cmdline_c in ipairs({ ':', '/', '?' }) do
-	map({ 'n', 'v' }, enter_cmdline_c, function()
+local enter_cmdline_chars = { ':', '/', '?' }
+for _, enter_cmdline_char in ipairs(enter_cmdline_chars) do
+	map({ 'n', 'v' }, enter_cmdline_char, function()
 		Addplug 'command'
 		Addplug 'fzf'
 		Addplug 'vimdoc-ja'
@@ -267,14 +268,11 @@ for _, enter_cmdline_c in ipairs({ ':', '/', '?' }) do
 		Addplug 'nui.nvim'
 		Addplug 'noice.nvim'
 		Addplug 'codic-vim'
-		Addplug 'plenary.nvim'
 		Addplug 'refactoring.nvim'
-		vim.loop.new_async(vim.schedule_wrap(function()
-			Addplug 'copilot.lua'
-			Addplug 'CopilotChat.nvim'
-		end)):send()
-		vim.keymap.del({ 'n', 'v' }, enter_cmdline_c)
-		vim.fn.feedkeys(enter_cmdline_c)
+		for _, c in ipairs(enter_cmdline_chars) do
+			vim.keymap.del({ 'n', 'v' }, c)
+		end
+		vim.fn.feedkeys(enter_cmdline_char)
 	end)
 end
 
