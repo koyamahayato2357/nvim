@@ -163,7 +163,7 @@ local plugopts = {
 		opts = {
 			suggestion = {
 				enabled = true,
-				auto_trigger = true,
+				auto_trigger = false,
 				keymap = {
 					accept = '<C-y>',
 					next = '<C-n>',
@@ -175,6 +175,9 @@ local plugopts = {
 				gitcommit = true
 			}
 		},
+		callback = function()
+			map('n', '^a', require 'copilot.suggestion'.toggle_auto_trigger)
+		end
 	},
 	['CopilotChat.nvim'] = {
 		modname = 'CopilotChat',
@@ -245,6 +248,11 @@ au({ 'VimEnter' }, {
 		Addplug 'toggleterm.nvim'
 		Addplug 'nvim-web-devicons'
 		Addplug 'oil.nvim'
+		vim.loop.new_async(vim.schedule_wrap(function()
+			Addplug 'plenary.nvim'
+			Addplug 'copilot.lua'
+			Addplug 'CopilotChat.nvim'
+		end)):send()
 	end
 })
 
