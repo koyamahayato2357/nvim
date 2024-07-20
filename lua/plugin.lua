@@ -1,8 +1,13 @@
 local au = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
-local hi = vim.api.nvim_set_hl
 
-local plugopts = {
+---@param name string
+---@param val table
+local function hi(name, val)
+	vim.api.nvim_set_hl(0, name, val)
+end
+
+local pluginOptions = {
 	['flash.nvim'] = {
 		modname = 'flash',
 		opts = {},
@@ -197,61 +202,61 @@ local plugopts = {
 	['citruszest.nvim'] = {
 		callback = function()
 			vim.cmd.colorscheme 'citruszest'
-			hi(0, "Normal", { bg = "None" })
-			hi(0, "NormalNC", { bg = "None" })
-			hi(0, "SignColumn", { bg = "None" })
-			hi(0, "ErrMsg", { bg = "None" })
-			hi(0, "DiagnosticError", { fg = "Red", bg = "None", bold = true })
-			hi(0, "DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
-			hi(0, "DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
-			hi(0, "CursorLine", { bg = "none" })
-			hi(0, "CursorLineNC", { bg = "none" })
-			hi(0, "StatusLine", { bg = "none" })
-			hi(0, 'LspInlayHint', { fg = 'DarkCyan' })
+			hi("Normal", { bg = "None" })
+			hi("NormalNC", { bg = "None" })
+			hi("SignColumn", { bg = "None" })
+			hi("ErrMsg", { bg = "None" })
+			hi("DiagnosticError", { fg = "Red", bg = "None", bold = true })
+			hi("DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
+			hi("DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
+			hi("CursorLine", { bg = "none" })
+			hi("CursorLineNC", { bg = "none" })
+			hi("StatusLine", { bg = "none" })
+			hi('LspInlayHint', { fg = 'DarkCyan' })
 		end
 	}
 }
 
 ---@param plugname string
-function Addplug(plugname)
-	if plugopts[plugname] then
+function Load_Plugin(plugname)
+	if pluginOptions[plugname] then
 		local pluginpath = vim.fn.stdpath('config') .. "/plugins/"
-		local modname = plugopts[plugname].modname
-		local opts = plugopts[plugname].opts
-		local callback = plugopts[plugname].callback
+		local modname = pluginOptions[plugname].modname
+		local opts = pluginOptions[plugname].opts
+		local callback = pluginOptions[plugname].callback
 		vim.opt.runtimepath:append(pluginpath .. plugname)
 		if opts and modname then require(modname).setup(opts) end
 		if callback then callback() end
-		plugopts[plugname] = nil
+		pluginOptions[plugname] = nil
 	end
 end
 
-Addplug 'statusline.lua'
+Load_Plugin 'statusline.lua'
 
 if vim.fn.argc() == 0 then
-	Addplug 'nvim-web-devicons'
-	Addplug 'oil.nvim'
-	Addplug 'dashboard-nvim'
+	Load_Plugin 'nvim-web-devicons'
+	Load_Plugin 'oil.nvim'
+	Load_Plugin 'dashboard-nvim'
 end
 
 au({ 'VimEnter' }, {
 	callback = function()
-		Addplug 'flash.nvim'
-		Addplug 'substitute.nvim'
-		Addplug 'nvim-surround'
-		Addplug 'citruszest.nvim'
-		Addplug 'toggleterm.nvim'
-		Addplug 'nvim-web-devicons'
-		Addplug 'oil.nvim'
+		Load_Plugin 'flash.nvim'
+		Load_Plugin 'substitute.nvim'
+		Load_Plugin 'nvim-surround'
+		Load_Plugin 'citruszest.nvim'
+		Load_Plugin 'toggleterm.nvim'
+		Load_Plugin 'nvim-web-devicons'
+		Load_Plugin 'oil.nvim'
 		vim.loop.new_async(vim.schedule_wrap(function()
-			Addplug 'plenary.nvim'
-			Addplug 'copilot.lua'
-			Addplug 'CopilotChat.nvim'
+			Load_Plugin 'plenary.nvim'
+			Load_Plugin 'copilot.lua'
+			Load_Plugin 'CopilotChat.nvim'
 		end)):send()
 	end
 })
@@ -259,16 +264,16 @@ au({ 'VimEnter' }, {
 local enter_cmdline_chars = { ':', '/', '?' }
 for _, enter_cmdline_char in ipairs(enter_cmdline_chars) do
 	map({ 'n', 'v' }, enter_cmdline_char, function()
-		Addplug 'command'
-		Addplug 'fzf'
-		Addplug 'vimdoc-ja'
-		Addplug 'nvimdoc-ja'
-		Addplug 'carbonpaper.vim'
-		Addplug 'sidebar.nvim'
-		Addplug 'nui.nvim'
-		Addplug 'noice.nvim'
-		Addplug 'codic-vim'
-		Addplug 'refactoring.nvim'
+		Load_Plugin 'command'
+		Load_Plugin 'fzf'
+		Load_Plugin 'vimdoc-ja'
+		Load_Plugin 'nvimdoc-ja'
+		Load_Plugin 'carbonpaper.vim'
+		Load_Plugin 'sidebar.nvim'
+		Load_Plugin 'nui.nvim'
+		Load_Plugin 'noice.nvim'
+		Load_Plugin 'codic-vim'
+		Load_Plugin 'refactoring.nvim'
 		for _, c in ipairs(enter_cmdline_chars) do
 			vim.keymap.del({ 'n', 'v' }, c)
 		end
@@ -277,10 +282,10 @@ for _, enter_cmdline_char in ipairs(enter_cmdline_chars) do
 end
 
 map('n', 'm', function()
-	Addplug 'plenary.nvim'
-	Addplug 'telescope.nvim'
-	Addplug 'core.nvim'
-	Addplug 'track.nvim'
+	Load_Plugin 'plenary.nvim'
+	Load_Plugin 'telescope.nvim'
+	Load_Plugin 'core.nvim'
+	Load_Plugin 'track.nvim'
 	vim.keymap.del('n', 'm')
 	vim.fn.feedkeys 'm'
 end)
@@ -288,15 +293,15 @@ end)
 au({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()
-		Addplug 'ultimate-autopair.nvim'
+		Load_Plugin 'ultimate-autopair.nvim'
 	end
 })
 
 au({ "CursorMoved" }, {
 	once = true,
 	callback = function()
-		Addplug 'mini.indentscope'
-		Addplug 'sentiment.nvim'
-		Addplug 'hop.nvim'
+		Load_Plugin 'mini.indentscope'
+		Load_Plugin 'sentiment.nvim'
+		Load_Plugin 'hop.nvim'
 	end
 })
