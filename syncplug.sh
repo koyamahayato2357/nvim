@@ -1,4 +1,4 @@
-plugs=(
+readonly plugs=(
 	"MunifTanjim/nui.nvim"
 	"akinsho/toggleterm.nvim"
 	"altermo/ultimate-autopair.nvim"
@@ -28,11 +28,11 @@ plugs=(
 	"zootedb0t/citruszest.nvim"
 )
 
-plugdir="plugins/"
+readonly plugdir="plugins/"
 
-githuburl="https://github.com/"
+readonly ghURL="https://github.com/"
 
-root=$(pwd)
+readonly rootdir=$(pwd)
 
 mkdir -p "$plugdir"
 cd "$plugdir" || exit
@@ -47,9 +47,9 @@ for plugname in "${plugs[@]}"; do
 		fi
 	else
 		if [ "$1" = "install" ] || [ -z "$1" ]; then
-			git clone "$githuburl$plugname"
+			git clone "$ghURL$plugname"
 		fi
 	fi
 done
 
-cd "$root" || exit
+cd "$rootdir" || exit
