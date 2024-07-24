@@ -171,8 +171,8 @@ local pluginOptions = {
 				auto_trigger = false,
 				keymap = {
 					accept = '<C-y>',
-					next = '<C-n>',
-					prev = '<C-p>',
+					next = '<C-S-n>',
+					prev = '<C-S-p>',
 					dismiss = '<C-e>',
 				}
 			},
