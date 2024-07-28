@@ -2,6 +2,7 @@ local o = vim.o
 
 o.autoread = true
 o.autowrite = true
+o.clipboard = 'unnamedplus'
 o.cmdheight = 1
 o.complete = "w,i,d,kspell"
 o.completeopt = "menu,longest,noselect,fuzzy"
