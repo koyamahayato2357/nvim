@@ -221,25 +221,46 @@ local pluginOptions = {
 	-- 	end
 	-- },
 	['base16-nvim'] = {
+		modname = 'base16-colorscheme',
 		opts = {
-			base00 = '#07d101', -- green
-			base01 = '#0ff833', -- light green
-			base02 = '#4891fb', -- blue
-			base03 = '#edf0e0', -- cream
-			base04 = '#2e0a70', -- navy
-			base05 = '#fc8dce', -- pink
-			base06 = '#f4fbfe', -- white
-			base07 = '#d8916e', -- sendai station brick
-			base08 = '#000000', -- 
-			base09 = '#000000',
-			base0a = '#000000',
-			base0b = '#000000',
-			base0c = '#000000',
-			base0d = '#000000',
-			base0e = '#000000',
-			base0f = '#000000',
-		}
-	}
+			base00 = '#00ff00',
+			base08 = '#07d101', -- green
+			base02 = '#0ff833', -- light green
+			base03 = '#4891fb', -- blue
+			base04 = '#edf0e0', -- cream
+			base01 = '#2e0a70', -- navy
+			base06 = '#fc8dce', -- pink
+			base07 = '#f4fbfe', -- white
+			base05 = '#d8916e', -- sendai station brick
+			base09 = '#ffffff', --
+			base0a = '#ffffff',
+			base0b = '#ffffff',
+			base0c = '#ffffff',
+			base0d = '#ffffff',
+			base0e = '#ffffff',
+			base0f = '#ffffff',
+		},
+		callback = function()
+			hi("Normal", { bg = "None" })
+			hi("NormalNC", { bg = "None" })
+			hi("SignColumn", { bg = "None" })
+			hi("ErrMsg", { bg = "None" })
+			hi("DiagnosticError", { fg = "Red", bg = "None", bold = true })
+			hi("DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
+			hi("DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
+			hi("DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
+			hi("CursorLine", { bg = "none" })
+			hi("CursorLineNR", { bg = "none" })
+			hi("CursorLineNC", { bg = "none" })
+			hi("LineNr", { bg = "none" })
+			hi("StatusLine", { bg = "none" })
+			hi('LspInlayHint', { fg = 'DarkCyan' })
+		end,
+	},
 }
 
 ---@param plugname string
