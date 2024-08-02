@@ -199,26 +199,46 @@ local pluginOptions = {
 	['statusline.lua'] = {
 		modname = 'statusline',
 	},
-	['citruszest.nvim'] = {
-		callback = function()
-			vim.cmd.colorscheme 'citruszest'
-			hi("Normal", { bg = "None" })
-			hi("NormalNC", { bg = "None" })
-			hi("SignColumn", { bg = "None" })
-			hi("ErrMsg", { bg = "None" })
-			hi("DiagnosticError", { fg = "Red", bg = "None", bold = true })
-			hi("DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
-			hi("DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
-			hi("CursorLine", { bg = "none" })
-			hi("CursorLineNC", { bg = "none" })
-			hi("StatusLine", { bg = "none" })
-			hi('LspInlayHint', { fg = 'DarkCyan' })
-		end
+	-- ['citruszest.nvim'] = {
+	-- 	callback = function()
+	-- 		vim.cmd.colorscheme 'citruszest'
+	-- 		hi("Normal", { bg = "None" })
+	-- 		hi("NormalNC", { bg = "None" })
+	-- 		hi("SignColumn", { bg = "None" })
+	-- 		hi("ErrMsg", { bg = "None" })
+	-- 		hi("DiagnosticError", { fg = "Red", bg = "None", bold = true })
+	-- 		hi("DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
+	-- 		hi("DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
+	-- 		hi("DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
+	-- 		hi("DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
+	-- 		hi("DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
+	-- 		hi("DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
+	-- 		hi("DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
+	-- 		hi("CursorLine", { bg = "none" })
+	-- 		hi("CursorLineNC", { bg = "none" })
+	-- 		hi("StatusLine", { bg = "none" })
+	-- 		hi('LspInlayHint', { fg = 'DarkCyan' })
+	-- 	end
+	-- },
+	['base16-nvim'] = {
+		opts = {
+			base00 = '#07d101', -- green
+			base01 = '#0ff833', -- light green
+			base02 = '#4891fb', -- blue
+			base03 = '#edf0e0', -- cream
+			base04 = '#2e0a70', -- navy
+			base05 = '#fc8dce', -- pink
+			base06 = '#f4fbfe', -- white
+			base07 = '#d8916e', -- sendai station brick
+			base08 = '#000000', -- 
+			base09 = '#000000',
+			base0a = '#000000',
+			base0b = '#000000',
+			base0c = '#000000',
+			base0d = '#000000',
+			base0e = '#000000',
+			base0f = '#000000',
+		}
 	}
 }
 
@@ -249,7 +269,8 @@ au({ 'VimEnter' }, {
 		Load_Plugin 'flash.nvim'
 		Load_Plugin 'substitute.nvim'
 		Load_Plugin 'nvim-surround'
-		Load_Plugin 'citruszest.nvim'
+		-- Load_Plugin 'citruszest.nvim'
+		Load_Plugin 'base16-nvim'
 		Load_Plugin 'toggleterm.nvim'
 		Load_Plugin 'nvim-web-devicons'
 		Load_Plugin 'oil.nvim'
