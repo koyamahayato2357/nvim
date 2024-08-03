@@ -199,48 +199,9 @@ local pluginOptions = {
 	['statusline.lua'] = {
 		modname = 'statusline',
 	},
-	-- ['citruszest.nvim'] = {
-	-- 	callback = function()
-	-- 		vim.cmd.colorscheme 'citruszest'
-	-- 		hi("Normal", { bg = "None" })
-	-- 		hi("NormalNC", { bg = "None" })
-	-- 		hi("SignColumn", { bg = "None" })
-	-- 		hi("ErrMsg", { bg = "None" })
-	-- 		hi("DiagnosticError", { fg = "Red", bg = "None", bold = true })
-	-- 		hi("DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
-	-- 		hi("DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
-	-- 		hi("DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
-	-- 		hi("DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
-	-- 		hi("DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
-	-- 		hi("DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
-	-- 		hi("DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
-	-- 		hi("CursorLine", { bg = "none" })
-	-- 		hi("CursorLineNC", { bg = "none" })
-	-- 		hi("StatusLine", { bg = "none" })
-	-- 		hi('LspInlayHint', { fg = 'DarkCyan' })
-	-- 	end
-	-- },
-	['base16-nvim'] = {
-		modname = 'base16-colorscheme',
-		opts = {
-			base00 = '#00ff00',
-			base08 = '#07d101', -- green
-			base02 = '#0ff833', -- light green
-			base03 = '#4891fb', -- blue
-			base04 = '#edf0e0', -- cream
-			base01 = '#2e0a70', -- navy
-			base06 = '#fc8dce', -- pink
-			base07 = '#f4fbfe', -- white
-			base05 = '#d8916e', -- sendai station brick
-			base09 = '#ffffff', --
-			base0a = '#ffffff',
-			base0b = '#ffffff',
-			base0c = '#ffffff',
-			base0d = '#ffffff',
-			base0e = '#ffffff',
-			base0f = '#ffffff',
-		},
+	['citruszest.nvim'] = {
 		callback = function()
+			vim.cmd.colorscheme 'citruszest'
 			hi("Normal", { bg = "None" })
 			hi("NormalNC", { bg = "None" })
 			hi("SignColumn", { bg = "None" })
@@ -254,12 +215,10 @@ local pluginOptions = {
 			hi("DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
 			hi("DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
 			hi("CursorLine", { bg = "none" })
-			hi("CursorLineNR", { bg = "none" })
 			hi("CursorLineNC", { bg = "none" })
-			hi("LineNr", { bg = "none" })
 			hi("StatusLine", { bg = "none" })
 			hi('LspInlayHint', { fg = 'DarkCyan' })
-		end,
+		end
 	},
 }
 
@@ -291,7 +250,7 @@ au({ 'VimEnter' }, {
 		Load_Plugin 'substitute.nvim'
 		Load_Plugin 'nvim-surround'
 		-- Load_Plugin 'citruszest.nvim'
-		Load_Plugin 'base16-nvim'
+		-- Load_Plugin 'base16-nvim'
 		Load_Plugin 'toggleterm.nvim'
 		Load_Plugin 'nvim-web-devicons'
 		Load_Plugin 'oil.nvim'
