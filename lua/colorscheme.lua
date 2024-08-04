@@ -20,6 +20,8 @@ local function hi(group, opts)
 	vim.api.nvim_set_hl(0, group, opts)
 end
 
+local au = vim.api.nvim_create_autocmd
+
 hi("Normal", { bg = "None" })
 hi("NormalNC", { bg = "None" })
 hi("SignColumn", { bg = "None" })
@@ -43,12 +45,13 @@ hi("PmenuSel", { fg = sendai.gold, bg = sendai.blue })
 hi("Search", { fg = sendai.cream })
 hi("CurSearch", { fg = sendai.forest, bg = sendai.cream })
 hi("Substitute", { fg = sendai.cream })
+hi("WinSeparator", { fg = sendai.blue })
 
 hi("Boolean", { fg = sendai.blue })
 hi("Comment", { fg = sendai.gray })
 hi("Constant", { fg = sendai.bush })
 hi("Statement", { fg = sendai.green, bold = true })
-hi("KeyWord", { fg = "white", bold = true })
+hi("KeyWord", { fg = sendai.cream, bold = true })
 hi("PreProc", { fg = sendai.brick })
 hi("Identifier", { fg = sendai.greenyellow, bold = true })
 hi("Special", { fg = sendai.blue })
@@ -63,3 +66,15 @@ hi("Delimiter", { fg = sendai.forest })
 
 hi("@variable", { fg = sendai.electriclime })
 hi("@variable.parameter", { italic = true })
+
+au({ "InsertEnter" }, {
+	callback = function()
+		vim.api.nvim_set_hl(0, "CursorLine", { underline = true, bg = "None" })
+	end
+})
+
+au({ "InsertLeave" }, {
+	callback = function()
+		vim.api.nvim_set_hl(0, "CursorLine", { underline = false, bg = "None" })
+	end
+})

@@ -98,19 +98,6 @@ au({ "BufWinEnter" }, {
 	end
 })
 
-au({ "InsertEnter" }, {
-	callback = function()
-		vim.api.nvim_set_hl(0, "CursorLine", { underline = true, bg = "None" })
-		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = true, bg = "None" })
-	end
-})
-au({ "InsertLeave" }, {
-	callback = function()
-		vim.api.nvim_set_hl(0, "CursorLine", { underline = false, bg = "None" })
-		vim.api.nvim_set_hl(0, "CursorLineNr", { underline = false, bg = "None" })
-	end
-})
-
 au({ 'VimLeave' }, {
 	callback = function()
 		vim.cmd.wshada()
