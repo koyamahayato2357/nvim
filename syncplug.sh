@@ -25,7 +25,6 @@ readonly plugs=(
 	"CopilotC-Nvim/CopilotChat.nvim"
 	"ThePrimeagen/refactoring.nvim"
 	"beauwilliams/statusline.lua"
-	"zootedb0t/citruszest.nvim"
 	"nvim-treesitter/nvim-treesitter"
 )
 
