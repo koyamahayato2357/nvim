@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 local api = vim.api
 
-function PrintBlameText()
+local function printBlameText()
 	local currFile = vim.fn.expand('%')
 	local line = api.nvim_win_get_cursor(0)
 	local blame = vim.fn.system(string.format('git blame -c -L %d,%d %s', line[1], line[1], currFile))
@@ -18,4 +18,4 @@ function PrintBlameText()
 	print(Text)
 end
 
-map('n', 'gb', PrintBlameText)
+map('n', 'gb', printBlameText)
