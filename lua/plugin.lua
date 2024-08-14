@@ -157,6 +157,13 @@ local pluginOptions = {
 	['telescope.nvim'] = {
 		modname = 'telescope',
 		opts = {},
+		callback = function()
+			local telescopebuiltin = require 'telescope.builtin'
+			map('n', 'g/', telescopebuiltin.live_grep)
+		end,
+		dependencies = {
+			'plenary.nvim',
+		},
 	},
 	['hop.nvim'] = {
 		modname = 'hop',
@@ -274,6 +281,12 @@ for _, enter_cmdline_char in ipairs(enter_cmdline_chars) do
 		vim.fn.feedkeys(enter_cmdline_char)
 	end)
 end
+
+map('n', 'g', function()
+	Load_Plugin 'telescope.nvim'
+	vim.keymap.del('n', 'g')
+	vim.fn.feedkeys 'g'
+end)
 
 map('n', 'm', function()
 	Load_Plugin 'track.nvim'
