@@ -197,7 +197,7 @@ local pluginOptions = {
 		modname = 'CopilotChat',
 		opts = {},
 		dependencies = {
-			'plenary.lua',
+			'plenary.nvim',
 			'copilot.lua',
 		},
 	},
@@ -222,14 +222,14 @@ function Load_Plugin(plugname)
 		local opts = pluginOptions[plugname].opts
 		local callback = pluginOptions[plugname].callback
 		local dependencies = pluginOptions[plugname].dependencies
-		vim.opt.runtimepath:append(pluginpath .. plugname)
-		if opts and modname then require(modname).setup(opts) end
-		if callback then callback() end
 		if dependencies then
 			for _, depend in ipairs(dependencies) do
 				Load_Plugin(depend)
 			end
 		end
+		vim.opt.runtimepath:append(pluginpath .. plugname)
+		if opts and modname then require(modname).setup(opts) end
+		if callback then callback() end
 		pluginOptions[plugname] = nil
 	end
 end
