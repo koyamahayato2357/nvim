@@ -4,7 +4,7 @@ local map = vim.keymap.set
 function Lsp_config(name, cmd, root)
 	vim.lsp.start({
 		name = name,
-		cmd = { cmd },
+		cmd = cmd,
 		root_dir = root
 	})
 	map('n', '=', vim.lsp.buf.format)
@@ -58,30 +58,30 @@ au({ "FileType" }, {
 						"--query-driver=/home/sundo/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin/arm-none-eabi-g++" }
 				})
 			else
-				Lsp_config("clangd", "clangd")
+				Lsp_config("clangd", { "clangd" })
 			end
 			vim.bo.expandtab = true
 			vim.bo.shiftwidth = 2
 			vim.bo.tabstop = 2
 		elseif filetype == "rust" then
-			Lsp_config("rust", "rust-analyzer")
+			Lsp_config("rust", { "rust-analyzer" })
 		elseif filetype == "lua" then
-			Lsp_config("lua", "lua-language-server", vim.fn.stdpath('config'))
+			Lsp_config("lua", { "lua-language-server" }, vim.fn.stdpath('config'))
+		elseif filetype == "fish" then
+			Lsp_config("fish", { "fish-lsp", "start" })
 		elseif filetype == "tex" then
-			Lsp_config("tex", "texlab")
+			Lsp_config("tex", { "texlab" })
 		elseif filetype == "asm" then
-			Lsp_config("asm", "asm-lsp")
-		elseif filetype == "zsh" then
-			vim.bo.filetype = "bash"
+			Lsp_config("asm", { "asm-lsp" })
 		elseif filetype == "lisp" then
 			vim.bo.filetype = "commonlisp"
 			vim.bo.expandtab = true
 			vim.bo.shiftwidth = 2
 			vim.bo.tabstop = 2
 		elseif filetype == "go" then
-			Lsp_config("go", "gopls")
+			Lsp_config("go", { "gopls" })
 		elseif filetype == "zig" then
-			Lsp_config("zig", "zls")
+			Lsp_config("zig", { "zls" })
 			vim.bo.expandtab = true
 			vim.bo.shiftwidth = 4
 			vim.bo.tabstop = 4
