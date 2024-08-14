@@ -1,12 +1,6 @@
 local au = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
----@param name string
----@param val table
-local function hi(name, val)
-	vim.api.nvim_set_hl(0, name, val)
-end
-
 local pluginOptions = {
 	['flash.nvim'] = {
 		modname = 'flash',
@@ -100,10 +94,14 @@ local pluginOptions = {
 	['ultimate-autopair.nvim'] = {
 		modname = 'ultimate-autopair',
 		opts = {
+			fastwarp = {
+				rmap = '<A-y>',
+				rcmap = '<A-y>',
+			},
 			tabout = {
 				enable = true,
-				map = '<S-Tab>',
-				cmap = '<S-Tab>',
+				map = '<C-f>',
+				cmap = '<C-f>',
 				hopout = true,
 			},
 			bs = {
@@ -199,27 +197,6 @@ local pluginOptions = {
 	['statusline.lua'] = {
 		modname = 'statusline',
 	},
-	['citruszest.nvim'] = {
-		callback = function()
-			vim.cmd.colorscheme 'citruszest'
-			hi("Normal", { bg = "None" })
-			hi("NormalNC", { bg = "None" })
-			hi("SignColumn", { bg = "None" })
-			hi("ErrMsg", { bg = "None" })
-			hi("DiagnosticError", { fg = "Red", bg = "None", bold = true })
-			hi("DiagnosticLineNrError", { fg = "Red", bg = "None", bold = true })
-			hi("DiagnosticWarn", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticLineNrWarn", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticHint", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticLineNrHint", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticInfo", { fg = "Yellow", bg = "None", bold = true })
-			hi("DiagnosticLineNrInfo", { fg = "Yellow", bg = "None", bold = true })
-			hi("CursorLine", { bg = "none" })
-			hi("CursorLineNC", { bg = "none" })
-			hi("StatusLine", { bg = "none" })
-			hi('LspInlayHint', { fg = 'DarkCyan' })
-		end
-	},
 }
 
 ---@param plugname string
@@ -249,8 +226,6 @@ au({ 'VimEnter' }, {
 		Load_Plugin 'flash.nvim'
 		Load_Plugin 'substitute.nvim'
 		Load_Plugin 'nvim-surround'
-		-- Load_Plugin 'citruszest.nvim'
-		-- Load_Plugin 'base16-nvim'
 		Load_Plugin 'toggleterm.nvim'
 		Load_Plugin 'nvim-web-devicons'
 		Load_Plugin 'oil.nvim'
@@ -265,8 +240,8 @@ au({ 'VimEnter' }, {
 local enter_cmdline_chars = { ':', '/', '?' }
 for _, enter_cmdline_char in ipairs(enter_cmdline_chars) do
 	map({ 'n', 'v' }, enter_cmdline_char, function()
-		Load_Plugin 'command'
-		Load_Plugin 'fzf'
+		require 'command'
+		require 'fzf'
 		Load_Plugin 'vimdoc-ja'
 		Load_Plugin 'nvimdoc-ja'
 		Load_Plugin 'carbonpaper.vim'
