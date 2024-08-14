@@ -21,6 +21,7 @@ function Treesitter_config()
 		local mid = math.floor((left + right) / 2)
 		if installed[mid] == vim.o.filetype then
 			vim.treesitter.start()
+			require 'colorscheme'
 			return
 		elseif installed[mid] < vim.o.filetype then
 			left = mid + 1
@@ -28,7 +29,6 @@ function Treesitter_config()
 			right = mid - 1
 		end
 	end
-	print("Filetype not found in installed parsers")
 end
 
 local function is_exist_file_in_parent_dir(file)
