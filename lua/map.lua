@@ -51,7 +51,6 @@ vim.loop.new_async(vim.schedule_wrap(function()
 	map({ "n", "v", "o" }, "[B", "[{")
 
 	map('i', '<Esc>', '<Right><Esc>')
-	map('i', '<C-f>', '<C-x><C-f>')
 
 	map('v', '<C-k>', ":m '<-2<CR>gv=gv")
 	map('v', '<C-j>', ":m '>+1<CR>gv=gv")
