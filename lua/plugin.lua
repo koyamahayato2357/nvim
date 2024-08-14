@@ -37,7 +37,10 @@ local pluginOptions = {
 		callback = function()
 			local oil = require 'oil'
 			map('n', '^o', function() oil.toggle_float() end)
-		end
+		end,
+		dependencies = {
+			'nvim-web-devicons',
+		}
 	},
 	['toggleterm.nvim'] = {
 		modname = 'toggleterm',
@@ -60,7 +63,10 @@ local pluginOptions = {
 			},
 			change_to_vcs_root = true
 		},
-		callback = vim.cmd.rshada
+		callback = vim.cmd.rshada,
+		dependencies = {
+			'nvim-web-devicons',
+		},
 	},
 	['vimdoc-ja'] = {},
 	['nvimdoc-ja'] = {},
@@ -140,7 +146,12 @@ local pluginOptions = {
 			map('n', 'me', track.edit)
 			map('n', 'ms', function() track.store(markfile) end)
 			track.restore(markfile)
-		end
+		end,
+		dependencies = {
+			'plenary.nvim',
+			'telescope.nvim',
+			'core.nvim',
+		},
 	},
 	['plenary.nvim'] = {},
 	['telescope.nvim'] = {
@@ -185,6 +196,10 @@ local pluginOptions = {
 	['CopilotChat.nvim'] = {
 		modname = 'CopilotChat',
 		opts = {},
+		dependencies = {
+			'plenary.lua',
+			'copilot.lua',
+		},
 	},
 	['nvim-treesitter'] = {
 		modname = 'nvim-treesitter',
@@ -206,9 +221,15 @@ function Load_Plugin(plugname)
 		local modname = pluginOptions[plugname].modname
 		local opts = pluginOptions[plugname].opts
 		local callback = pluginOptions[plugname].callback
+		local dependencies = pluginOptions[plugname].dependencies
 		vim.opt.runtimepath:append(pluginpath .. plugname)
 		if opts and modname then require(modname).setup(opts) end
 		if callback then callback() end
+		if dependencies then
+			for _, depend in ipairs(dependencies) do
+				Load_Plugin(depend)
+			end
+		end
 		pluginOptions[plugname] = nil
 	end
 end
@@ -216,7 +237,6 @@ end
 Load_Plugin 'statusline.lua'
 
 if vim.fn.argc() == 0 then
-	Load_Plugin 'nvim-web-devicons'
 	Load_Plugin 'oil.nvim'
 	Load_Plugin 'dashboard-nvim'
 end
@@ -227,10 +247,8 @@ au({ 'VimEnter' }, {
 		Load_Plugin 'substitute.nvim'
 		Load_Plugin 'nvim-surround'
 		Load_Plugin 'toggleterm.nvim'
-		Load_Plugin 'nvim-web-devicons'
 		Load_Plugin 'oil.nvim'
 		vim.loop.new_async(vim.schedule_wrap(function()
-			Load_Plugin 'plenary.nvim'
 			Load_Plugin 'copilot.lua'
 			Load_Plugin 'CopilotChat.nvim'
 		end)):send()
@@ -258,9 +276,6 @@ for _, enter_cmdline_char in ipairs(enter_cmdline_chars) do
 end
 
 map('n', 'm', function()
-	Load_Plugin 'plenary.nvim'
-	Load_Plugin 'telescope.nvim'
-	Load_Plugin 'core.nvim'
 	Load_Plugin 'track.nvim'
 	vim.keymap.del('n', 'm')
 	vim.fn.feedkeys 'm'
