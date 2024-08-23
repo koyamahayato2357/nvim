@@ -21,7 +21,6 @@ function Treesitter_config()
 		local mid = math.floor((left + right) / 2)
 		if installed[mid] == vim.o.filetype then
 			vim.treesitter.start()
-			require 'colorscheme'
 			return
 		elseif installed[mid] < vim.o.filetype then
 			left = mid + 1
@@ -52,11 +51,8 @@ au({ "FileType" }, {
 		local filetype = vim.bo.filetype
 		if filetype == "c" or filetype == "cpp" then
 			if is_exist_file_in_parent_dir("platformio.ini") then
-				vim.lsp.start({
-					name = "clangd",
-					cmd = { "clangd", "--background-index",
-						"--query-driver=/home/sundo/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin/arm-none-eabi-g++" }
-				})
+				Lsp_config("clangd", { "clangd", "--background-index",
+					"--query-driver=/home/sundo/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin/arm-none-eabi-g++" })
 			else
 				Lsp_config("clangd", { "clangd" })
 			end
@@ -86,6 +82,8 @@ au({ "FileType" }, {
 			vim.bo.shiftwidth = 4
 			vim.bo.tabstop = 4
 		end
+
+		require 'colorscheme'
 	end
 })
 
