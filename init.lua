@@ -5,5 +5,3 @@ require 'gitlens'
 require 'map'
 require 'opt'
 require 'plugin'
-
-vim.cmd.cabbrev { "nvimrc", "~/.config/nvim/init.lua" }
