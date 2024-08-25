@@ -11,6 +11,8 @@ function Lsp_config(name, cmd, root)
 	map('n', '^h', function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 	end)
+	map('n', 'gd', vim.lsp.buf.definition)
+	map('n', 'grh', vim.lsp.buf.hover)
 end
 
 function Treesitter_config()
