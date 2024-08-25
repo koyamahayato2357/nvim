@@ -106,8 +106,6 @@ local pluginOptions = {
 			},
 			tabout = {
 				enable = true,
-				map = '<C-f>',
-				cmap = '<C-f>',
 				hopout = true,
 			},
 			bs = {
@@ -157,10 +155,6 @@ local pluginOptions = {
 	['telescope.nvim'] = {
 		modname = 'telescope',
 		opts = {},
-		callback = function()
-			local telescopebuiltin = require 'telescope.builtin'
-			map('n', 'g/', telescopebuiltin.live_grep)
-		end,
 		dependencies = {
 			'plenary.nvim',
 		},
@@ -216,9 +210,9 @@ local pluginOptions = {
 		modname = 'refactoring.command',
 		opts = {}
 	},
-	['statusline.lua'] = {
-		modname = 'statusline',
-	},
+	-- ['statusline.lua'] = {
+	-- 	modname = 'statusline',
+	-- },
 }
 
 ---@param plugname string
@@ -282,10 +276,10 @@ for _, enter_cmdline_char in ipairs(enter_cmdline_chars) do
 	end)
 end
 
-map('n', 'g', function()
+map('n', 'g/', function()
 	Load_Plugin 'telescope.nvim'
-	vim.keymap.del('n', 'g')
-	vim.fn.feedkeys 'g'
+	map('n', 'g/', require 'telescope.builtin'.live_grep)
+	vim.fn.feedkeys 'g/'
 end)
 
 map('n', 'm', function()
