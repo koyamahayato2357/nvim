@@ -122,7 +122,7 @@ return {
 	},
 	['mini.indentscope'] = {
 		modname = 'mini.indentscope',
-		opts = {},
+		opts = { symbol = '│' },
 	},
 	['sentiment.nvim'] = {
 		modname = 'sentiment',
@@ -213,4 +213,3 @@ return {
 	-- 	modname = 'statusline',
 	-- },
 }
-
