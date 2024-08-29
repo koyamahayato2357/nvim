@@ -28,5 +28,5 @@ end
 
 vim.on_key(key_logger)
 vim.keymap.set({ 'i', 'n', 'v', 'o', 'c', 't' }, dmacro_key, function()
-	vim.api.nvim_feedkeys(vim.g.prev_macro or guess_macro(vim.g.key_log), 'm', true)
+	vim.api.nvim_input(vim.g.prev_macro or guess_macro(vim.g.key_log))
 end)
