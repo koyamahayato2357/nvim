@@ -11,32 +11,39 @@ local function smart_gf()
 	end
 end
 
+local function smart_i()
+	if vim.fn.empty(vim.fn.getline('.')) ~= 0 then
+		vim.api.nvim_input '"_cc'
+	else
+		-- vim.api.nvim_input 'i' -- freeze
+		vim.cmd.startinsert()
+	end
+end
+
 vim.loop.new_async(vim.schedule_wrap(function()
 	map("n", "<BS>", "<C-b>")
 	map("n", "<Delete>", "<C-f>")
 	map('n', '<C-S-e>', '5<C-e>')
 	map('n', '<C-S-y>', '5<C-y>')
-	map('n', 'X', 'd^')
+	map('n', 'i', smart_i)
 	map('n', 'S', 'c^')
-	map("n", "x", vim.cmd.bdelete)
 	map("n", "Q", "q")
 	map("n", "q", "ZZ")
 	map("n", "gk", "25k")
 	map("n", "gj", "25j")
 	map('n', 'gf', smart_gf)
-	map('n', 'K', '5k')
-	map('n', 'J', '5j')
-	map("n", "^b", function() vim.cmd.buf '#' end)
-	map('n', '^s', function() vim.o.spell = not vim.o.spell end)
+	map("n", "gb", vim.cmd.bnext)
+	map('n', 'gB', vim.cmd.bprev)
 	map('n', '^n', function() vim.o.number = not vim.o.number end)
 	map('n', '^r', function() vim.o.relativenumber = not vim.o.relativenumber end)
+	map('n', '^s', function() vim.o.spell = not vim.o.spell end)
 	map('n', '<Space>', '<Nop>')
 	map('n', '<CR>', '<Nop>')
-	map('n', 'n', 'nzzzv')
-	map('n', 'N', 'Nzzzv')
 	map('n', '<C-z>', ':w<CR><C-z>')
-	map({ 'o', 'v' }, 'K', '5k')
-	map({ 'o', 'v' }, 'J', '5j')
+	map({ 'n', 'o', 'v' }, 'K', '5k')
+	map({ 'n', 'o', 'v' }, 'J', '5j')
+	map({ 'n', 'v' }, "x", '"_d')
+	map({ 'n', 'v' }, 'X', '"_D')
 	map({ "n", "v" }, "]]", "<C-]>")
 	map({ "n", "v" }, "<Leader>y", [["+y]])
 	map({ "n", "v" }, "<Leader>Y", [["+Y]])
@@ -65,6 +72,8 @@ vim.loop.new_async(vim.schedule_wrap(function()
 	map('o', 'iQ', 'i"')
 	map('o', 'aq', "a'")
 	map('o', 'aQ', 'a"')
+	map('o', 'i<Space>', 'iW')
+	map('o', 'a<Space>', 'aW')
 
 	map('c', '<Up>', function()
 		vim.cmd.rshada()

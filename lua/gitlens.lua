@@ -18,4 +18,4 @@ local function printBlameText()
 	print(Text)
 end
 
-map('n', 'gb', printBlameText)
+map('n', '\\b', printBlameText)
