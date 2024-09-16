@@ -1,4 +1,4 @@
-local o = vim.o
+local o = vim.opt
 
 o.autoread = true
 o.autowrite = true
@@ -8,6 +8,7 @@ o.complete = "w,i,d,kspell"
 o.completeopt = "menu,longest,noselect,fuzzy"
 o.cursorline = true
 o.foldmethod = "manual"
+o.fillchars = { stl = '-', stlnc = '-' }
 o.guicursor = ""
 o.gdefault = true
 o.guifont = "PlemolJP35 Console NF:h8"
@@ -16,19 +17,20 @@ o.hidden = true
 o.ignorecase = true
 o.hlsearch = false
 o.incsearch = true
-o.laststatus = 3
+o.laststatus = 0
 o.mouse = ""
 o.number = false
 o.path = ".,,,**"
-o.ruler = true
+o.ruler = false
 o.scrolloff = 10
 o.shada = ''
 o.shiftwidth = 4
+o.showcmd = false
 o.showmode = false
 o.signcolumn = "yes"
 o.smartcase = true
 o.smartindent = true
-o.statusline = "%m%r%h%w%=%=%F%=[TYPE=%Y][POS=%l,%c,%p%%,%P][BUF=%n]"
+o.statusline = '-'
 o.tabstop = 4
 o.termguicolors = true
 o.textwidth = 79
