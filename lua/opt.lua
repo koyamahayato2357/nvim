@@ -9,7 +9,6 @@ o.completeopt = "menu,longest,noselect,fuzzy"
 o.cursorline = true
 o.foldmethod = "manual"
 o.fillchars = { stl = '-', stlnc = '-' }
-o.guicursor = ""
 o.gdefault = true
 o.guifont = "PlemolJP35 Console NF:h8"
 o.helplang = "ja,en"
