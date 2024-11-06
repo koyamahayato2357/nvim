@@ -26,6 +26,8 @@ readonly plugs=(
 	"ThePrimeagen/refactoring.nvim"
 	"beauwilliams/statusline.lua"
 	"nvim-treesitter/nvim-treesitter"
+	"saghen/blink.cmp"
+	"rafamadriz/friendly-snippets"
 )
 
 readonly plugdir="plugins/"

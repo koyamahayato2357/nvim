@@ -104,6 +104,7 @@ return {
 				rcmap = '<A-y>',
 			},
 			tabout = {
+				multi = true,
 				enable = true,
 				hopout = true,
 			},
@@ -115,6 +116,7 @@ return {
 			},
 			extensions = {
 				fly = {
+					multiline = true,
 					enable = true
 				},
 			}
@@ -212,4 +214,11 @@ return {
 	-- ['statusline.lua'] = {
 	-- 	modname = 'statusline',
 	-- },
+	['blink.cmp'] = {
+		modname = 'blink.cmp',
+		opts = {},
+		dependencies = {
+			'friendly-snippets'
+		}
+	}
 }

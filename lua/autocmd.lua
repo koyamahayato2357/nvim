@@ -48,44 +48,43 @@ au({ "FileType" }, {
 	callback = function()
 		vim.loop.new_async(vim.schedule_wrap(function()
 			Treesitter_config()
-		end)):send()
 
-		local filetype = vim.bo.filetype
-		if filetype == "c" or filetype == "cpp" then
-			if is_exist_file_in_parent_dir("platformio.ini") then
-				Lsp_config("clangd", { "clangd", "--background-index",
-					"--query-driver=/home/sundo/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin/arm-none-eabi-g++" })
-			else
-				Lsp_config("clangd", { "clangd" })
+			local filetype = vim.bo.filetype
+			if filetype == "c" or filetype == "cpp" then
+				if is_exist_file_in_parent_dir("platformio.ini") then
+					Lsp_config("clangd", { "clangd", "--background-index",
+						"--query-driver=/home/sundo/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin/arm-none-eabi-g++" })
+				else
+					Lsp_config("clangd", { "clangd" })
+				end
+				vim.bo.expandtab = true
+				vim.bo.shiftwidth = 2
+				vim.bo.tabstop = 2
+			elseif filetype == "rust" then
+				Lsp_config("rust", { "rust-analyzer" })
+			elseif filetype == "lua" then
+				Lsp_config("lua", { "lua-language-server" }, vim.fn.stdpath('config'))
+			elseif filetype == "fish" then
+				Lsp_config("fish", { "fish-lsp", "start" })
+			elseif filetype == "tex" then
+				Lsp_config("tex", { "texlab" })
+			elseif filetype == "asm" then
+				Lsp_config("asm", { "asm-lsp" })
+			elseif filetype == "lisp" then
+				vim.bo.filetype = "commonlisp"
+				vim.bo.expandtab = true
+				vim.bo.shiftwidth = 2
+				vim.bo.tabstop = 2
+			elseif filetype == "go" then
+				Lsp_config("go", { "gopls" })
+			elseif filetype == "zig" then
+				Lsp_config("zig", { "zls" })
+				vim.bo.expandtab = true
+				vim.bo.shiftwidth = 4
+				vim.bo.tabstop = 4
 			end
-			vim.bo.expandtab = true
-			vim.bo.shiftwidth = 2
-			vim.bo.tabstop = 2
-		elseif filetype == "rust" then
-			Lsp_config("rust", { "rust-analyzer" })
-		elseif filetype == "lua" then
-			Lsp_config("lua", { "lua-language-server" }, vim.fn.stdpath('config'))
-		elseif filetype == "fish" then
-			Lsp_config("fish", { "fish-lsp", "start" })
-		elseif filetype == "tex" then
-			Lsp_config("tex", { "texlab" })
-		elseif filetype == "asm" then
-			Lsp_config("asm", { "asm-lsp" })
-		elseif filetype == "lisp" then
-			vim.bo.filetype = "commonlisp"
-			vim.bo.expandtab = true
-			vim.bo.shiftwidth = 2
-			vim.bo.tabstop = 2
-		elseif filetype == "go" then
-			Lsp_config("go", { "gopls" })
-		elseif filetype == "zig" then
-			Lsp_config("zig", { "zls" })
-			vim.bo.expandtab = true
-			vim.bo.shiftwidth = 4
-			vim.bo.tabstop = 4
-		end
-
-		require 'colorscheme'
+			require 'colorscheme'
+		end)):send()
 	end
 })
 

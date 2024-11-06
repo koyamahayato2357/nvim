@@ -37,6 +37,7 @@ au({ 'VimEnter' }, {
 		Load_Plugin 'nvim-surround'
 		Load_Plugin 'toggleterm.nvim'
 		Load_Plugin 'oil.nvim'
+		Load_Plugin 'blink.cmp'
 		vim.loop.new_async(vim.schedule_wrap(function()
 			Load_Plugin 'copilot.lua'
 			Load_Plugin 'CopilotChat.nvim'
@@ -79,7 +80,7 @@ end)
 au({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()
-		Load_Plugin 'ultimate-autopair.nvim'
+		if vim.bo.filetype ~= 'markdown' then Load_Plugin 'ultimate-autopair.nvim' end
 	end
 })
 
