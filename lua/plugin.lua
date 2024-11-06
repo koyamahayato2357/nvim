@@ -45,25 +45,39 @@ au({ 'VimEnter' }, {
 	end
 })
 
-local enter_cmdline_chars = { ':', '/', '?' }
-for _, enter_cmdline_char in ipairs(enter_cmdline_chars) do
-	map({ 'n', 'v' }, enter_cmdline_char, function()
-		require 'command'
-		require 'fzf'
-		Load_Plugin 'vimdoc-ja'
-		Load_Plugin 'nvimdoc-ja'
-		Load_Plugin 'carbonpaper.vim'
-		Load_Plugin 'sidebar.nvim'
-		Load_Plugin 'nui.nvim'
-		Load_Plugin 'noice.nvim'
-		Load_Plugin 'codic-vim'
-		Load_Plugin 'refactoring.nvim'
-		for _, c in ipairs(enter_cmdline_chars) do
-			vim.keymap.del({ 'n', 'v' }, c)
-		end
-		vim.fn.feedkeys(enter_cmdline_char)
-	end)
+local function Load_cmdln()
+	require 'command'
+	require 'fzf'
+	Load_Plugin 'vimdoc-ja'
+	Load_Plugin 'nvimdoc-ja'
+	Load_Plugin 'carbonpaper.vim'
+	Load_Plugin 'sidebar.nvim'
+	Load_Plugin 'nui.nvim'
+	Load_Plugin 'noice.nvim'
+	Load_Plugin 'codic-vim'
+	Load_Plugin 'refactoring.nvim'
 end
+
+map({ 'n', 'v' }, '/', function()
+	Load_cmdln()
+	vim.cmd.rshada()
+	vim.keymap.del({ 'n', 'v' }, '/')
+	vim.fn.feedkeys('/')
+end)
+
+map({ 'n', 'v' }, '?', function()
+	Load_cmdln()
+	vim.cmd.rshada()
+	vim.keymap.del({ 'n', 'v' }, '?')
+	vim.fn.feedkeys('?')
+end)
+
+map({ 'n', 'v' }, ':', function()
+	Load_cmdln()
+	vim.cmd.rshada()
+	map({ 'n', 'v' }, ':', 'q:')
+	vim.fn.feedkeys('q:')
+end)
 
 map('n', 'g/', function()
 	Load_Plugin 'telescope.nvim'
