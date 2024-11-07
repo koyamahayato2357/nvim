@@ -4,7 +4,6 @@ readonly plugs=(
 	"altermo/ultimate-autopair.nvim"
 	"echasnovski/mini.indentscope"
 	"folke/flash.nvim"
-	"folke/noice.nvim"
 	"gbprod/substitute.nvim"
 	"kylechui/nvim-surround"
 	"nvim-lua/plenary.nvim"

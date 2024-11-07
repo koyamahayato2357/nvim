@@ -82,20 +82,6 @@ return {
 		end
 	},
 	['nui.nvim'] = {},
-	['noice.nvim'] = {
-		modname = 'noice',
-		opts = {
-			cmdline = {
-				view = "cmdline"
-			},
-			messages = {
-				enabled = false
-			},
-			notify = {
-				enabled = false
-			}
-		},
-	},
 	['ultimate-autopair.nvim'] = {
 		modname = 'ultimate-autopair',
 		opts = {
