@@ -4,11 +4,12 @@ o.autoread = true
 o.autowrite = true
 o.clipboard = 'unnamedplus'
 o.cmdheight = 1
+o.cmdwinheight = 2
 o.complete = "w,i,d,kspell"
 o.completeopt = "menu,longest,noselect,fuzzy"
 o.cursorline = true
 o.foldmethod = "manual"
-o.fillchars = { stl = '-', stlnc = '-' }
+o.fillchars = { stl = ' ', stlnc = ' ' }
 o.gdefault = true
 o.guifont = "PlemolJP35 Console NF:h8"
 o.helplang = "ja,en"

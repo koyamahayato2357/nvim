@@ -88,6 +88,20 @@ au({ "FileType" }, {
 	end
 })
 
+au({ "CmdWinEnter" }, {
+	callback = function()
+		vim.o.cmdheight = 0
+		map('n', '<ESC>', '<cmd>q!<CR>')
+	end
+})
+
+au({ "CmdWinLeave" }, {
+	callback = function()
+		vim.o.cmdheight = 1
+		vim.keymap.del('n', '<ESC>')
+	end
+})
+
 au({ "BufWinEnter" }, {
 	pattern = "COMMIT_EDITMSG",
 	callback = function()
