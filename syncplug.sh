@@ -48,7 +48,7 @@ for plugname in "${plugs[@]}"; do
 		fi
 	else
 		if [ "$1" = "install" ] || [ -z "$1" ]; then
-			git clone "$ghURL$plugname"
+			git clone "$ghURL$plugname" --depth 1
 		fi
 	fi
 done
