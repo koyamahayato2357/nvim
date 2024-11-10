@@ -115,6 +115,9 @@ return {
 	['sentiment.nvim'] = {
 		modname = 'sentiment',
 		opts = {},
+		callback = function()
+			vim.g.loaded_matchparen = 1
+		end
 	},
 	['nvim-web-devicons'] = {},
 	['core.nvim'] = {},

@@ -57,26 +57,17 @@ local function Load_cmdln()
 	Load_Plugin 'refactoring.nvim'
 end
 
-map({ 'n', 'v' }, '/', function()
-	Load_cmdln()
-	vim.cmd.rshada()
-	map({ 'n', 'v' }, '/', 'q/')
-	vim.fn.feedkeys('q/')
-end)
-
-map({ 'n', 'v' }, '?', function()
-	Load_cmdln()
-	vim.cmd.rshada()
-	map({ 'n', 'v' }, '?', 'q?')
-	vim.fn.feedkeys('q?')
-end)
-
-map({ 'n', 'v' }, ':', function()
-	Load_cmdln()
-	vim.cmd.rshada()
-	map({ 'n', 'v' }, ':', 'q:')
-	vim.fn.feedkeys('q:')
-end)
+local cmdlnc = { ':', '/', '?' }
+for c in ipairs(cmdlnc) do
+	map({ 'n', 'v', }, c, function()
+		Load_cmdln()
+		vim.cmd.rshada()
+		for cc in ipairs(cmdlnc) do
+			map({ 'n', 'v' }, cc, 'q' .. cc)
+		end
+		vim.fn.feedkeys('q' .. c)
+	end)
+end
 
 map('n', 'g/', function()
 	Load_Plugin 'telescope.nvim'

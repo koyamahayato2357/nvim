@@ -1,0 +1,6 @@
+.gitignore
+.gptignore
+plugins/*
+.git/*
+.luarc.json
+README.md

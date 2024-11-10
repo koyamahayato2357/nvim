@@ -10,7 +10,7 @@ or a pull request. I would love to hear your feedback. Happy coding!
 
 # Features
 - Unique plugin manager (fusion of shell script and lua)
-- Blazing fast (but rich UI)
+- Blazing fast
   + Advanced autocmd hacking
 - Well thought out keymaps
 - Out of the box
