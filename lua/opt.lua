@@ -27,6 +27,7 @@ o.shada = ''
 o.shiftwidth = 4
 o.showcmd = false
 o.showmode = false
+o.showtabline = 0
 o.signcolumn = "yes"
 o.smartcase = true
 o.smartindent = true
