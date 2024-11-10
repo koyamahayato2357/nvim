@@ -170,10 +170,10 @@ return {
 				enabled = true,
 				auto_trigger = false,
 				keymap = {
-					accept = '<C-y>',
+					accept = '<C-S-y>',
 					next = '<C-S-n>',
 					prev = '<C-S-p>',
-					dismiss = '<C-e>',
+					dismiss = '<C-S-e>',
 				}
 			},
 			filetypes = {
