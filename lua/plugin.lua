@@ -58,11 +58,11 @@ local function Load_cmdln()
 end
 
 local cmdlnc = { ':', '/', '?' }
-for c in ipairs(cmdlnc) do
+for _, c in ipairs(cmdlnc) do
 	map({ 'n', 'v', }, c, function()
 		Load_cmdln()
 		vim.cmd.rshada()
-		for cc in ipairs(cmdlnc) do
+		for _, cc in ipairs(cmdlnc) do
 			map({ 'n', 'v' }, cc, 'q' .. cc)
 		end
 		vim.fn.feedkeys('q' .. c)
