@@ -127,8 +127,12 @@ return {
 		callback = function()
 			local track = require 'track'
 			local markfile = vim.fn.stdpath('data') .. '/marks/mark.json'
-			map('n', 'mm', track.add_mark)
+			map('n', 'ma', track.add_mark)
+			map('n', 'mA', track.add_flow)
 			map('n', 'md', track.delete_mark)
+			map('n', 'mD', track.delete_flow)
+			map('n', 'mu', track.update_mark)
+			map('n', 'mU', track.update_flow)
 			map('n', 'ms', function() track.store_marks(markfile) end)
 			track.restore_marks(markfile)
 		end,
