@@ -3,7 +3,7 @@ local toggle_IM = { IM_cmd, "-t" }
 local was_IM_enabled = false            -- was im enabled in previous insert mode
 
 if vim.fn.executable(IM_cmd) ~= 1 then  -- file not exists
-	vim.notify('\'' .. IM_cmd .. '\' is not installed', vim.log.levels.ERROR)
+	vim.notify(IM_cmd .. ' is not installed', vim.log.levels.ERROR)
 	return
 end
 
