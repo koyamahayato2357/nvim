@@ -127,13 +127,10 @@ return {
 		callback = function()
 			local track = require 'track'
 			local markfile = vim.fn.stdpath('data') .. '/marks/mark.json'
-			map('n', 'mm', track.toggle)
-			map('n', 'md', track.remove)
-			map('n', 'mk', track.jump_to_prev)
-			map('n', 'mj', track.jump_to_next)
-			map('n', 'me', track.edit)
-			map('n', 'ms', function() track.store(markfile) end)
-			track.restore(markfile)
+			map('n', 'mm', track.add_mark)
+			map('n', 'md', track.delete_mark)
+			map('n', 'ms', function() track.store_marks(markfile) end)
+			track.restore_marks(markfile)
 		end,
 		dependencies = {
 			'plenary.nvim',

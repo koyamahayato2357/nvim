@@ -82,6 +82,10 @@ au({ "FileType" }, {
 				vim.bo.expandtab = true
 				vim.bo.shiftwidth = 4
 				vim.bo.tabstop = 4
+			elseif filetype == "cmake" then
+				Lsp_config("cmake", { "cmake-language-server" })
+			elseif filetype == "yaml" then
+				Lsp_config("yaml", { "yaml-language-server" })
 			end
 			require 'colorscheme'
 		end)):send()
