@@ -27,7 +27,7 @@ Load_Plugin 'statusline.lua'
 
 if vim.fn.argc() == 0 then
 	Load_Plugin 'oil.nvim'
-	Load_Plugin 'dashboard-nvim'
+	Load_Plugin 'alpha-nvim'
 end
 
 au({ 'VimEnter' }, {
@@ -35,7 +35,7 @@ au({ 'VimEnter' }, {
 		Load_Plugin 'flash.nvim'
 		Load_Plugin 'substitute.nvim'
 		Load_Plugin 'nvim-surround'
-		Load_Plugin 'toggleterm.nvim'
+		Load_Plugin 'neoterm.nvim'
 		Load_Plugin 'oil.nvim'
 		Load_Plugin 'blink.cmp'
 		vim.loop.new_async(vim.schedule_wrap(function()

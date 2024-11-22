@@ -41,28 +41,22 @@ return {
 			'nvim-web-devicons',
 		}
 	},
-	['toggleterm.nvim'] = {
-		modname = 'toggleterm',
-		opts = {
-			direction = "float"
-		},
+	['neoterm.nvim'] = {
+		modname = 'neoterm',
+		opts = {},
 		callback = function()
-			local toggleterm = require 'toggleterm'
-			map('n', '^t', function() toggleterm.toggle() end)
+			local neoterm = require 'neoterm'
+			map('n', '^t', function() neoterm.toggle() end)
 		end
 	},
-	['dashboard-nvim'] = {
+	['alpha-nvim'] = {
 		modname = 'dashboard',
-		opts = {
-			shortcut_type = 'number',
-			config = {
-				week_header = {
-					enable = true
-				}
-			},
-			change_to_vcs_root = true
-		},
-		callback = vim.cmd.rshada,
+		callback = function()
+			local startify = require 'alpha.themes.startify'
+			startify.file_icons.proovider = 'devicons'
+			require 'alpha'.setup(startify.config)
+			vim.cmd.rshada()
+		end,
 		dependencies = {
 			'nvim-web-devicons',
 		},

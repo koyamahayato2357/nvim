@@ -1,6 +1,5 @@
 readonly plugs=(
 	"MunifTanjim/nui.nvim"
-	"akinsho/toggleterm.nvim"
 	"altermo/ultimate-autopair.nvim"
 	"echasnovski/mini.indentscope"
 	"folke/flash.nvim"
@@ -9,7 +8,6 @@ readonly plugs=(
 	"nvim-lua/plenary.nvim"
 	"nvim-telescope/telescope.nvim"
 	"nvim-tree/nvim-web-devicons"
-	"nvimdev/dashboard-nvim"
 	"s417-lama/carbonpaper.vim"
 	"sidebar-nvim/sidebar.nvim"
 	"stevearc/oil.nvim"
@@ -27,6 +25,8 @@ readonly plugs=(
 	"nvim-treesitter/nvim-treesitter"
 	"saghen/blink.cmp"
 	"rafamadriz/friendly-snippets"
+	"itmecho/neoterm.nvim"
+	"goolord/alpha-nvim"
 )
 
 readonly plugdir="plugins/"
