@@ -1,5 +1,4 @@
 readonly plugs=(
-	"MunifTanjim/nui.nvim"
 	"altermo/ultimate-autopair.nvim"
 	"echasnovski/mini.indentscope"
 	"folke/flash.nvim"

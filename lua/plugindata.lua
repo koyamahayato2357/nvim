@@ -75,7 +75,6 @@ return {
 			vim.api.nvim_create_user_command("B", sidebar.toggle, {})
 		end
 	},
-	['nui.nvim'] = {},
 	['ultimate-autopair.nvim'] = {
 		modname = 'ultimate-autopair',
 		opts = {

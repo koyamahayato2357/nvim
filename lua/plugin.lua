@@ -51,7 +51,6 @@ local function Load_cmdln()
 	Load_Plugin 'nvimdoc-ja'
 	Load_Plugin 'carbonpaper.vim'
 	Load_Plugin 'sidebar.nvim'
-	Load_Plugin 'nui.nvim'
 	Load_Plugin 'codic-vim'
 	Load_Plugin 'refactoring.nvim'
 end
