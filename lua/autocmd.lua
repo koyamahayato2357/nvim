@@ -64,6 +64,8 @@ au({ "FileType" }, {
 				Lsp_config("rust", { "rust-analyzer" })
 			elseif filetype == "lua" then
 				Lsp_config("lua", { "lua-language-server" }, vim.fn.stdpath('config'))
+			elseif filetype == "nu" then
+				Lsp_config("nu", { "nu", "--lsp" })
 			elseif filetype == "fish" then
 				Lsp_config("fish", { "fish-lsp", "start" })
 			elseif filetype == "tex" then
