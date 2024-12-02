@@ -40,7 +40,6 @@ au({ 'VimEnter' }, {
 		Load_Plugin 'blink.cmp'
 		vim.loop.new_async(vim.schedule_wrap(function()
 			Load_Plugin 'copilot.lua'
-			Load_Plugin 'CopilotChat.nvim'
 		end)):send()
 	end
 })

@@ -19,7 +19,6 @@ readonly plugs=(
 	"hadronized/hop.nvim"
 	"koron/codic-vim"
 	"zbirenbaum/copilot.lua"
-	"CopilotC-Nvim/CopilotChat.nvim"
 	"ThePrimeagen/refactoring.nvim"
 	"beauwilliams/statusline.lua"
 	"nvim-treesitter/nvim-treesitter"

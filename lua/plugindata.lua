@@ -179,14 +179,6 @@ return {
 			map('n', '^a', require 'copilot.suggestion'.toggle_auto_trigger)
 		end
 	},
-	['CopilotChat.nvim'] = {
-		modname = 'CopilotChat',
-		opts = {},
-		dependencies = {
-			'plenary.nvim',
-			'copilot.lua',
-		},
-	},
 	['nvim-treesitter'] = {
 		modname = 'nvim-treesitter',
 		opts = { ensure_installed = 'all' },
