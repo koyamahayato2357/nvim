@@ -61,9 +61,9 @@ for _, c in ipairs(cmdlnc) do
 		Load_cmdln()
 		vim.cmd.rshada()
 		for _, cc in ipairs(cmdlnc) do
-			map({ 'n', 'v' }, cc, 'q' .. cc)
+			vim.keymap.del({ 'n', 'v' }, cc)
 		end
-		vim.fn.feedkeys('q' .. c)
+		vim.fn.feedkeys(c)
 	end)
 end
 

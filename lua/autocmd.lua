@@ -96,13 +96,8 @@ au({ "FileType" }, {
 
 au({ "CmdWinEnter" }, {
 	callback = function()
-		map('n', '<ESC>', '<cmd>q!<CR>')
-	end
-})
-
-au({ "CmdWinLeave" }, {
-	callback = function()
-		vim.keymap.del('n', '<ESC>')
+		map('n', '<ESC>', '<cmd>q!<CR>', { buffer = true })
+		vim.bo.filetype = 'vim'
 	end
 })
 
