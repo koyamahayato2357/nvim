@@ -26,8 +26,9 @@ end
 Load_Plugin 'statusline.lua'
 
 if vim.fn.argc() == 0 then
+	vim.cmd.rshada()
 	Load_Plugin 'oil.nvim'
-	Load_Plugin 'alpha-nvim'
+	Load_Plugin 'snacks.nvim'
 end
 
 au({ 'VimEnter' }, {

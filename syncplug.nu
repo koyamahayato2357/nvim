@@ -29,12 +29,12 @@ mkdir $plugdir
 	"saghen/blink.cmp"
 	"rafamadriz/friendly-snippets"
 	"itmecho/neoterm.nvim"
-	"goolord/alpha-nvim"
+	"folke/snacks.nvim"
 ] | each {|plugname|
     let reponame = ($plugname | path basename)
 	let repopath = $plugdir + $reponame
 
-	if ($reponame | path exists) {
+	if ($repopath | path exists) {
 		git -C $repopath pull
 	} else {
 		git clone ("https://github.com/" + $plugname) $repopath --depth 1
