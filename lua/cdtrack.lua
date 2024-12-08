@@ -1,3 +1,5 @@
+local matchfuzzy = require 'matchfuzzy'
+
 local id = { name = 1, count = 2 }
 
 ---@param tbl table<string, number>[]
@@ -73,7 +75,7 @@ end
 ---@param trigger string
 ---@return string[]
 local function findmatch(trigger)
-	return vim.fn.matchfuzzy(getcol(dirs_table, id.name), trigger)
+	return matchfuzzy.matchfuzzy(getcol(dirs_table, id.name), trigger)
 end
 
 local function normalize_path(dir)
