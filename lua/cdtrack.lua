@@ -1,4 +1,4 @@
-local matchfuzzy = require 'matchfuzzy'
+local fuzpath = require 'fuzpath'
 
 local id = { name = 1, count = 2 }
 
@@ -75,7 +75,7 @@ end
 ---@param trigger string
 ---@return string[]
 local function findmatch(trigger)
-	return matchfuzzy.matchfuzzy(getcol(dirs_table, id.name), trigger)
+	return fuzpath.fuzpath(getcol(dirs_table, id.name), trigger)
 end
 
 local function normalize_path(dir)

@@ -35,7 +35,7 @@ static table_t fuzfilter(table_t tbl, char const *pat) {
   return ret;
 }
 
-static int matchfuzzy(lua_State *arg) {
+static int fuzpath(lua_State *arg) {
   L = arg;
   luaL_checktype(L, 1, LUA_TTABLE);
   luaL_checktype(L, 2, LUA_TSTRING);
@@ -44,7 +44,7 @@ static int matchfuzzy(lua_State *arg) {
 
   table_t table droptbl = new_table(tbl_len);
 
-  for (int i = 1; i <= tbl_len; i++) {
+  for (size_t i = 1; i <= tbl_len; i++) {
     lua_rawgeti(L, 1, i);
     table.buf[i - 1] = luaL_checkstring(L, -1);
     lua_pop(L, 1);
@@ -62,8 +62,8 @@ static int matchfuzzy(lua_State *arg) {
   return 1;
 }
 
-int luaopen_matchfuzzy(lua_State *L) {
-  static luaL_Reg const funcs[] = {{"matchfuzzy", matchfuzzy},
+int luaopen_fuzpath(lua_State *L) {
+  static luaL_Reg const funcs[] = {{"fuzpath", fuzpath},
                                    {nullptr, nullptr}};
 
   luaL_newlib(L, funcs);

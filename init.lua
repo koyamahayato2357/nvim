@@ -1,5 +1,8 @@
 vim.opt.runtimepath = "~/.config/nvim,/usr/local/share/nvim/runtime,/usr/local/lib/nvim"
 
+local clibpath = vim.fn.stdpath('config') .. '/lua/lib/?.so'
+package.cpath = package.cpath .. ';' .. clibpath
+
 require 'autocmd'
 require 'cdtrack'
 require 'dmacro'
