@@ -4,3 +4,6 @@ spell
 plugins
 pack
 marks
+**/.cache
+**/compile_commands.json
+**/*.so
