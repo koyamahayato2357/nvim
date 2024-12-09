@@ -1,8 +1,7 @@
 CC = clang
 
-ALL_ENTRIES = $(wildcard *)
-SRCDIRS = $(filter %/, $(wildcard */))
-TARGETS = $(patsubst %/, %.so, $(SRCDIRS))
+SRCDIRS = $(wildcard src/*)
+TARGETS = $(patsubst src/%, lib/%.so, $(SRCDIRS))
 
 INCDIR = include
 
@@ -15,7 +14,7 @@ LDFLAGS = -flto=full -fwhole-program-vtables -funroll-loops -fomit-frame-pointer
 
 .DEFAULT_GOAL = $(TARGETS)
 
-%.so: %
+lib/%.so: src/%
 	$(CC) $</*.c $(CFLAGS) $(LDFLAGS) -o $@
 
 clean:

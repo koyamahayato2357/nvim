@@ -17,9 +17,8 @@ static table_t new_table(size_t len) {
 }
 
 static bool ismatch(char const *target, char const *pattern) {
-  char const *tgt = iscexist(pattern, '/') ? target : basename(target);
-  for (; *tgt && *pattern; tgt++) 
-    pattern += *tgt == *pattern;
+  for (; *target && *pattern; target++)
+    pattern += *target == *pattern;
 
   return *pattern == '\0';
 }
@@ -27,9 +26,12 @@ static bool ismatch(char const *target, char const *pattern) {
 static table_t fuzfilter(table_t tbl, char const *pat) {
   table_t ret = new_table(tbl.len);
   int id = 0;
-  for (int i = 0; i < tbl.len; i++)
-    if (ismatch(tbl.buf[i], pat))
+  bool isfullpath = iscexist(pat, '/');
+  for (int i = 0; i < tbl.len; i++) {
+    char const *target = isfullpath ? tbl.buf[i] : basename(tbl.buf[i]);
+    if (ismatch(target, pat))
       ret.buf[id++] = tbl.buf[i];
+  }
 
   ret.len = id;
   return ret;
@@ -63,8 +65,7 @@ static int fuzpath(lua_State *arg) {
 }
 
 int luaopen_fuzpath(lua_State *L) {
-  static luaL_Reg const funcs[] = {{"fuzpath", fuzpath},
-                                   {nullptr, nullptr}};
+  static luaL_Reg const funcs[] = {{"fuzpath", fuzpath}, {nullptr, nullptr}};
 
   luaL_newlib(L, funcs);
   return 1;
