@@ -72,16 +72,29 @@ local function update_record(dirs, dir)
 	end
 end
 
----@param trigger string
----@return string[]
-local function findmatch(trigger)
-	return fuzpath.fuzpath(getcol(dirs_table, id.name), trigger)
-end
-
 local function normalize_path(dir)
 	local isrel = dir:sub(1, 1) ~= '/'
 	local base = isrel and vim.uv.cwd() .. '/' or ''
 	return vim.fs.normalize(base .. dir)
+end
+
+local function rm_nonexistpath(pathtbl)
+	local i = 1
+	while i <= #pathtbl do
+		if vim.uv.fs_stat(pathtbl[i]) then
+			i = i + 1
+		else
+			table.remove(pathtbl, i)
+		end
+	end
+	return pathtbl
+end
+
+---@param trigger string
+---@return string[]
+local function findmatch(trigger)
+	local matched = fuzpath.fuzpath(getcol(dirs_table, id.name), trigger)
+	return rm_nonexistpath(matched)
 end
 
 ---@param input string
