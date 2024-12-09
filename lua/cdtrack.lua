@@ -32,10 +32,6 @@ end
 local logfile = vim.fn.stdpath("data") .. '/cdtrack/dir.log'
 local dirs_table = readfile(logfile)
 
-function Disp()
-	vim.print(dirs_table)
-end
-
 ---@param self table
 ---@param n number
 ---@return table

@@ -1,16 +1,17 @@
 local dmacro_key = '<C-T>'
 local clear_key = '<C-S-T>'
-vim.g.key_log = ''
+local key_log = ''
+local prev_macro = nil
 
----@param key_log string
+---@param kl string
 ---@return string
-local function guess_macro(key_log)
-	for i = #key_log / 2, #key_log do
-		local curspan = key_log:sub(i)
-		local srchspan = key_log:sub(1, i - 1)
+local function guess_macro(kl)
+	for i = #kl / 2, #kl do
+		local curspan = kl:sub(i)
+		local srchspan = kl:sub(1, i - 1)
 		local start, fin = srchspan:find(curspan, 1, true)
 		if start and fin then
-			vim.g.prev_macro = srchspan:sub(start)
+			prev_macro = srchspan:sub(start)
 			return srchspan:sub(fin + 1)
 		end
 	end
@@ -24,17 +25,17 @@ local function key_logger(_, typed)
 		return
 	end
 
-	vim.g.key_log = vim.g.key_log .. readable_keycode
-	if #vim.g.key_log > 100 then
-		vim.g.key_log = vim.g.key_log:sub(#vim.g.key_log - 100)
+	key_log = key_log .. readable_keycode
+	if #key_log > 100 then
+		key_log = key_log:sub(#key_log - 100)
 	end
-	vim.g.prev_macro = nil
+	prev_macro = nil
 end
 
 vim.on_key(key_logger)
 vim.keymap.set({ 'i', 'n', 'v', 'o', 'c', 't' }, dmacro_key, function()
-	vim.api.nvim_input(vim.g.prev_macro or guess_macro(vim.g.key_log))
+	vim.api.nvim_input(prev_macro or guess_macro(key_log))
 end)
 vim.keymap.set({ 'i', 'n', 'v', 'o', 'c', 't' }, clear_key, function()
-	vim.g.key_log = ''
+	key_log = ''
 end)
