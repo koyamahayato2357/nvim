@@ -12,7 +12,7 @@ CFLAGS := -std=c23 -I$(INCDIR) -Wtautological-compare -Wsign-compare -Wall    \
 LDFLAGS = -flto=full -fwhole-program-vtables -funroll-loops -fomit-frame-pointer \
 		  -O3 -shared
 
-.DEFAULT_GOAL = $(TARGETS)
+build: $(TARGETS)
 
 lib/%.so: src/%
 	$(CC) $</*.c $(CFLAGS) $(LDFLAGS) -o $@

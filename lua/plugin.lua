@@ -80,6 +80,12 @@ map('n', 'm', function()
 	vim.fn.feedkeys 'm'
 end)
 
+map('n', '<A-n>', function()
+	Load_Plugin 'nvim-navbuddy'
+	map('n', '<A-n>', vim.cmd.Navbuddy)
+	vim.cmd.Navbuddy()
+end)
+
 au({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()

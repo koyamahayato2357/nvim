@@ -1,4 +1,4 @@
-./syncplug.sh
+./syncplug.nu
 cd plugins/blink.cmp
 cargo build --release
 nvim -c "lua Load_Plugin 'nvim-treesitter'" -c "lua require 'nvim-treesitter'" -c "TSInstall all"

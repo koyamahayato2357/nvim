@@ -280,5 +280,26 @@ return {
 		dependencies = {
 			"telescope.nvim"
 		}
+	},
+	['nvim-navic'] = {
+		modname = 'nvim-navic',
+		opts = {
+			lsp = { auto_attach = true },
+			highlight = true
+		}
+	},
+	['nvim-navbuddy'] = {
+		modname = 'nvim-navbuddy',
+		opts = {
+			lsp = { auto_attach = true },
+			highlight = true
+		},
+		dependencies = {
+			'nvim-navic',
+			'nui.nvim'
+		}
+	},
+	['nui.nvim'] = {
+		modname = 'nui',
 	}
 }

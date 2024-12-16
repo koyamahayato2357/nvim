@@ -2,5 +2,8 @@
 .gptignore
 plugins/*
 .git/*
-.luarc.json
+*.json
 README.md
+**/*.so
+**/.cache/*
+archive/*
