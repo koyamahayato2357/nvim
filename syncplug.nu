@@ -33,6 +33,7 @@ mkdir $plugdir
 	"SmiteshP/nvim-navic"
 	"SmiteshP/nvim-navbuddy"
 	"Munitanjim/nui.nvim"
+	"sphamba/smear-cursor.nvim"
 ] | each {|plugname|
     let reponame = ($plugname | path basename)
 	let repopath = $plugdir + $reponame
