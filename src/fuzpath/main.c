@@ -8,12 +8,14 @@
 
 lua_State *L;
 
+#define lua_unreachable                                                        \
+  ({                                                                           \
+    luaL_error(L, "Memory alloc failed");                                      \
+    nullptr;                                                                   \
+  })
+
 static table_t new_table(size_t len) {
-  return (table_t){malloc(len * sizeof(char *)) ?: ({
-                     luaL_error(L, "Memory alloc failed");
-                     nullptr;
-                   }),
-                   len};
+  return (table_t){malloc(len * sizeof(char *)) ?: lua_unreachable, len};
 }
 
 static bool ismatch(char const *target, char const *pattern) {
