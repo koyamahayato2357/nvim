@@ -48,7 +48,15 @@ au({ "FileType" }, {
 	callback = function()
 		vim.loop.new_async(vim.schedule_wrap(function()
 			Treesitter_config()
+		end)):send()
+	end
+})
 
+au({ "FileType" }, {
+	buffer = 0,
+	once = true,
+	callback = function()
+		vim.loop.new_async(vim.schedule_wrap(function()
 			local filetype = vim.bo.filetype
 			if filetype == "c" or filetype == "cpp" then
 				if is_exist_file_in_parent_dir("platformio.ini") then
@@ -89,7 +97,6 @@ au({ "FileType" }, {
 			elseif filetype == "yaml" then
 				Lsp_config("yaml", { "yaml-language-server" })
 			end
-			require 'colorscheme'
 		end)):send()
 	end
 })
