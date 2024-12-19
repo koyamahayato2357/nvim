@@ -179,7 +179,38 @@ return {
 	-- },
 	['blink.cmp'] = {
 		modname = 'blink.cmp',
-		opts = {},
+		opts = {
+			keymap = {
+				['<A-h>'] = { 'show', 'show_documentation', 'hide_documentation' },
+				['<Tab>'] = {},
+				['<S-Tab>'] = {},
+			},
+			sources = { cmdline = {} },
+			completion = {
+				menu = {
+					-- auto_show = false
+				},
+				ghost_text = {
+					enabled = true
+				},
+			},
+		},
+		callback = function()
+			map('i', '<C-l>', function()
+				if vim.snippet.active() then
+					return '<cmd>lua vim.snippet.jump(1)<CR>'
+				else
+					return '<C-l>'
+				end
+			end)
+			map('i', '<C-h>', function()
+				if vim.snippet.active() then
+					return '<cmd>lua vim.snippet.jump(-1)<CR>'
+				else
+					return '<C-h>'
+				end
+			end)
+		end,
 		dependencies = {
 			'friendly-snippets'
 		}
