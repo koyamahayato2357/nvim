@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+local submode = require 'submode'
 vim.g.mapleader = ' '
 
 local function smart_gf()
@@ -73,3 +74,10 @@ map('o', 'i<Space>', 'iW')
 map('o', 'a<Space>', 'aW')
 
 map('t', '<C-\\>', '<C-\\><C-n>')
+
+submode.set_submode_keymap('n', 'gt', {
+	{ key = 't', callback = vim.cmd.tabn }
+}, vim.cmd.tabn)
+submode.set_submode_keymap('n', 'gT', {
+	{ key = 'T', callback = vim.cmd.tabp }
+}, vim.cmd.tabp)
