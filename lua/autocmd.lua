@@ -101,6 +101,14 @@ au({ "FileType" }, {
 	end
 })
 
+au({ "TextYankPost" }, {
+	callback = function ()
+		if vim.v.event.regname == '' then
+			vim.fn.setreg(vim.v.event.operator, vim.fn.getreg())
+		end
+	end
+})
+
 au({ "CmdWinEnter" }, {
 	callback = function()
 		map('n', '<ESC>', '<cmd>q!<CR>', { buffer = true })
