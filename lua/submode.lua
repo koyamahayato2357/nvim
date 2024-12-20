@@ -1,40 +1,45 @@
 M = {}
 
----@class KeyMapInfo
----@field key string
----@field callback fun(): nil|string
----@field opts table?
-
----@param mode string|table
+---@param mode string|string[]
 ---@param leader string
----@param keymaps KeyMapInfo[]
----@param on_enter fun(): nil?
-function M.set_submode_keymap(mode, leader, keymaps, on_enter)
-	local stash = {}
+---@param followers string[]
+function M.set_submode_keymap(mode, leader, followers)
+	local uniqid = '<Plug>(' .. leader .. ')'
+	local uniqprefix = uniqid .. leader
+	vim.keymap.set(mode, uniqprefix, '', { remap = true })
+	for _, follower in ipairs(followers) do
+		local key = leader .. follower
+		vim.keymap.set(mode, key, key .. uniqprefix, { remap = true })
+		vim.keymap.set(mode, uniqprefix .. follower, key .. uniqprefix, { remap = true })
+	end
+end
 
-	table.insert(keymaps, {
-		key = '<Esc>',
-		-- pop prev keymaps
-		callback = function()
-			for _, keymap in ipairs(keymaps) do
-				if vim.tbl_isempty(stash[keymap.key]) then
-					vim.keymap.del(mode, keymap.key)
-				else
-					vim.fn.mapset(stash[keymap.key])
-				end
-			end
+---@param mode string|string[]
+---@param key string
+---@param base number?
+---@param thre number?
+function M.acceleration_key(mode, key, base, thre)
+	local uniqid = '<Plug>(' .. key .. ')'
+	local count ---@type number
+	base = base or 2
+	thre = thre or 3
+
+	vim.keymap.set(mode, key, function()
+		if vim.v.count > 0 then
+			return key
 		end
-	})
 
-	vim.keymap.set(mode, leader, function()
-		on_enter()
+		count = 1
+		return key .. uniqid
+	end, { expr = true })
 
-		for _, keymap in ipairs(keymaps) do
-			-- stash prev keymaps
-			stash[keymap.key] = vim.fn.maparg(keymap.key, mode, false, true)
-			vim.keymap.set(mode, keymap.key, keymap.callback, keymap.opts)
-		end
-	end)
+	vim.keymap.set(mode, uniqid .. key, function()
+		local speed = math.pow(base, math.floor(count / thre))
+		count = count + 1
+		return speed .. key .. uniqid
+	end, { expr = true })
+
+	vim.keymap.set(mode, uniqid, '<Nop>')
 end
 
 return M

@@ -63,8 +63,6 @@ map('v', 'v', "<C-v>")
 map('v', 'aa', 'VggoG')
 map('v', '<Leader>p', [["_dP"]])
 
-map('o', '2', 'i"')
-map('o', '7', "i'")
 map('o', '.', 'i>')
 map('o', 'iq', "i'")
 map('o', 'iQ', 'i"')
@@ -75,9 +73,10 @@ map('o', 'a<Space>', 'aW')
 
 map('t', '<C-\\>', '<C-\\><C-n>')
 
-submode.set_submode_keymap('n', 'gt', {
-	{ key = 't', callback = vim.cmd.tabn }
-}, vim.cmd.tabn)
-submode.set_submode_keymap('n', 'gT', {
-	{ key = 'T', callback = vim.cmd.tabp }
-}, vim.cmd.tabp)
+submode.set_submode_keymap('n', 'g', { 't', 'T', 'e', 'E', 'J' })
+submode.set_submode_keymap('n', 'd', { 'h', 'k' })
+submode.set_submode_keymap('n', '<C-w>', { '>', '<', '+', '-' })
+submode.acceleration_key('n', 'j')
+submode.acceleration_key('n', 'k')
+submode.acceleration_key('n', 'h')
+submode.acceleration_key('n', 'l')
