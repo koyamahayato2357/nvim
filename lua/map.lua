@@ -73,9 +73,28 @@ map('o', 'a<Space>', 'aW')
 
 map('t', '<C-\\>', '<C-\\><C-n>')
 
-submode.set_submode_keymap('n', 'g', { 't', 'T', 'e', 'E', 'J' })
-submode.set_submode_keymap('n', 'd', { 'h', 'k' })
-submode.set_submode_keymap('n', '<C-w>', { '>', '<', '+', '-' })
+submode.set_submode_keymap('n', 'g', {
+	{ key = 't' },
+	{ key = 'T' },
+	{ key = 'e' },
+	{ key = 'E' },
+	{ key = 'J' }
+})
+submode.set_submode_keymap('n', 'd', {
+	{ key = 'h' },
+	{ key = 'l' }
+})
+submode.set_submode_keymap('n', '<C-w>', {
+	{ key = '>' },
+	{ key = '<' },
+	{ key = '+' },
+	{ key = '-' },
+	{ key = 'h' },
+	{ key = 'j' },
+	{ key = 'k' },
+	{ key = 'l' },
+})
+
 submode.acceleration_key('n', 'j')
 submode.acceleration_key('n', 'k')
 submode.acceleration_key('n', 'h')
