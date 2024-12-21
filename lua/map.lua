@@ -75,11 +75,11 @@ submode.set_submode_keymap('n', 'g', {
 	{ key = 'T' },
 	{ key = 'e' },
 	{ key = 'E' },
-	{ key = 'J' }
+	{ key = 'J' },
 })
 submode.set_submode_keymap('n', 'd', {
 	{ key = 'h' },
-	{ key = 'l' }
+	{ key = 'l' },
 })
 submode.set_submode_keymap('n', '<C-w>', {
 	{ key = '>' },

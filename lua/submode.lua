@@ -14,42 +14,45 @@ local function map(mode, lhs, rhs, remap)
 	vim.keymap.set(mode, lhs, rhs, { expr = isfun(rhs), remap = remap })
 end
 
----@class FolOpts
-
----@class Follower
----@field key string
----@field callback fun(): string??
----@field opts FolOpts?
-
 ---@class Autos
 ---@field entering (fun(): string?|string)?
 ---@field repeating (fun(): string?|string)?
----@field leaving (fun(): string?|string)?
+---@field leaving (fun(): string?|string)? (reserved)
+
+---@class Follower
+---@field key string
+---@field run_when Autos?
 
 ---@param mode string|string[]
 ---@param leader string
 ---@param followers Follower[]
----@param run_when Autos?
-function M.set_submode_keymap(mode, leader, followers, run_when)
-	run_when = run_when or {}
+function M.set_submode_keymap(mode, leader, followers)
 	local uniqid = make_uniq(leader)
 	local uniqprefix = uniqid .. leader
 	for _, follower in ipairs(followers) do
 		local key = leader .. follower.key
-		local callback = follower.callback
-		local rhs = not callback and key .. uniqprefix or function()
-			return (callback() or '') .. uniqprefix
+		local run_when = follower.run_when or {}
+
+		local get_rhs = function(any)
+			if not any then
+				return key .. uniqprefix
+			elseif type(any) == 'string' then
+				return any .. uniqprefix
+			elseif type(any) == 'function' then
+				return function()
+					return (any() or '') .. uniqprefix
+				end
+			end
 		end
 
-		run_when.entering = run_when.entering or rhs
-		run_when.repeating = run_when.repeating or rhs
-		run_when.leaving = run_when.leaving or ''
+		run_when.entering = get_rhs(run_when.entering)
+		run_when.repeating = get_rhs(run_when.repeating)
 
 		map(mode, key, run_when.entering, true)
 		map(mode, uniqprefix .. follower.key, run_when.repeating, true)
 	end
 
-	map(mode, uniqprefix, run_when.leaving, true)
+	map(mode, uniqprefix, '', true)
 end
 
 ---@class AccOpts
@@ -58,7 +61,7 @@ end
 
 ---@param mode string|string[]
 ---@param key string
----@param callback fun(): string??
+---@param callback (fun(): string?)?
 ---@param opts AccOpts?
 function M.acceleration_key(mode, key, callback, opts)
 	local uniqid = make_uniq(key)
