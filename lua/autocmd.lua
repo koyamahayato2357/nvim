@@ -78,6 +78,11 @@ au({ "FileType" }, {
 				Lsp_config("fish", { "fish-lsp", "start" })
 			elseif filetype == "tex" then
 				Lsp_config("tex", { "texlab" })
+			elseif filetype == "scheme" then
+				require 'ftplugin.scheme_de'
+				vim.bo.expandtab = true
+				vim.bo.shiftwidth = 2
+				vim.bo.tabstop = 2
 			elseif filetype == "asm" then
 				Lsp_config("asm", { "asm-lsp" })
 			elseif filetype == "lisp" then
