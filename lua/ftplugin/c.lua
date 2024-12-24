@@ -1,14 +1,14 @@
-local fs = require 'fs'
-
 local lsp = {
 	name = 'clangd',
 	cmd = { 'clangd' }
 }
 
-if fs.is_exist_file_in_parent_dir('platformio.ini') then
+local root = vim.fs.root(0, 'platformio.ini')
+if root then
 	table.insert(lsp[2], '--background-index')
 	table.insert(lsp[2],
 		'--query-driver=/home/sundo/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin/arm-none-eabi-g++')
+	lsp.root_dir = root
 end
 
 return {
