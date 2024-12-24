@@ -1,6 +1,6 @@
 return {
 	lsp = {
-		'asm-lsp',
-		{ 'asm-lsp' }
+		name = 'asm-lsp',
+		cmd = { 'asm-lsp' }
 	}
 }

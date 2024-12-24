@@ -1,6 +1,6 @@
 return {
 	lsp = {
-		'yaml-ls',
-		{ 'yaml-language-server' }
+		name = 'yaml-ls',
+		cmd = { 'yaml-language-server' }
 	}
 }

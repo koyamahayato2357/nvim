@@ -1,6 +1,6 @@
 return {
 	lsp = {
-		'cmake-ls',
-		{ 'cmake-language-server' }
+		name = 'cmake-ls',
+		cmd = { 'cmake-language-server' }
 	}
 }

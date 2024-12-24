@@ -1,7 +1,7 @@
 return {
 	lsp = {
-		'lua-ls',
-		{ 'lua-language-server' },
-		vim.fn.stdpath('config')
+		name = 'lua-ls',
+		cmd = { 'lua-language-server' },
+		root_dir = vim.fn.stdpath('config')
 	}
 }

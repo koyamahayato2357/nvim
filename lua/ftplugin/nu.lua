@@ -1,6 +1,6 @@
 return {
 	lsp = {
-		'nu',
-		{ 'nu', '--lsp' }
+		name = 'nu',
+		cmd = { 'nu', '--lsp' }
 	}
 }

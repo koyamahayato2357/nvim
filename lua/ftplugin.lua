@@ -33,8 +33,9 @@ au("FileType", {
 
 		if ftp.lsp then
 			vim.loop.new_async(vim.schedule_wrap(function()
-				require 'lsp'.lsp_start(unpack(ftp.lsp))
+				vim.lsp.start(ftp.lsp)
 			end)):send()
+			require 'lsp'
 		end
 		if ftp.quickeval_cmd then
 			vim.keymap.set('v', 'x', function()

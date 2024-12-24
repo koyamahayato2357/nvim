@@ -1,6 +1,6 @@
 return {
 	lsp = {
-		'rust-analyzer',
-		{ 'rust-analyzer' }
+		name = 'rust-analyzer',
+		cmd = { 'rust-analyzer' }
 	}
 }

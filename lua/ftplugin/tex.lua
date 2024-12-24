@@ -1,6 +1,6 @@
 return {
 	lsp = {
-		'texlab',
-		{ 'texlab' }
+		name = 'texlab',
+		cmd = { 'texlab' }
 	}
 }

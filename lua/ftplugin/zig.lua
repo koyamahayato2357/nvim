@@ -1,7 +1,7 @@
 return {
 	lsp = {
-		'zls',
-		{ 'zls' }
+		name = 'zls',
+		cmd = { 'zls' }
 	},
 	callback = function()
 		vim.bo.expandtab = true

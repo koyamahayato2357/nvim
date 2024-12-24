@@ -1,6 +1,6 @@
 return {
 	lsp = {
-		'gopls',
-		{ 'gopls' }
+		name = 'gopls',
+		cmd = { 'gopls' }
 	}
 }

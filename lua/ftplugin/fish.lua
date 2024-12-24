@@ -1,6 +1,6 @@
 return {
 	lsp = {
-		'fish-lsp',
-		{ 'fish-lsp', 'start' }
+		name = 'fish-lsp',
+		cmd = { 'fish-lsp', 'start' }
 	}
 }
