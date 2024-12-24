@@ -2,32 +2,27 @@ local au = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
 function Treesitter_config()
-	local installed = vim.fn.readdir('/usr/local/share/nvim/runtime/queries')
-	local left = 1
-	local right = #installed
-	while left <= right do
-		local mid = math.floor((left + right) / 2)
-		if installed[mid] == vim.o.filetype then
-			vim.treesitter.start()
-			return
-		elseif installed[mid] < vim.o.filetype then
-			left = mid + 1
-		else
-			right = mid - 1
-		end
+	local prefix = '/usr/local/share/nvim/runtime/queries/'
+	if vim.uv.fs_stat(prefix .. vim.o.filetype) then
+		vim.treesitter.start()
 	end
 end
 
-au({ "FileType" }, {
+au({ "UIEnter" }, {
 	callback = function()
-		vim.loop.new_async(vim.schedule_wrap(function()
-			Treesitter_config()
-		end)):send()
+		require 'map'
+		Treesitter_config()
+	end
+})
+
+au({ 'CmdLineEnter' }, {
+	callback = function()
+		require 'cdtrack'
 	end
 })
 
 au({ "TextYankPost" }, {
-	callback = function ()
+	callback = function()
 		if vim.v.event.regname == '' then
 			vim.fn.setreg(vim.v.event.operator, vim.fn.getreg())
 		end
@@ -50,8 +45,4 @@ au({ "BufWinEnter" }, {
 	end
 })
 
-au({ 'VimLeave' }, {
-	callback = function()
-		vim.cmd.wshada()
-	end
-})
+au({ 'VimLeave' }, { callback = vim.cmd.wshada })

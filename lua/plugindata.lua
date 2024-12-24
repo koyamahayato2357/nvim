@@ -89,10 +89,6 @@ return {
 			}
 		},
 	},
-	['mini.indentscope'] = {
-		modname = 'mini.indentscope',
-		opts = { symbol = '│' },
-	},
 	['sentiment.nvim'] = {
 		modname = 'sentiment',
 		opts = {},
@@ -218,7 +214,11 @@ return {
 	['snacks.nvim'] = {
 		modname = 'snacks',
 		opts = {
-			dashboard = {
+			indent = {
+				enabled = true,
+				char = "│",
+			},
+			dashboard = vim.fn.argc() ~= 0 and { enabled = false } or {
 				width = 60,
 				row = nil,                                                       -- dashboard position. nil for center
 				col = nil,                                                       -- dashboard position. nil for center
@@ -308,6 +308,14 @@ return {
 				},
 			}
 		},
+		callback = function()
+			local snacks = require 'snacks'
+			snacks.indent.enable()
+			vim.api.nvim_create_user_command('L', function(_)
+				vim.cmd.wa()
+				snacks.lazygit()
+			end, { nargs = 0 })
+		end,
 		dependencies = {
 			"telescope.nvim"
 		}

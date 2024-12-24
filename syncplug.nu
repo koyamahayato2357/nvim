@@ -5,7 +5,6 @@ mkdir $plugdir
 
 [
 	"altermo/ultimate-autopair.nvim"
-	"echasnovski/mini.indentscope"
 	"folke/flash.nvim"
 	"gbprod/substitute.nvim"
 	"kylechui/nvim-surround"

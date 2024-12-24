@@ -28,20 +28,19 @@ Load_Plugin 'statusline.lua'
 if vim.fn.argc() == 0 then
 	vim.cmd.rshada()
 	Load_Plugin 'oil.nvim'
-	Load_Plugin 'snacks.nvim'
 end
 
 au({ 'VimEnter' }, {
 	callback = function()
+		Load_Plugin 'snacks.nvim'
+	end
+})
+
+au({ 'UIEnter' }, {
+	callback = function ()
 		Load_Plugin 'flash.nvim'
 		Load_Plugin 'substitute.nvim'
 		Load_Plugin 'nvim-surround'
-		Load_Plugin 'neoterm.nvim'
-		Load_Plugin 'oil.nvim'
-		Load_Plugin 'blink.cmp'
-		vim.loop.new_async(vim.schedule_wrap(function()
-			Load_Plugin 'copilot.lua'
-		end)):send()
 	end
 })
 
@@ -54,6 +53,7 @@ local function Load_cmdln()
 	Load_Plugin 'sidebar.nvim'
 	Load_Plugin 'codic-vim'
 	Load_Plugin 'refactoring.nvim'
+	Load_Plugin 'oil.nvim'
 end
 
 local cmdlnc = { ':', '/', '?' }
@@ -67,6 +67,16 @@ for _, c in ipairs(cmdlnc) do
 		vim.fn.feedkeys(c)
 	end)
 end
+
+map('n', '^a', function()
+	Load_Plugin 'copilot.lua'
+	require 'copilot.suggestion'.toggle_auto_trigger()
+end)
+
+map('n', '^t', function()
+	Load_Plugin 'neoterm.nvim'
+	require 'neoterm'.toggle()
+end)
 
 map('n', 'g/', function()
 	Load_Plugin 'telescope.nvim'
@@ -90,6 +100,7 @@ au({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()
 		if vim.bo.filetype ~= 'markdown' then Load_Plugin 'ultimate-autopair.nvim' end
+		Load_Plugin 'blink.cmp'
 	end
 })
 
