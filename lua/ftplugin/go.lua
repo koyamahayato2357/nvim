@@ -1,0 +1,6 @@
+return {
+	lsp = {
+		'gopls',
+		{ 'gopls' }
+	}
+}
