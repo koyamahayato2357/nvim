@@ -41,14 +41,6 @@ return {
 			'nvim-web-devicons',
 		}
 	},
-	['neoterm.nvim'] = {
-		modname = 'neoterm',
-		opts = {},
-		callback = function()
-			local neoterm = require 'neoterm'
-			map('n', '^t', function() neoterm.toggle() end)
-		end
-	},
 	['vimdoc-ja'] = {},
 	['nvimdoc-ja'] = {},
 	['carbonpaper.vim'] = {},
@@ -315,6 +307,7 @@ return {
 				vim.cmd.wa()
 				snacks.lazygit()
 			end, { nargs = 0 })
+			vim.keymap.set('n', '^t', snacks.terminal.toggle)
 		end,
 		dependencies = {
 			"telescope.nvim"

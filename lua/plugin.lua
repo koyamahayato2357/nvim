@@ -73,11 +73,6 @@ map('n', '^a', function()
 	require 'copilot.suggestion'.toggle_auto_trigger()
 end)
 
-map('n', '^t', function()
-	Load_Plugin 'neoterm.nvim'
-	require 'neoterm'.toggle()
-end)
-
 map('n', 'g/', function()
 	Load_Plugin 'telescope.nvim'
 	map('n', 'g/', require 'telescope.builtin'.live_grep)

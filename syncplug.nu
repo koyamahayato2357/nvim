@@ -27,7 +27,6 @@ mkdir $plugdir
 	"nvim-treesitter/nvim-treesitter"
 	"saghen/blink.cmp"
 	"rafamadriz/friendly-snippets"
-	"itmecho/neoterm.nvim"
 	"folke/snacks.nvim"
 	"SmiteshP/nvim-navic"
 	"SmiteshP/nvim-navbuddy"
