@@ -25,7 +25,6 @@ local function quickeval(cmd)
 end
 
 au("FileType", {
-	buffer = 0,
 	callback = function(ev)
 		local ft = ev.match
 		local ok, ftp = pcall(require, 'ftplugin.' .. ft)
