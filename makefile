@@ -50,12 +50,12 @@ PLUGINS = altermo/ultimate-autopair.nvim.git \
 %.git:
 	[ -d $(PLUGINDIR)/$(notdir $(basename $@)) ] || git clone --depth 1 $(GITHUB_URL)/$@ $(PLUGINDIR)/$(notdir $(basename $@))
 
-%.git-sync: $(PLUGINS)
-	cd $(notdir $(basename $@)) && git pull
+%.git-sync: %.git
+	cd $(PLUGINDIR)/$(notdir $(basename $@)) && git pull
 
-plug-install: | $(PLUGINS)
+plug-install: $(PLUGINS)
 
-plug-sync: | $(addsuffix -sync, $(PLUGINS))
+plug-sync: $(addsuffix -sync, $(PLUGINS))
 
 clean:
 	rm $(TARGETS)
