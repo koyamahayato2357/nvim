@@ -3,7 +3,7 @@ local map = vim.keymap.set
 
 function Treesitter_config()
 	local prefix = '/usr/local/share/nvim/runtime/queries/'
-	if vim.uv.fs_stat(prefix .. vim.o.filetype) then
+	if #vim.o.filetype > 0 and vim.uv.fs_stat(prefix .. vim.o.filetype) then
 		vim.treesitter.start()
 	end
 end
