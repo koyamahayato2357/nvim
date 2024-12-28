@@ -84,3 +84,9 @@ ifneq (,$^)
 endif
 
 plug-clean: $(addsuffix .plug-rm, $(PLUGINS))
+
+setup:
+	$(MAKE) lib-build
+	$(MAKE) plug-install
+	$(MAKE) -f make/setup-blink.mk
+	$(MAKE) -f make/setup-treesitter.mk
