@@ -1,4 +1,4 @@
-.PHONY: lib-build lib-clean plug-install plug-sync plug-gc plug-clean
+.PHONY: lib-build lib-clean plug-install plug-sync plug-gc plug-clean normalize-runtime setup
 
 CC = clang
 
@@ -85,7 +85,13 @@ endif
 
 plug-clean: $(addsuffix .plug-rm, $(PLUGINS))
 
+# about 3ms faster startup
+normalize-runtime:
+	sudo rm -rf /usr/local/share/nvim/runtime/plugin
+	sudo rm -rf /usr/local/share/nvim/runtime/pack
+
 setup:
+	$(MAKE) normalize-runtime
 	$(MAKE) lib-build
 	$(MAKE) plug-install
 	$(MAKE) -f make/setup-blink.mk
