@@ -1,3 +1,5 @@
+.PHONY: lib-build lib-clean plug-install plug-sync plug-gc plug-clean
+
 CC = clang
 
 SRCDIRS = $(wildcard src/*)
@@ -12,50 +14,79 @@ CFLAGS := -std=c23 -I$(INCDIR) -Wtautological-compare -Wsign-compare -Wall    \
 LDFLAGS = -flto=full -fwhole-program-vtables -funroll-loops -fomit-frame-pointer \
 		  -O3 -shared
 
-build: $(TARGETS)
+lib-build: $(TARGETS)
 
 lib/%.so: src/%
 	$(CC) $</*.c $(CFLAGS) $(LDFLAGS) -o $@
 
-GITHUB_URL = https://github.com
-PLUGINDIR = plugins
-PLUGINS = altermo/ultimate-autopair.nvim.git \
-          folke/flash.nvim.git \
-          gbprod/substitute.nvim.git \
-          kylechui/nvim-surround.git \
-          nvim-lua/plenary.nvim.git \
-          nvim-telescope/telescope.nvim.git \
-          nvim-tree/nvim-web-devicons.git \
-          s417-lama/carbonpaper.vim.git \
-          sidebar-nvim/sidebar.nvim.git \
-          stevearc/oil.nvim.git \
-          utilyre/sentiment.nvim.git \
-          vim-jp/nvimdoc-ja.git \
-          vim-jp/vimdoc-ja.git \
-          niuiic/core.nvim.git \
-          niuiic/track.nvim.git \
-          hadronized/hop.nvim.git \
-          koron/codic-vim.git \
-          zbirenbaum/copilot.lua.git \
-          ThePrimeagen/refactoring.nvim.git \
-          beauwilliams/statusline.lua.git \
-          nvim-treesitter/nvim-treesitter.git \
-          saghen/blink.cmp.git \
-          rafamadriz/friendly-snippets.git \
-          folke/snacks.nvim.git \
-          SmiteshP/nvim-navic.git \
-          SmiteshP/nvim-navbuddy.git \
-          MunifTanjim/nui.nvim.git
+lib-clean:
+	rm $(TARGETS)
+
+GITHUB_URL := https://github.com
+PLUGINDIR := plugins
+PLUGINS := MunifTanjim/nui.nvim.git \
+		   SmiteshP/nvim-navbuddy.git \
+		   SmiteshP/nvim-navic.git \
+		   ThePrimeagen/refactoring.nvim.git \
+		   altermo/ultimate-autopair.nvim.git \
+		   beauwilliams/statusline.lua.git \
+		   folke/flash.nvim.git \
+		   folke/snacks.nvim.git \
+		   gbprod/substitute.nvim.git \
+		   hadronized/hop.nvim.git \
+		   koron/codic-vim.git \
+		   kylechui/nvim-surround.git \
+		   niuiic/core.nvim.git \
+		   niuiic/track.nvim.git \
+		   nvim-lua/plenary.nvim.git \
+		   nvim-telescope/telescope.nvim.git \
+		   nvim-tree/nvim-web-devicons.git \
+		   nvim-treesitter/nvim-treesitter.git \
+		   rafamadriz/friendly-snippets.git \
+		   s417-lama/carbonpaper.vim.git \
+		   saghen/blink.cmp.git \
+		   sidebar-nvim/sidebar.nvim.git \
+		   stevearc/oil.nvim.git \
+		   utilyre/sentiment.nvim.git \
+		   vim-jp/nvimdoc-ja.git \
+		   vim-jp/vimdoc-ja.git \
+		   zbirenbaum/copilot.lua.git \
+
+# extract repository name from PLUGINS
+# basename: remove .git (suffix) ; $(basename account/repo.git) -> account/repo
+# notdir:   remove account name  ; $(notdir account/repo)       -> repo
+REPONAME := $(notdir $(basename $@))
+REPONAMES := $(notdir $(basename $(PLUGINS)))
+
+# destination directory name
+PLUGIN_PATH := $(PLUGINDIR)/$(REPONAME)
+
+# list of installed repositories
+PLUGIN_INSTALLED := $(shell ls $(PLUGINDIR))
+
+# repositories deleted from the list
+# filter-out: filter listed repos ; $(filter-out a, a b c) -> b c
+GARBAGES := $(filter-out $(REPONAMES), $(PLUGIN_INSTALLED))
+GARBAGE_PATHS := $(addprefix $(PLUGIN_PATH)/, $(GARBAGES))
 
 %.git:
-	[ -d $(PLUGINDIR)/$(notdir $(basename $@)) ] || git clone --depth 1 $(GITHUB_URL)/$@ $(PLUGINDIR)/$(notdir $(basename $@))
+	[ -d $(PLUGIN_PATH) ] || git clone --depth 1 $(GITHUB_URL)/$@ $(PLUGIN_PATH)
 
 %.git-sync: %.git
-	cd $(PLUGINDIR)/$(notdir $(basename $@)) && git pull
+	cd $(PLUGIN_PATH) && git pull
+
+%.git-rm:
+	[ -d $(PLUGIN_PATH) ] && rm -rf $(PLUGIN_PATH)
 
 plug-install: $(PLUGINS)
 
 plug-sync: $(addsuffix -sync, $(PLUGINS))
 
-clean:
-	rm $(TARGETS)
+plug-gc: $(GARBAGE_PATHS)
+ifneq (,$^)
+	rm -rf $^
+else
+	@echo "gc: nothing to do"
+endif
+
+plug-clean: $(addsuffix -rm, $(PLUGINS))
