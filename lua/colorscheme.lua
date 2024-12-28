@@ -58,15 +58,3 @@ hi("Delimiter", { fg = NITSC.forest })
 
 hi("@variable", { fg = NITSC.electriclime })
 hi("@variable.parameter", { italic = true })
-
-au({ "InsertEnter" }, {
-	callback = function()
-		vim.api.nvim_set_hl(0, "CursorLine", { underline = true, bg = "None" })
-	end
-})
-
-au({ "InsertLeave" }, {
-	callback = function()
-		vim.api.nvim_set_hl(0, "CursorLine", { underline = false, bg = "None" })
-	end
-})
