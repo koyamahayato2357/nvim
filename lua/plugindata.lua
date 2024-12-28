@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 return {
-	['flash.nvim'] = {
+	['folke/flash.nvim'] = {
 		modname = 'flash',
 		opts = {},
 		callback = function()
@@ -9,7 +9,7 @@ return {
 			flash.toggle(true)
 		end
 	},
-	['substitute.nvim'] = {
+	['gbprod/substitute.nvim'] = {
 		modname = 'substitute',
 		callback = function()
 			local sub = require 'substitute'
@@ -19,11 +19,11 @@ return {
 			map('x', 's', sub.visual)
 		end
 	},
-	['nvim-surround'] = {
+	['kylechui/nvim-surround'] = {
 		modname = 'nvim-surround',
 		opts = {},
 	},
-	['oil.nvim'] = {
+	['stevearc/oil.nvim'] = {
 		modname = 'oil',
 		opts = {
 			columns = {
@@ -38,13 +38,12 @@ return {
 			map('n', '^o', function() oil.toggle_float() end)
 		end,
 		dependencies = {
-			'nvim-web-devicons',
+			'nvim-tree/nvim-web-devicons',
 		}
 	},
-	['vimdoc-ja'] = {},
-	['nvimdoc-ja'] = {},
-	['carbonpaper.vim'] = {},
-	['sidebar.nvim'] = {
+	['vim-jp/vimdoc-ja'] = {},
+	['vim-jp/nvimdoc-ja'] = {},
+	['sidebar-nvim/sidebar.nvim'] = {
 		modname = 'sidebar-nvim',
 		opts = {
 			open = false,
@@ -55,7 +54,7 @@ return {
 			vim.api.nvim_create_user_command("B", sidebar.toggle, {})
 		end
 	},
-	['ultimate-autopair.nvim'] = {
+	['altermo/ultimate-autopair.nvim'] = {
 		modname = 'ultimate-autopair',
 		opts = {
 			fastwarp = {
@@ -81,16 +80,16 @@ return {
 			}
 		},
 	},
-	['sentiment.nvim'] = {
+	['utilyre/sentiment.nvim'] = {
 		modname = 'sentiment',
 		opts = {},
 		callback = function()
 			vim.g.loaded_matchparen = 1
 		end
 	},
-	['nvim-web-devicons'] = {},
-	['core.nvim'] = {},
-	['track.nvim'] = {
+	['nvim-tree/nvim-web-devicons'] = {},
+	['niuiic/core.nvim'] = {},
+	['niui/track.nvim'] = {
 		modname = 'track',
 		opts = {},
 		callback = function()
@@ -106,20 +105,20 @@ return {
 			track.restore_marks(markfile)
 		end,
 		dependencies = {
-			'plenary.nvim',
-			'telescope.nvim',
-			'core.nvim',
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
+			'niuiic/core.nvim',
 		},
 	},
-	['plenary.nvim'] = {},
-	['telescope.nvim'] = {
+	['nvim-lua/plenary.nvim'] = {},
+	['nvim-telescope/telescope.nvim'] = {
 		modname = 'telescope',
 		opts = {},
 		dependencies = {
-			'plenary.nvim',
+			'nvim-lua/plenary.nvim',
 		},
 	},
-	['hop.nvim'] = {
+	['hadronized/hop.nvim'] = {
 		modname = 'hop',
 		opts = {},
 		callback = function()
@@ -128,12 +127,12 @@ return {
 			map('n', 'ga', hop.hint_anywhere)
 		end
 	},
-	['codic-vim'] = {
+	['koron/codic.vim'] = {
 		callback = function()
 			vim.cmd.source '~/.config/nvim/plugins/codic-vim/plugin/codic.vim'
 		end,
 	},
-	['copilot.lua'] = {
+	['zbirenbaum/copilot.lua'] = {
 		modname = 'copilot',
 		opts = {
 			suggestion = {
@@ -154,19 +153,19 @@ return {
 			map('n', '^a', require 'copilot.suggestion'.toggle_auto_trigger)
 		end
 	},
-	['nvim-treesitter'] = {
-		modname = 'nvim-treesitter',
+	['nvim-treesitter/nvim-treesitter'] = {
+		modname = 'nvim-treesitter/nvim-treesitter',
 		opts = { ensure_installed = 'all' },
 	},
-	['refactoring.nvim'] = {
+	['ThePrimeagen/refactoring.nvim'] = {
 		modname = 'refactoring.command',
 		opts = {}
 	},
 	-- ['statusline.lua'] = {
 	-- 	modname = 'statusline',
 	-- },
-	['blink.cmp'] = {
-		modname = 'blink.cmp',
+	['saghen/blink.cmp'] = {
+		modname = 'saghen/blink.cmp',
 		opts = {
 			keymap = {
 				['<A-h>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -200,10 +199,10 @@ return {
 			end)
 		end,
 		dependencies = {
-			'friendly-snippets'
+			'rafamadriz/friendly-snippets'
 		}
 	},
-	['snacks.nvim'] = {
+	['folke/snacks.nvim'] = {
 		modname = 'snacks',
 		opts = {
 			indent = {
@@ -310,28 +309,28 @@ return {
 			vim.keymap.set('n', '^t', snacks.terminal.toggle)
 		end,
 		dependencies = {
-			"telescope.nvim"
+			'nvim-telescope/telescope.nvim'
 		}
 	},
-	['nvim-navic'] = {
-		modname = 'nvim-navic',
+	['SmiteshP/nvim-navic'] = {
+		modname = 'SmiteshP/nvim-navic',
 		opts = {
 			lsp = { auto_attach = true },
 			highlight = true
 		}
 	},
-	['nvim-navbuddy'] = {
-		modname = 'nvim-navbuddy',
+	['SmiteshP/nvim-navbuddy'] = {
+		modname = 'SmiteshP/nvim-navbuddy',
 		opts = {
 			lsp = { auto_attach = true },
 			highlight = true
 		},
 		dependencies = {
-			'nvim-navic',
-			'nui.nvim'
+			'SmiteshP/nvim-navic',
+			'MunifTanjim/nui.nvim'
 		}
 	},
-	['nui.nvim'] = {
+	['MunifTanjim/nui.nvim'] = {
 		modname = 'nui',
 	}
 }

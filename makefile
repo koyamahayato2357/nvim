@@ -24,69 +24,63 @@ lib-clean:
 
 GITHUB_URL := https://github.com
 PLUGINDIR := plugins
-PLUGINS := MunifTanjim/nui.nvim.git \
-		   SmiteshP/nvim-navbuddy.git \
-		   SmiteshP/nvim-navic.git \
-		   ThePrimeagen/refactoring.nvim.git \
-		   altermo/ultimate-autopair.nvim.git \
-		   beauwilliams/statusline.lua.git \
-		   folke/flash.nvim.git \
-		   folke/snacks.nvim.git \
-		   gbprod/substitute.nvim.git \
-		   hadronized/hop.nvim.git \
-		   koron/codic-vim.git \
-		   kylechui/nvim-surround.git \
-		   niuiic/core.nvim.git \
-		   niuiic/track.nvim.git \
-		   nvim-lua/plenary.nvim.git \
-		   nvim-telescope/telescope.nvim.git \
-		   nvim-tree/nvim-web-devicons.git \
-		   nvim-treesitter/nvim-treesitter.git \
-		   rafamadriz/friendly-snippets.git \
-		   s417-lama/carbonpaper.vim.git \
-		   saghen/blink.cmp.git \
-		   sidebar-nvim/sidebar.nvim.git \
-		   stevearc/oil.nvim.git \
-		   utilyre/sentiment.nvim.git \
-		   vim-jp/nvimdoc-ja.git \
-		   vim-jp/vimdoc-ja.git \
-		   zbirenbaum/copilot.lua.git \
-
-# extract repository name from PLUGINS
-# basename: remove .git (suffix) ; $(basename account/repo.git) -> account/repo
-# notdir:   remove account name  ; $(notdir account/repo)       -> repo
-REPONAME := $(notdir $(basename $@))
-REPONAMES := $(notdir $(basename $(PLUGINS)))
+PLUGINS := MunifTanjim/nui.nvim \
+		   SmiteshP/nvim-navbuddy \
+		   SmiteshP/nvim-navic \
+		   ThePrimeagen/refactoring.nvim \
+		   altermo/ultimate-autopair.nvim \
+		   beauwilliams/statusline.lua \
+		   folke/flash.nvim \
+		   folke/snacks.nvim \
+		   gbprod/substitute.nvim \
+		   hadronized/hop.nvim \
+		   koron/codic-vim \
+		   kylechui/nvim-surround \
+		   niuiic/core.nvim \
+		   niuiic/track.nvim \
+		   nvim-lua/plenary.nvim \
+		   nvim-telescope/telescope.nvim \
+		   nvim-tree/nvim-web-devicons \
+		   nvim-treesitter/nvim-treesitter \
+		   rafamadriz/friendly-snippets \
+		   saghen/blink.cmp \
+		   sidebar-nvim/sidebar.nvim \
+		   stevearc/oil.nvim \
+		   utilyre/sentiment.nvim \
+		   vim-jp/nvimdoc-ja \
+		   vim-jp/vimdoc-ja \
+		   zbirenbaum/copilot.lua \
 
 # destination directory name
-PLUGIN_PATH := $(PLUGINDIR)/$(REPONAME)
+PLUGIN_PATHS := $(addprefix $(PLUGINDIR)/, $(PLUGINS))
 
 # list of installed repositories
-PLUGIN_INSTALLED := $(shell ls $(PLUGINDIR))
-
+ACCOUNTS_EXIST := $(shell ls $(PLUGINDIR))
+REPOS_INSTALLED := $(patsubst plugins/%, %, $(shell find $(PLUGINDIR) -mindepth 2 -maxdepth 2 -type d))
 # repositories deleted from the list
 # filter-out: filter listed repos ; $(filter-out a, a b c) -> b c
-GARBAGES := $(filter-out $(REPONAMES), $(PLUGIN_INSTALLED))
-GARBAGE_PATHS := $(addprefix $(PLUGIN_PATH)/, $(GARBAGES))
+GARBAGE_ACCOUNTS := $(filter-out $(patsubst %/, %, $(dir $(PLUGINS))), $(ACCOUNTS_EXIST))
+GARBAGE_ACCOUNTS_PATHS := $(addprefix $(PLUGINDIR)/, $(GARBAGE_ACCOUNTS))
+GARBAGE_REPOS := $(filter-out $(PLUGINS), $(REPOS_INSTALLED))
+GARBAGE_REPOS_PATHS := $(addprefix $(PLUGINDIR)/, $(GARBAGE_REPOS))
+GARBAGES := $(GARBAGE_REPOS_PATHS) $(GARBAGE_ACCOUNTS_PATHS)
 
-%.git:
-	[ -d $(PLUGIN_PATH) ] || git clone --depth 1 $(GITHUB_URL)/$@ $(PLUGIN_PATH)
+$(PLUGINDIR)/%:
+	git clone --depth 1 $(GITHUB_URL)/$* $@
 
-%.git-sync: %.git
-	cd $(PLUGIN_PATH) && git pull
+%.plug-sync: $(PLUGINDIR)/$*
+	cd $(PLUGINDIR)/$* && git pull
 
-%.git-rm:
-	[ -d $(PLUGIN_PATH) ] && rm -rf $(PLUGIN_PATH)
+%.plug-rm: $(PLUGINDIR)/$*
+	rm -rf $(PLUGINDIR)/$*
 
-plug-install: $(PLUGINS)
+plug-install: $(PLUGIN_PATHS)
 
-plug-sync: $(addsuffix -sync, $(PLUGINS))
+plug-sync: $(addsuffix .plug-sync, $(PLUGINS))
 
-plug-gc: $(GARBAGE_PATHS)
+plug-gc: $(GARBAGES)
 ifneq (,$^)
 	rm -rf $^
-else
-	@echo "gc: nothing to do"
 endif
 
-plug-clean: $(addsuffix -rm, $(PLUGINS))
+plug-clean: $(addsuffix .plug-rm, $(PLUGINS))
