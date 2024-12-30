@@ -1,4 +1,5 @@
 local au = vim.api.nvim_create_autocmd
+local snip = require 'snippet'
 
 --- evaluate code selected in visual mode
 ---@param cmd string[]
@@ -43,6 +44,12 @@ au("FileType", {
 		end
 		if ftp.callback then
 			ftp.callback()
+		end
+		if ftp.snippet then
+			snip.setup_keymap()
+			for _, sn in ipairs(ftp.snippet) do
+				snip.set_snip(sn)
+			end
 		end
 	end
 })

@@ -1,57 +1,38 @@
 local mysnip = {}
-local filetype = vim.bo.filetype
 local map = vim.keymap.set
+M = {}
 
-if filetype == 'c' then
-	mysnip['in'] = '#include <$1.h>\n$0'
-	mysnip['i'] = 'if ($1) {\n  $2\n}\n$0'
-	mysnip['f'] = 'for ($1; $2; $3) {\n  $4\n}\n$0'
-	mysnip['s'] = 'switch ($1) {\n  $2\n}\n$0'
-	mysnip['c'] = 'case $1:\n  $0'
-elseif filetype == 'lua' then
-	mysnip['i'] = 'if $1 then\n\t$2\nend\n$0'
-	mysnip['f'] = 'for $1 in $2 do\n\t$3\nend\n$0'
-	mysnip['fn'] = 'function $1($2)\n\t$3\nend\n$0'
-	mysnip['l'] = 'function($1)\n\t$2\nend\n$0'
-elseif filetype == 'rust' then
-	mysnip['i'] = 'if $1 {\n\t$2\n}\n$0'
-	mysnip['f'] = 'for $1 in $2 {\n\t$3\n}\n$0'
-	mysnip['w'] = 'while $1 {\n\t$2\n}\n$0'
-	mysnip['m'] = 'match $1 {\n\t$2\n}\n$0'
-	mysnip['p'] = '$1 => $2,\n$0'
-	mysnip['fn'] = 'fn $1($2) {\n\t$3\n}\n$0'
-	mysnip['fnr'] = 'fn $1($2) -> $3 {\n\t$4\n}\n$0'
-elseif filetype == 'tex' then
-	mysnip['!'] = [[\documentclass[uplatex, dvipdfmx, a4paper]{bxjsarticle}
-\usepackage{}
-\title{$1}
-\author{$2}
-\date{}
-
-\begin{document}
-\maketitle
-\newpage
-$0
-\end{document}]]
-	mysnip['b'] = '\\begin{$1}\n$0'
-	mysnip['e'] = '\\end{$1}\n$0'
-	mysnip['s'] = '\\section{$1}\n$0'
-	mysnip['sb'] = '\\subsection{$1}\n$0'
+function M.set_snip(sn)
+	mysnip[sn.abbr] = sn.snip
 end
 
-map('n', 'sn', function()
-	local snip = mysnip[vim.fn.input('Input snippet: ')]
-	if snip then
-		vim.snippet.expand(snip)
-	else
-		print('snippet not found')
-	end
-end)
+function M.setup_keymap()
+	map('i', '<Tab>', function()
+		local curpos = vim.api.nvim_win_get_cursor(0);
+		if curpos[2] == 0 then return '<Tab>' end
+		local newpos = { curpos[1], curpos[2] - 1 }
+		vim.api.nvim_win_set_cursor(0, newpos)
+		local cword = vim.fn.expand('<cword>')
+		local snip = mysnip[cword]
+		if snip then
+			return '<Esc>ciw<cmd>lua vim.snippet.expand"' .. snip:gsub('\n', '\\n') .. '"<CR>'
+		end
 
-map({ 'i', 's' }, '<Tab>', function()
-	if vim.snippet.active({ direction = 1 }) then
-		vim.snippet.jump(1)
-	else
-		return '<Tab>'
-	end
-end, { expr = true })
+		vim.api.nvim_win_set_cursor(0, curpos)
+		if vim.snippet.active({ direction = 1 }) then
+			return '<cmd>lua vim.snippet.jump(1)'
+		else
+			return '<Tab>'
+		end
+	end, { expr = true })
+
+	map({ 'i', 's' }, '<S-Tab>', function()
+		if vim.snippet.active({ direction = -1 }) then
+			vim.snippet.jump(-1)
+		else
+			return '<Tab>'
+		end
+	end, { expr = true })
+end
+
+return M
