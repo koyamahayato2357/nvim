@@ -27,33 +27,33 @@ Load_Plugin 'statusline.lua'
 
 if vim.fn.argc() == 0 then
 	vim.cmd.rshada()
-	Load_Plugin 'oil.nvim'
+	Load_Plugin 'stevearc/oil.nvim'
 end
 
 au({ 'VimEnter' }, {
 	callback = function()
-		Load_Plugin 'snacks.nvim'
+		Load_Plugin 'folke/snacks.nvim'
 	end
 })
 
 au({ 'UIEnter' }, {
 	callback = function ()
-		Load_Plugin 'flash.nvim'
-		Load_Plugin 'substitute.nvim'
-		Load_Plugin 'nvim-surround'
+		Load_Plugin 'folke/flash.nvim'
+		Load_Plugin 'gbprod/substitute.nvim'
+		Load_Plugin 'kylechui/nvim-surround'
+		Load_Plugin 'nvim-treesitter/nvim-treesitter'
 	end
 })
 
 local function Load_cmdln()
 	require 'command'
 	require 'fzf'
-	Load_Plugin 'vimdoc-ja'
-	Load_Plugin 'nvimdoc-ja'
-	Load_Plugin 'carbonpaper.vim'
-	Load_Plugin 'sidebar.nvim'
-	Load_Plugin 'codic-vim'
-	Load_Plugin 'refactoring.nvim'
-	Load_Plugin 'oil.nvim'
+	Load_Plugin 'vim-jp/vimdoc-ja'
+	Load_Plugin 'vim-jp/nvimdoc-ja'
+	Load_Plugin 'sidebar-nvim/sidebar.nvim'
+	Load_Plugin 'koron/codic-vim'
+	Load_Plugin 'ThePrimeagen/refactoring.nvim'
+	Load_Plugin 'stevearc/oil.nvim'
 end
 
 local cmdlnc = { ':', '/', '?' }
@@ -69,24 +69,24 @@ for _, c in ipairs(cmdlnc) do
 end
 
 map('n', '^a', function()
-	Load_Plugin 'copilot.lua'
+	Load_Plugin 'zbirenbaumcopilot.lua'
 	require 'copilot.suggestion'.toggle_auto_trigger()
 end)
 
 map('n', 'g/', function()
-	Load_Plugin 'telescope.nvim'
+	Load_Plugin 'nvim-telescope/telescope.nvim'
 	map('n', 'g/', require 'telescope.builtin'.live_grep)
 	vim.fn.feedkeys 'g/'
 end)
 
 map('n', 'm', function()
-	Load_Plugin 'track.nvim'
+	Load_Plugin 'niuiic/track.nvim'
 	vim.keymap.del('n', 'm')
 	vim.fn.feedkeys 'm'
 end)
 
 map('n', '<A-n>', function()
-	Load_Plugin 'nvim-navbuddy'
+	Load_Plugin 'SmiteshP/nvim-navbuddy'
 	map('n', '<A-n>', vim.cmd.Navbuddy)
 	vim.cmd.Navbuddy()
 end)
@@ -94,8 +94,8 @@ end)
 au({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()
-		if vim.bo.filetype ~= 'markdown' then Load_Plugin 'ultimate-autopair.nvim' end
-		Load_Plugin 'blink.cmp'
+		if vim.bo.filetype ~= 'markdown' then Load_Plugin 'altermo/ultimate-autopair.nvim' end
+		Load_Plugin 'saghen/blink.cmp'
 	end
 })
 
@@ -103,7 +103,7 @@ au({ "CursorMoved" }, {
 	once = true,
 	callback = function()
 		Load_Plugin 'mini.indentscope'
-		Load_Plugin 'sentiment.nvim'
-		Load_Plugin 'hop.nvim'
+		Load_Plugin 'utilyre/sentiment.nvim'
+		Load_Plugin 'hadronized/hop.nvim'
 	end
 })

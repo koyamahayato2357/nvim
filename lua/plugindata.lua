@@ -154,7 +154,7 @@ return {
 		end
 	},
 	['nvim-treesitter/nvim-treesitter'] = {
-		modname = 'nvim-treesitter/nvim-treesitter',
+		modname = 'nvim-treesitter',
 		opts = { ensure_installed = 'all' },
 	},
 	['ThePrimeagen/refactoring.nvim'] = {
@@ -165,7 +165,7 @@ return {
 	-- 	modname = 'statusline',
 	-- },
 	['saghen/blink.cmp'] = {
-		modname = 'saghen/blink.cmp',
+		modname = 'blink.cmp',
 		opts = {
 			keymap = {
 				['<A-h>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -313,14 +313,14 @@ return {
 		}
 	},
 	['SmiteshP/nvim-navic'] = {
-		modname = 'SmiteshP/nvim-navic',
+		modname = 'nvim-navic',
 		opts = {
 			lsp = { auto_attach = true },
 			highlight = true
 		}
 	},
 	['SmiteshP/nvim-navbuddy'] = {
-		modname = 'SmiteshP/nvim-navbuddy',
+		modname = 'nvim-navbuddy',
 		opts = {
 			lsp = { auto_attach = true },
 			highlight = true
