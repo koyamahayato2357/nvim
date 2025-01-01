@@ -88,7 +88,7 @@ function M.acceleration_key(mode, key, callback, opts)
 		count = count + 1
 
 		if callback then
-			return speed .. (callback() or '') .. uniqid
+			return speed .. (callback() or key) .. uniqid
 		end
 
 		return speed .. key .. uniqid
