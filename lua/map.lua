@@ -104,3 +104,11 @@ submode.acceleration_key('n', 'j')
 submode.acceleration_key('n', 'k')
 submode.acceleration_key('n', 'h')
 submode.acceleration_key('n', 'l')
+
+local function safe_cabbrev(lhs, rhs)
+	vim.cmd('cabbrev <expr> ' .. lhs .. ' (getcmdtype() ==# ":" && getcmdline() ==# "' .. lhs .. '") ? "' .. rhs .. '" : "' .. lhs .. '"')
+end
+
+safe_cabbrev('r', 'lua require')
+safe_cabbrev('l', 'lua')
+vim.cmd 'cabbrev api vim.api'
