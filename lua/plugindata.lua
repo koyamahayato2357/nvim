@@ -161,9 +161,6 @@ return {
 		modname = 'refactoring.command',
 		opts = {}
 	},
-	-- ['statusline.lua'] = {
-	-- 	modname = 'statusline',
-	-- },
 	['saghen/blink.cmp'] = {
 		modname = 'blink.cmp',
 		opts = {

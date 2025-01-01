@@ -29,7 +29,6 @@ PLUGINS := MunifTanjim/nui.nvim \
 		   SmiteshP/nvim-navic \
 		   ThePrimeagen/refactoring.nvim \
 		   altermo/ultimate-autopair.nvim \
-		   beauwilliams/statusline.lua \
 		   folke/flash.nvim \
 		   folke/snacks.nvim \
 		   gbprod/substitute.nvim \
