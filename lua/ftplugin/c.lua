@@ -26,7 +26,7 @@ return {
 		vim.bo.shiftwidth = 2
 		vim.bo.tabstop = 2
 		vim.cmd 'iabbrev and &&'
-		vim.cmd 'iabbrev or ||'
+		vim.cmd 'iabbrev or \\|\\|'
 		vim.cmd 'iabbrev not !'
 	end
 }
