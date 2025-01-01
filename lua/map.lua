@@ -95,6 +95,11 @@ submode.set_submode_keymap('n', '<C-w>', {
 	{ key = 'l' },
 })
 
+submode.set_submode_keymap('n', 'z', {
+	{ key = '<Space>', run_when = { entering = '<C-f>', repeating = '<C-f>' } },
+	{ key = 'b', run_when = { entering = '<C-b>', repeating = '<C-b>' } },
+})
+
 submode.acceleration_key('n', 'j')
 submode.acceleration_key('n', 'k')
 submode.acceleration_key('n', 'h')
