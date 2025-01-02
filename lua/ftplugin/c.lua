@@ -20,6 +20,10 @@ return {
 		{ abbr = 'f', snip = 'for ($1; $2; $3) {\n  $4\n}\n$0' },
 		{ abbr = 's', snip = 'switch ($1) {\n  $2\n}\n$0' },
 		{ abbr = 'c', snip = 'case $1:\n  $0' },
+		{ abbr = 'w', snip = 'while ($1) {\n  $2\n}\n$0' },
+		{ abbr = 'd', snip = '#define $0' },
+		{ abbr = 'p', snip = 'printf("$1", $2);\n$0' },
+		{ abbr = 'call', snip = '$1($2);\n$0' },
 	},
 	callback = function()
 		vim.bo.expandtab = true
