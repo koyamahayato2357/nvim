@@ -85,9 +85,9 @@ map('n', 'm', function()
 	vim.fn.feedkeys 'm'
 end)
 
-map('n', '<A-n>', function()
+map('n', 'n', function()
 	Load_Plugin 'SmiteshP/nvim-navbuddy'
-	map('n', '<A-n>', vim.cmd.Navbuddy)
+	map('n', 'n', vim.cmd.Navbuddy)
 	vim.cmd.Navbuddy()
 end)
 
