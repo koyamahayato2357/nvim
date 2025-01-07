@@ -42,6 +42,7 @@ au({ 'UIEnter' }, {
 		Load_Plugin 'gbprod/substitute.nvim'
 		Load_Plugin 'kylechui/nvim-surround'
 		Load_Plugin 'nvim-treesitter/nvim-treesitter'
+		Load_Plugin 'andersevenrud/nvim_context_vt'
 	end
 })
 
@@ -85,7 +86,7 @@ map('n', 'm', function()
 	vim.fn.feedkeys 'm'
 end)
 
-map('n', 'n', function()
+map('n', '<A-n>', function()
 	Load_Plugin 'SmiteshP/nvim-navbuddy'
 	map('n', '<A-n>', vim.cmd.Navbuddy)
 	vim.cmd.Navbuddy()

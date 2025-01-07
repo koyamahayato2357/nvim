@@ -29,6 +29,7 @@ PLUGINS := MunifTanjim/nui.nvim \
 		   SmiteshP/nvim-navic \
 		   ThePrimeagen/refactoring.nvim \
 		   altermo/ultimate-autopair.nvim \
+		   andersevenrud/nvim_context_vt \
 		   folke/flash.nvim \
 		   folke/snacks.nvim \
 		   gbprod/substitute.nvim \
@@ -90,6 +91,7 @@ plug-update:
 	$(MAKE) -f make/setup-blink.mk
 	$(MAKE) -f make/setup-treesitter.mk
 	$(MAKE) -f make/setup-neovim.mk
+	$(MAKE) normalize-runtime
 
 # about 3ms faster startup
 normalize-runtime:
