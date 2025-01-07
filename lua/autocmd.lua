@@ -45,4 +45,16 @@ au({ "BufWinEnter" }, {
 	end
 })
 
+au({ 'BufWritePre' }, {
+	callback = function()
+		local dir = vim.fn.expand('<afile>:p:h')
+		local f = io.open(dir, 'r')
+		if f then
+			f:close()
+			return
+		end
+		vim.fn.mkdir(dir, 'p')
+	end
+})
+
 au({ 'VimLeave' }, { callback = vim.cmd.wshada })
