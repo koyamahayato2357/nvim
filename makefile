@@ -49,6 +49,7 @@ PLUGINS := MunifTanjim/nui.nvim \
 		   vim-jp/nvimdoc-ja \
 		   vim-jp/vimdoc-ja \
 		   zbirenbaum/copilot.lua \
+		   neovim/neovim \
 
 # destination directory name
 PLUGIN_PATHS := $(addprefix $(PLUGINDIR)/, $(PLUGINS))
@@ -67,7 +68,7 @@ GARBAGES := $(GARBAGE_REPOS_PATHS) $(GARBAGE_ACCOUNTS_PATHS)
 $(PLUGINDIR)/%:
 	git clone --depth 1 $(GITHUB_URL)/$* $@
 
-%.plug-sync: $(PLUGINDIR)/$*
+%.plug-sync:
 	cd $(PLUGINDIR)/$* && git pull
 
 %.plug-rm: $(PLUGINDIR)/$*
@@ -84,14 +85,18 @@ endif
 
 plug-clean: $(addsuffix .plug-rm, $(PLUGINS))
 
+plug-update:
+	$(MAKE) plug-sync
+	$(MAKE) -f make/setup-blink.mk
+	$(MAKE) -f make/setup-treesitter.mk
+	$(MAKE) -f make/setup-neovim.mk
+
 # about 3ms faster startup
 normalize-runtime:
-	sudo rm -rf /usr/local/share/nvim/runtime/plugin
-	sudo rm -rf /usr/local/share/nvim/runtime/pack
+	rm -rf ~/.local/share/nvim/runtime/plugin
+	rm -rf ~/.local/share/nvim/runtime/pack
 
 setup:
 	$(MAKE) normalize-runtime
 	$(MAKE) lib-build
-	$(MAKE) plug-install
-	$(MAKE) -f make/setup-blink.mk
-	$(MAKE) -f make/setup-treesitter.mk
+	$(MAKE) plug-update

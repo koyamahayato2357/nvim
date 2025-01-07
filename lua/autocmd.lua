@@ -2,7 +2,7 @@ local au = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
 function Treesitter_config()
-	local prefix = '/usr/local/share/nvim/runtime/queries/'
+	local prefix = '~/.local/share/nvim/runtime/queries/'
 	if #vim.o.filetype > 0 and vim.uv.fs_stat(prefix .. vim.o.filetype) then
 		vim.treesitter.start()
 	end

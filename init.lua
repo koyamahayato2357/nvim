@@ -1,4 +1,4 @@
-vim.opt.runtimepath = "~/.config/nvim,/usr/local/share/nvim/runtime,/usr/local/lib/nvim"
+vim.opt.runtimepath = "~/.config/nvim,~/.local/share/nvim/runtime,~/.local/lib/nvim"
 
 if vim.env.NVIM_PROF then require 'profile' end
 
