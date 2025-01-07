@@ -100,12 +100,6 @@ submode.set_submode_keymap('n', 'z', {
 	{ key = 'b', run_when = { entering = '<C-b>', repeating = '<C-b>' } },
 })
 
-submode.set_submode_keymap('n', '/', {
-	{ key = '/', run_when = { entering = '/' } },
-	{ key = 'n', run_when = { entering = 'n', repeating = 'n' } },
-	{ key = 'N', run_when = { entering = 'N', repeating = 'N' } },
-})
-
 submode.set_submode_keymap('n', '*', {
 	{ key = '*', run_when = { entering = '*#', repeating = '*' } },
 })

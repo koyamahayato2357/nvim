@@ -87,7 +87,7 @@ end)
 
 map('n', 'n', function()
 	Load_Plugin 'SmiteshP/nvim-navbuddy'
-	map('n', 'n', vim.cmd.Navbuddy)
+	map('n', '<A-n>', vim.cmd.Navbuddy)
 	vim.cmd.Navbuddy()
 end)
 
