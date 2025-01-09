@@ -329,5 +329,11 @@ return {
 	},
 	['MunifTanjim/nui.nvim'] = {
 		modname = 'nui',
-	}
+	},
+	['andersevenrud/nvim_context_vt'] = {
+		modname = 'nvim_context_vt',
+		opts = {
+			enabled = true,
+		},
+	},
 }
