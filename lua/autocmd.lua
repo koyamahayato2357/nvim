@@ -2,7 +2,7 @@ local au = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
 function Treesitter_config()
-	local prefix = '~/.local/share/nvim/runtime/queries/'
+	local prefix = vim.env.HOME .. '/.local/share/nvim/runtime/queries/'
 	if #vim.o.filetype > 0 and vim.uv.fs_stat(prefix .. vim.o.filetype) then
 		vim.treesitter.start()
 	end
@@ -11,8 +11,11 @@ end
 au({ "UIEnter" }, {
 	callback = function()
 		require 'map'
-		Treesitter_config()
 	end
+})
+
+au({ "FileType" }, {
+	callback = Treesitter_config
 })
 
 au({ 'CmdLineEnter' }, {
