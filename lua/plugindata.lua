@@ -169,7 +169,7 @@ return {
 				['<Tab>'] = {},
 				['<S-Tab>'] = {},
 			},
-			sources = { cmdline = {} },
+			sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
 			completion = {
 				menu = {
 					-- auto_show = false
@@ -305,9 +305,6 @@ return {
 			end, { nargs = 0 })
 			vim.keymap.set('n', '^t', snacks.terminal.toggle)
 		end,
-		dependencies = {
-			'nvim-telescope/telescope.nvim'
-		}
 	},
 	['SmiteshP/nvim-navic'] = {
 		modname = 'nvim-navic',
