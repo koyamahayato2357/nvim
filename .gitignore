@@ -9,3 +9,4 @@ marks
 **/*.so
 .repomixignore
 repomix*
+archive
