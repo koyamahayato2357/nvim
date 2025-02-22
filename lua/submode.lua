@@ -38,18 +38,15 @@ function M.set_submode_keymap(mode, leader, followers)
 				return key .. uniqprefix
 			elseif type(any) == 'string' then
 				return any .. uniqprefix
-			elseif type(any) == 'function' then
+			elseif isfun(any) then
 				return function()
 					return (any() or '') .. uniqprefix
 				end
 			end
 		end
 
-		run_when.entering = get_rhs(run_when.entering)
-		run_when.repeating = get_rhs(run_when.repeating)
-
-		map(mode, key, run_when.entering, true)
-		map(mode, uniqprefix .. follower.key, run_when.repeating, true)
+		map(mode, key, get_rhs(run_when.entering), true)
+		map(mode, uniqprefix .. follower.key, get_rhs(run_when.repeating), true)
 	end
 
 	map(mode, uniqprefix, '', true)
