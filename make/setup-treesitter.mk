@@ -3,7 +3,7 @@
 all: build install
 
 build:
-	nvim -c "lua Load_Plugin 'nvim-treesitter/nvim-treesitter'" -c "lua require 'nvim-treesitter'" -c "TSInstall all" +q
+	nvim -c "lua Load_Plugin 'nvim-treesitter/nvim-treesitter'" -c "lua require 'nvim-treesitter'" -c "TSInstall all"
 
 install:
 	cp -r plugins/nvim-treesitter/nvim-treesitter/parser ~/.local/lib/nvim
