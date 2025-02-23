@@ -101,11 +101,11 @@ submode.set_submode_keymap('n', 'z', {
 })
 
 submode.set_submode_keymap('n', '*', {
-	{ key = '*', run_when = { entering = '*#', repeating = '*' } },
+	{ key = '*', run_when = { entering = '#*', repeating = '*' } },
 })
 
 submode.set_submode_keymap('n', '#', {
-	{ key = '#', run_when = { entering = '#*', repeating = '#' } },
+	{ key = '#', run_when = { entering = '*#', repeating = '#' } },
 })
 
 submode.acceleration_key('n', 'j')
