@@ -12,8 +12,9 @@ local function smart_gf()
 	end
 end
 
+-- consider indentation
 local function smart_i()
-	if vim.fn.empty(vim.fn.getline('.')) ~= 0 then
+	if vim.fn.getline('.'):gmatch(" *") then
 		vim.api.nvim_input '"_cc'
 	else
 		-- vim.api.nvim_input 'i' -- freeze
@@ -100,10 +101,10 @@ submode.set_submode_keymap('n', 'z', {
 	{ key = 'b',       run_when = { entering = '<C-b>', repeating = '<C-b>' } },
 })
 
+-- When pressed once, it does not move, but registers the word at the cursor position in the / register.
 submode.set_submode_keymap('n', '*', {
 	{ key = '*', run_when = { entering = '#*', repeating = '*' } },
 })
-
 submode.set_submode_keymap('n', '#', {
 	{ key = '#', run_when = { entering = '*#', repeating = '#' } },
 })
