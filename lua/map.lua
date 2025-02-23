@@ -97,7 +97,7 @@ submode.set_submode_keymap('n', '<C-w>', {
 
 submode.set_submode_keymap('n', 'z', {
 	{ key = '<Space>', run_when = { entering = '<C-f>', repeating = '<C-f>' } },
-	{ key = 'b', run_when = { entering = '<C-b>', repeating = '<C-b>' } },
+	{ key = 'b',       run_when = { entering = '<C-b>', repeating = '<C-b>' } },
 })
 
 submode.set_submode_keymap('n', '*', {
@@ -114,7 +114,8 @@ submode.acceleration_key('n', 'h')
 submode.acceleration_key('n', 'l')
 
 local function safe_cabbrev(lhs, rhs)
-	vim.cmd('cabbrev <expr> ' .. lhs .. ' (getcmdtype() ==# ":" && getcmdline() ==# "' .. lhs .. '") ? "' .. rhs .. '" : "' .. lhs .. '"')
+	vim.cmd('cabbrev <expr> ' ..
+	lhs .. ' (getcmdtype() ==# ":" && getcmdline() ==# "' .. lhs .. '") ? "' .. rhs .. '" : "' .. lhs .. '"')
 end
 
 safe_cabbrev('r', 'lua require')
