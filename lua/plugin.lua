@@ -23,8 +23,6 @@ function Load_Plugin(plugname)
 	end
 end
 
-Load_Plugin 'statusline.lua'
-
 if vim.fn.argc() == 0 then
 	vim.cmd.rshada()
 	Load_Plugin 'stevearc/oil.nvim'
