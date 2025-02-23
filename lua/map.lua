@@ -14,7 +14,7 @@ end
 
 -- consider indentation
 local function smart_i()
-	if vim.fn.getline('.'):gmatch(" *") then
+	if vim.fn.getline('.'):match("^ *$") then
 		vim.api.nvim_input '"_cc'
 	else
 		-- vim.api.nvim_input 'i' -- freeze
