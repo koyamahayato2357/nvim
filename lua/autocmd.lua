@@ -60,4 +60,4 @@ au({ 'BufWritePre' }, {
 	end
 })
 
-au({ 'VimLeave' }, { callback = vim.cmd.wshada })
+au({ 'VimLeave' }, { command = 'wshada' })
