@@ -68,7 +68,7 @@ for _, c in ipairs(cmdlnc) do
 end
 
 map('n', '^a', function()
-	Load_Plugin 'zbirenbaumcopilot.lua'
+	Load_Plugin 'zbirenbaum/copilot.lua'
 	require 'copilot.suggestion'.toggle_auto_trigger()
 end)
 
