@@ -42,7 +42,7 @@ vim.g.copilot_filetypes = { gitcommit = true, yaml = true, markdown = true }
 
 if vim.g.neovide then
 	vim.g.neovide_hide_mouse_when_typing = true
-	vim.g.neovide_transparency = 0.3
+	vim.g.neovide_transparency = 0.1
 	vim.g.transparency = 0.0
 	vim.g.neovide_cursor_smooth_blink = true
 	vim.g.terminal_color_0  = '#171717' -- black
@@ -53,7 +53,7 @@ if vim.g.neovide then
 	vim.g.terminal_color_5  = '#ff2491' -- normal magenta
 	vim.g.terminal_color_6  = '#0fdcb6' -- normal cyan
 	vim.g.terminal_color_7  = '#ebebeb' -- light gray
-	vim.g.terminal_color_8  = '#38252c' -- dark gray
+	vim.g.terminal_color_8  = '#88757c' -- dark gray
 	vim.g.terminal_color_9  = '#ff0000' -- bright red
 	vim.g.terminal_color_10 = '#76b639' -- bright green
 	vim.g.terminal_color_11 = '#f7b125' -- bright yellow
