@@ -35,7 +35,7 @@ au({ 'VimEnter' }, {
 })
 
 au({ 'UIEnter' }, {
-	callback = function ()
+	callback = function()
 		Load_Plugin 'folke/flash.nvim'
 		Load_Plugin 'gbprod/substitute.nvim'
 		Load_Plugin 'kylechui/nvim-surround'
@@ -104,5 +104,8 @@ au({ "CursorMoved" }, {
 		Load_Plugin 'mini.indentscope'
 		Load_Plugin 'utilyre/sentiment.nvim'
 		Load_Plugin 'hadronized/hop.nvim'
+		if not vim.g.neovide and vim.env.TERM ~= 'xterm-kitty' then
+			Load_Plugin 'sphamba/smear-cursor.nvim'
+		end
 	end
 })

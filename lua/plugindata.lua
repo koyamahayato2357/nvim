@@ -333,4 +333,8 @@ return {
 			enabled = true,
 		},
 	},
+	['sphamba/smear-cursor.nvim'] = {
+		modname = 'smear_cursor',
+		opts = {},
+	},
 }

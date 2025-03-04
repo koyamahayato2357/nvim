@@ -50,6 +50,7 @@ PLUGINS := MunifTanjim/nui.nvim \
 		   vim-jp/nvimdoc-ja \
 		   vim-jp/vimdoc-ja \
 		   zbirenbaum/copilot.lua \
+		   sphamba/smear-cursor.nvim \
 		   neovim/neovim \
 
 # destination directory name
