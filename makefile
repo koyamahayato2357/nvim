@@ -57,8 +57,8 @@ PLUGINS := MunifTanjim/nui.nvim \
 PLUGIN_PATHS := $(addprefix $(PLUGINDIR)/, $(PLUGINS))
 
 # list of installed repositories
-ACCOUNTS_EXIST := $(shell ls -d $(PLUGINDIR)/*/)
-REPOS_INSTALLED_PATHS := $(shell ls -d $(PLUGINDIR)/*/*)
+ACCOUNTS_EXIST := $(wildcard $(PLUGINDIR)/*/)
+REPOS_INSTALLED_PATHS := $(wildcard $(PLUGINDIR)/*/*)
 # repositories deleted from the list
 # filter-out: filter listed repos ; $(filter-out a, a b c) -> b c
 GARBAGE_ACCOUNTS_PATHS := $(filter-out $(dir $(PLUGINS)), $(notdir $(ACCOUNTS_EXIST)))
@@ -81,7 +81,7 @@ plug-install: $(PLUGIN_PATHS)
 plug-sync: $(addsuffix .plug-sync, $(PLUGINS))
 
 plug-gc:
-ifneq ($(strip $(GARBAGES),)
+ifneq ($(strip $(GARBAGES)),)
 	rm -rf $(GARBAGES)
 endif
 
