@@ -7,6 +7,5 @@ marks
 **/.cache
 **/compile_commands.json
 **/*.so
-.repomixignore
-repomix*
 archive
+llmfile.txt

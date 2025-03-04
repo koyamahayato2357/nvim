@@ -103,3 +103,16 @@ setup:
 	$(MAKE) normalize-runtime
 	$(MAKE) lib-build
 	$(MAKE) plug-update
+
+LLMFILE ?= llmfile.txt
+FILES ?= makefile init.lua
+DIRS ?= lua lua/ftplugin src/fuzpath make
+FILES_IN_DIRS := $(wildcard $(addsuffix /*, $(DIRS)))
+LIST_FILES ?= $(FILES) $(FILES_IN_DIRS)
+$(LLMFILE): $(LIST_FILES) # for the LLM to read
+	echo $^ | sed 's/ /\n/g' > $@
+	echo >> $@ # newline
+	# `head` automatically inserts the file name at the start of the file
+	head -n 9999 $^ >> $@
+
+llmfile: $(LLMFILE)

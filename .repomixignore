@@ -1,0 +1,14 @@
+# Add patterns to ignore here, one per line
+# Example:
+# *.log
+# tmp/
+.gitignore
+.gptignore
+plugins/
+.git/
+*.json
+README.md
+**/*.so
+**/.cache/
+archive/
+.repomixignore
