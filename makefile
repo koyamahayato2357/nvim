@@ -57,14 +57,12 @@ PLUGINS := MunifTanjim/nui.nvim \
 PLUGIN_PATHS := $(addprefix $(PLUGINDIR)/, $(PLUGINS))
 
 # list of installed repositories
-ACCOUNTS_EXIST := $(shell ls $(PLUGINDIR))
-REPOS_INSTALLED := $(patsubst plugins/%, %, $(shell find $(PLUGINDIR) -mindepth 2 -maxdepth 2 -type d))
+ACCOUNTS_EXIST := $(shell ls -d $(PLUGINDIR)/*/)
+REPOS_INSTALLED_PATHS := $(shell ls -d $(PLUGINDIR)/*/*)
 # repositories deleted from the list
 # filter-out: filter listed repos ; $(filter-out a, a b c) -> b c
-GARBAGE_ACCOUNTS := $(filter-out $(patsubst %/, %, $(dir $(PLUGINS))), $(ACCOUNTS_EXIST))
-GARBAGE_ACCOUNTS_PATHS := $(addprefix $(PLUGINDIR)/, $(GARBAGE_ACCOUNTS))
-GARBAGE_REPOS := $(filter-out $(PLUGINS), $(REPOS_INSTALLED))
-GARBAGE_REPOS_PATHS := $(addprefix $(PLUGINDIR)/, $(GARBAGE_REPOS))
+GARBAGE_ACCOUNTS_PATHS := $(filter-out $(dir $(PLUGINS)), $(notdir $(ACCOUNTS_EXIST)))
+GARBAGE_REPOS_PATHS := $(filter-out $(PLUGIN_PATHS), $(REPOS_INSTALLED_PATHS))
 GARBAGES := $(GARBAGE_REPOS_PATHS) $(GARBAGE_ACCOUNTS_PATHS)
 
 $(PLUGINDIR)/%:
@@ -73,17 +71,15 @@ $(PLUGINDIR)/%:
 %.plug-sync:
 	cd $(PLUGINDIR)/$* && git pull
 
-%.plug-rm: $(PLUGINDIR)/$*
+%.plug-rm:
 	rm -rf $(PLUGINDIR)/$*
 
 plug-install: $(PLUGIN_PATHS)
 
 plug-sync: $(addsuffix .plug-sync, $(PLUGINS))
 
-plug-gc: $(GARBAGES)
-ifneq (,$^)
-	rm -rf $^
-endif
+plug-gc:
+	rm -rf $(GARBAGES)
 
 plug-clean: $(addsuffix .plug-rm, $(PLUGINS))
 
