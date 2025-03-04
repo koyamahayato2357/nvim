@@ -1,4 +1,4 @@
-CC = ccache clang-20
+CC = ccache clang
 BUILD_TYPE = Release
 PREFIX ?= ~/.local
 
