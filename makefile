@@ -1,6 +1,6 @@
 .PHONY: lib-build lib-clean plug-install plug-sync plug-gc plug-clean normalize-runtime setup
 
-CC = clang
+CC = ccache clang
 
 SRCDIRS = $(wildcard src/*)
 TARGETS = $(patsubst src/%, lib/%.so, $(SRCDIRS))
