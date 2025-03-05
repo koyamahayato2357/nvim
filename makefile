@@ -68,14 +68,16 @@ $(PLUGINDIR)/%:
 	cd $< && git pull
 
 %/plug-rm:
+ifneq ($(realpath $(PLUGINDIR)/$*),)
 	rm -rf $(PLUGINDIR)/$*
+endif
 
 plug-install: $(PLUGIN_PATHS)
 
 plug-sync: $(addsuffix /plug-sync, $(PLUGINS))
 
 plug-gc:
-ifneq ($(strip $(GARBAGES)),)
+ifneq ($(realpath $(GARBAGES)),)
 	rm -rf $(GARBAGES)
 endif
 
