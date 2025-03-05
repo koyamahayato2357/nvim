@@ -67,22 +67,22 @@ NEOVIM_PREFIX := ~/.local
 $(PLUGINDIR)/%:
 	git clone --depth 1 $(GITHUB_URL)/$* $@
 
-%.plug-sync:
-	cd $(PLUGINDIR)/$* && git pull
+%/plug-sync: $(PLUGINDIR)/%
+	cd $< && git pull
 
-%.plug-rm:
+%/plug-rm:
 	rm -rf $(PLUGINDIR)/$*
 
 plug-install: $(PLUGIN_PATHS)
 
-plug-sync: $(addsuffix .plug-sync, $(PLUGINS))
+plug-sync: $(addsuffix /plug-sync, $(PLUGINS))
 
 plug-gc:
 ifneq ($(strip $(GARBAGES)),)
 	rm -rf $(GARBAGES)
 endif
 
-plug-clean: $(addsuffix .plug-rm, $(PLUGINS))
+plug-clean: $(addsuffix /plug-rm, $(PLUGINS))
 
 plug-update:
 	$(MAKE) plug-sync
@@ -96,10 +96,7 @@ normalize-runtime:
 	rm -rf $(NEOVIM_PREFIX)/share/nvim/runtime/plugin
 	rm -rf $(NEOVIM_PREFIX)/share/nvim/runtime/pack
 
-setup:
-	$(MAKE) normalize-runtime
-	$(MAKE) lib-build
-	$(MAKE) plug-update
+setup: plug-update lib-build
 
 LLMFILE ?= llmfile.txt
 FILES ?= makefile init.lua
