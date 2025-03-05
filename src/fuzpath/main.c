@@ -8,14 +8,16 @@
 
 lua_State *L;
 
-#define lua_unreachable                                                        \
+#define lua_unreachable(msg, ...)                                              \
   ({                                                                           \
-    luaL_error(L, "Memory alloc failed");                                      \
+    luaL_error(L, msg __VA_OPT__(, ) __VA_ARGS__);                             \
     nullptr;                                                                   \
   })
 
 static table_t new_table(size_t len) {
-  return (table_t){malloc(len * sizeof(char *)) ?: lua_unreachable, len};
+  return (table_t){malloc(len * sizeof(char *))
+                       ?: lua_unreachable("allocation failure"),
+                   len};
 }
 
 char const *basename(char const *path) {
