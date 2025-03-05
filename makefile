@@ -54,12 +54,12 @@ PLUGINS := MunifTanjim/nui.nvim \
 PLUGIN_PATHS := $(addprefix $(PLUGINDIR)/, $(PLUGINS))
 
 # list of installed repositories
-ACCOUNTS_EXIST := $(wildcard $(PLUGINDIR)/*/)
-REPOS_INSTALLED_PATHS := $(wildcard $(PLUGINDIR)/*/*)
+ACCOUNTS_EXIST := $(wildcard $(PLUGINDIR)/*/) # plugin/account1/ plugin/account2/ plugin/account3/ ...
+REPOS_INSTALLED_PATHS := $(wildcard $(PLUGINDIR)/*/*) # plugin/account1/plug1 plugin/account2/plug1 ...
 # repositories deleted from the list
 # filter-out: filter listed repos ; $(filter-out a, a b c) -> b c
-GARBAGE_ACCOUNTS_PATHS := $(filter-out $(dir $(PLUGINS)), $(notdir $(ACCOUNTS_EXIST)))
-GARBAGE_REPOS_PATHS := $(filter-out $(PLUGIN_PATHS), $(REPOS_INSTALLED_PATHS))
+GARBAGE_ACCOUNTS_PATHS := $(filter-out $(dir $(PLUGINS)), $(notdir $(ACCOUNTS_EXIST))) # accountN/ accountM/ ...
+GARBAGE_REPOS_PATHS := $(filter-out $(PLUGIN_PATHS), $(REPOS_INSTALLED_PATHS)) # plugin/accountN/plugN ...
 GARBAGES := $(GARBAGE_REPOS_PATHS) $(GARBAGE_ACCOUNTS_PATHS)
 
 NEOVIM_PREFIX := ~/.local
