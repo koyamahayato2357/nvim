@@ -24,14 +24,12 @@ PLUGINDIR := plugins
 PLUGINS := MunifTanjim/nui.nvim \
 		   SmiteshP/nvim-navbuddy \
 		   SmiteshP/nvim-navic \
-		   ThePrimeagen/refactoring.nvim \
 		   altermo/ultimate-autopair.nvim \
 		   andersevenrud/nvim_context_vt \
 		   folke/flash.nvim \
 		   folke/snacks.nvim \
 		   gbprod/substitute.nvim \
 		   hadronized/hop.nvim \
-		   koron/codic-vim \
 		   kylechui/nvim-surround \
 		   niuiic/core.nvim \
 		   niuiic/track.nvim \
@@ -41,7 +39,6 @@ PLUGINS := MunifTanjim/nui.nvim \
 		   nvim-treesitter/nvim-treesitter \
 		   rafamadriz/friendly-snippets \
 		   saghen/blink.cmp \
-		   sidebar-nvim/sidebar.nvim \
 		   stevearc/oil.nvim \
 		   utilyre/sentiment.nvim \
 		   vim-jp/nvimdoc-ja \

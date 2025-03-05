@@ -48,9 +48,6 @@ local function Load_cmdln()
 	require 'fzf'
 	Load_Plugin 'vim-jp/vimdoc-ja'
 	Load_Plugin 'vim-jp/nvimdoc-ja'
-	Load_Plugin 'sidebar-nvim/sidebar.nvim'
-	Load_Plugin 'koron/codic-vim'
-	Load_Plugin 'ThePrimeagen/refactoring.nvim'
 	Load_Plugin 'stevearc/oil.nvim'
 end
 

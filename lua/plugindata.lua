@@ -43,17 +43,6 @@ return {
 	},
 	['vim-jp/vimdoc-ja'] = {},
 	['vim-jp/nvimdoc-ja'] = {},
-	['sidebar-nvim/sidebar.nvim'] = {
-		modname = 'sidebar-nvim',
-		opts = {
-			open = false,
-			initial_width = 20,
-		},
-		callback = function()
-			local sidebar = require 'sidebar-nvim'
-			vim.api.nvim_create_user_command("B", sidebar.toggle, {})
-		end
-	},
 	['altermo/ultimate-autopair.nvim'] = {
 		modname = 'ultimate-autopair',
 		opts = {
@@ -127,11 +116,6 @@ return {
 			map('n', 'ga', hop.hint_anywhere)
 		end
 	},
-	['koron/codic.vim'] = {
-		callback = function()
-			vim.cmd.source '~/.config/nvim/plugins/codic-vim/plugin/codic.vim'
-		end,
-	},
 	['zbirenbaum/copilot.lua'] = {
 		modname = 'copilot',
 		opts = {
@@ -156,10 +140,6 @@ return {
 	['nvim-treesitter/nvim-treesitter'] = {
 		modname = 'nvim-treesitter',
 		opts = { ensure_installed = 'all' },
-	},
-	['ThePrimeagen/refactoring.nvim'] = {
-		modname = 'refactoring.command',
-		opts = {}
 	},
 	['saghen/blink.cmp'] = {
 		modname = 'blink.cmp',
