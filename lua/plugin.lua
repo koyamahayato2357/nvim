@@ -39,7 +39,6 @@ au({ 'UIEnter' }, {
 		Load_Plugin 'folke/flash.nvim'
 		Load_Plugin 'gbprod/substitute.nvim'
 		Load_Plugin 'kylechui/nvim-surround'
-		Load_Plugin 'nvim-treesitter/nvim-treesitter'
 		Load_Plugin 'andersevenrud/nvim_context_vt'
 	end
 })
