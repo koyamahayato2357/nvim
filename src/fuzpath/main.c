@@ -1,10 +1,10 @@
 #include "main.h"
 #include "chore.h"
-#include "fs.h"
 #include <luajit-2.1/lauxlib.h>
 #include <luajit-2.1/lua.h>
 #include <luajit-2.1/lualib.h>
 #include <stdlib.h>
+#include <string.h>
 
 lua_State *L;
 
@@ -18,6 +18,11 @@ static table_t new_table(size_t len) {
   return (table_t){malloc(len * sizeof(char *)) ?: lua_unreachable, len};
 }
 
+char const *basename(char const *path) {
+  char const *last = strrchr(path, '/');
+  return last ? last + 1 : path;
+}
+
 static bool ismatch(char const *target, char const *pattern) {
   for (; *target && *pattern; target++)
     pattern += *target == *pattern;
@@ -28,7 +33,7 @@ static bool ismatch(char const *target, char const *pattern) {
 static table_t fuzfilter(table_t tbl, char const *pat) {
   table_t ret = new_table(tbl.len);
   int id = 0;
-  bool isfullpath = iscexist(pat, '/');
+  bool isfullpath = strchr(pat, '/');
   for (int i = 0; i < tbl.len; i++) {
     char const *target = isfullpath ? tbl.buf[i] : basename(tbl.buf[i]);
     if (ismatch(target, pat))
