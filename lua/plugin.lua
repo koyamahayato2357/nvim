@@ -12,8 +12,8 @@ function Load_Plugin(plugname)
 		local callback = pluginOptions[plugname].callback
 		local dependencies = pluginOptions[plugname].dependencies
 		if dependencies then
-			for _, depend in ipairs(dependencies) do
-				Load_Plugin(depend)
+			for _, dep in ipairs(dependencies) do
+				Load_Plugin(dep)
 			end
 		end
 		vim.opt.runtimepath:append(pluginpath .. plugname)
