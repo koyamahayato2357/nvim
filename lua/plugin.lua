@@ -68,13 +68,16 @@ end
 
 map('n', '^a', function()
 	Load_Plugin 'zbirenbaum/copilot.lua'
-	require 'copilot.suggestion'.toggle_auto_trigger()
+	local sug = require 'copilot.suggestion'
+	map('n', '^a', sug.toggle_auto_trigger)
+	sug.toggle_auto_trigger()
 end)
 
 map('n', 'g/', function()
 	Load_Plugin 'nvim-telescope/telescope.nvim'
-	map('n', 'g/', require 'telescope.builtin'.live_grep)
-	vim.fn.feedkeys 'g/'
+	local tb = require 'telescope.builtin'
+	map('n', 'g/', tb.live_grep)
+	tb.live_grep()
 end)
 
 map('n', 'm', function()
