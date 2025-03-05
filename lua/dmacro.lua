@@ -21,9 +21,7 @@ end
 ---@param typed string
 local function key_logger(_, typed)
 	local readable_keycode = vim.fn.keytrans(typed)
-	if readable_keycode == dmacro_key then
-		return
-	end
+	if readable_keycode == dmacro_key then return end
 
 	key_log = key_log .. readable_keycode
 	if #key_log > 100 then

@@ -20,8 +20,6 @@ local function hi(group, opts)
 	vim.api.nvim_set_hl(0, group, opts)
 end
 
-local au = vim.api.nvim_create_autocmd
-
 hi("Normal", { bg = "None" })
 hi("NormalNC", { bg = "None" })
 hi("SignColumn", { bg = "None" })

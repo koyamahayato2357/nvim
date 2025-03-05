@@ -1,6 +1,6 @@
 local IM_cmd = "fcitx5-remote"
 local toggle_IM = { IM_cmd, "-t" }
-local was_IM_enabled = false            -- was im enabled in previous insert mode
+local was_IM_enabled = false -- was im enabled in previous insert mode
 
 ---@return boolean
 local function get_IM_status()
