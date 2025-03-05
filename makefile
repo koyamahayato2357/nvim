@@ -68,7 +68,7 @@ $(PLUGINDIR)/%:
 	cd $< && git pull
 
 %/plug-rm:
-ifneq ($(realpath $(PLUGINDIR)/$*),)
+ifneq ($(wildcard $(PLUGINDIR)/$*),) # check if file exists
 	rm -rf $(PLUGINDIR)/$*
 endif
 
@@ -77,7 +77,7 @@ plug-install: $(PLUGIN_PATHS)
 plug-sync: $(addsuffix /plug-sync, $(PLUGINS))
 
 plug-gc:
-ifneq ($(realpath $(GARBAGES)),)
+ifneq ($(wildcard $(GARBAGES)),)
 	rm -rf $(GARBAGES)
 endif
 
