@@ -8,7 +8,7 @@ o.cursorline = true
 o.foldmethod = "manual"
 o.fillchars = { stl = ' ', stlnc = ' ' }
 o.gdefault = true
-o.guifont = "PlemolJP35 Console NF:h8"
+o.guifont = "PlemolJP35 Console:h8"
 o.helplang = "ja,en"
 o.hidden = true
 o.ignorecase = true
