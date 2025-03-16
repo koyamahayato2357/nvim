@@ -61,11 +61,9 @@ GARBAGES := $(GARBAGE_REPOS_PATHS) $(GARBAGE_ACCOUNTS_PATHS)
 
 NEOVIM_PREFIX := ~/.local
 
-$(PLUGINDIR)/%:
-	git clone --depth 1 $(GITHUB_URL)/$* $@
+$(PLUGINDIR)/%: ; git clone --depth 1 $(GITHUB_URL)/$* $@
 
-%/plug-sync: $(PLUGINDIR)/%
-	cd $< && git pull
+%/plug-sync: $(PLUGINDIR)/% ; cd $< && git pull
 
 %/plug-rm:
 ifneq ($(wildcard $(PLUGINDIR)/$*),) # check if file exists
@@ -76,24 +74,14 @@ plug-install: $(PLUGIN_PATHS)
 
 plug-sync: $(addsuffix /plug-sync, $(PLUGINS))
 
-plug-gc:
-ifneq ($(wildcard $(GARBAGES)),)
-	rm -rf $(GARBAGES)
-endif
+plug-gc: ; rm -rf $(GARBAGES)
 
 plug-clean: $(addsuffix /plug-rm, $(PLUGINS))
 
-plug-update:
-	$(MAKE) plug-sync
+plug-update: plug-sync
 	$(MAKE) -f make/setup-blink.mk
 	$(MAKE) -f make/setup-treesitter.mk PREFIX=$(NEOVIM_PREFIX)
 	$(MAKE) -f make/setup-neovim.mk PREFIX=$(NEOVIM_PREFIX)
-	$(MAKE) normalize-runtime
-
-# about 3ms faster startup
-normalize-runtime:
-	rm -rf $(NEOVIM_PREFIX)/share/nvim/runtime/plugin
-	rm -rf $(NEOVIM_PREFIX)/share/nvim/runtime/pack
 
 setup: plug-update lib-build
 
