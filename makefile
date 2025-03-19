@@ -22,30 +22,31 @@ lib-clean:
 GITHUB_URL := https://github.com
 PLUGINDIR := plugins
 PLUGINS := MunifTanjim/nui.nvim \
-		   SmiteshP/nvim-navbuddy \
-		   SmiteshP/nvim-navic \
-		   altermo/ultimate-autopair.nvim \
-		   andersevenrud/nvim_context_vt \
-		   folke/flash.nvim \
-		   folke/snacks.nvim \
-		   gbprod/substitute.nvim \
-		   hadronized/hop.nvim \
-		   kylechui/nvim-surround \
-		   niuiic/core.nvim \
-		   niuiic/track.nvim \
-		   nvim-lua/plenary.nvim \
-		   nvim-telescope/telescope.nvim \
-		   nvim-tree/nvim-web-devicons \
-		   nvim-treesitter/nvim-treesitter \
-		   rafamadriz/friendly-snippets \
-		   saghen/blink.cmp \
-		   stevearc/oil.nvim \
-		   utilyre/sentiment.nvim \
-		   vim-jp/nvimdoc-ja \
-		   vim-jp/vimdoc-ja \
-		   zbirenbaum/copilot.lua \
-		   sphamba/smear-cursor.nvim \
-		   neovim/neovim \
+           SmiteshP/nvim-navbuddy \
+           SmiteshP/nvim-navic \
+           altermo/ultimate-autopair.nvim \
+           andersevenrud/nvim_context_vt \
+           folke/flash.nvim \
+           folke/snacks.nvim \
+           gbprod/substitute.nvim \
+           hadronized/hop.nvim \
+           kylechui/nvim-surround \
+           niuiic/core.nvim \
+           niuiic/track.nvim \
+           nvim-lua/plenary.nvim \
+           nvim-telescope/telescope.nvim \
+           nvim-tree/nvim-web-devicons \
+           nvim-treesitter/nvim-treesitter \
+           rafamadriz/friendly-snippets \
+           saghen/blink.cmp \
+           stevearc/oil.nvim \
+           utilyre/sentiment.nvim \
+           vim-jp/nvimdoc-ja \
+           vim-jp/vimdoc-ja \
+           zbirenbaum/copilot.lua \
+           sphamba/smear-cursor.nvim \
+           neovim/neovim \
+           neovide/neovide \
 
 # destination directory name
 PLUGIN_PATHS := $(addprefix $(PLUGINDIR)/, $(PLUGINS))
@@ -61,7 +62,7 @@ GARBAGES := $(GARBAGE_REPOS_PATHS) $(GARBAGE_ACCOUNTS_PATHS)
 
 NEOVIM_PREFIX := ~/.local
 
-$(PLUGINDIR)/%: ; git clone --depth 1 $(GITHUB_URL)/$* $@
+$(PLUGINDIR)/%: | $(PLUGINDIR)/ ; git clone --depth 1 $(GITHUB_URL)/$* $@
 
 %/plug-sync: $(PLUGINDIR)/% ; cd $< && git pull
 
@@ -82,6 +83,7 @@ plug-update: plug-sync
 	$(MAKE) -f make/setup-blink.mk
 	$(MAKE) -f make/setup-treesitter.mk PREFIX=$(NEOVIM_PREFIX)
 	$(MAKE) -f make/setup-neovim.mk PREFIX=$(NEOVIM_PREFIX)
+	$(MAKE) -f make/setup-neovide.mk PATH=$(PLUGINDIR)/neovide/neovide
 
 setup: plug-update lib-build
 
@@ -97,3 +99,5 @@ $(LLMFILE): $(LIST_FILES) # for the LLM to read
 	head -n 9999 $^ >> $@
 
 llmfile: $(LLMFILE)
+
+%/: ; mkdir -p $@
