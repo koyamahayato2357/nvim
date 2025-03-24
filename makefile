@@ -20,7 +20,7 @@ lib-clean:
 	rm $(TARGETS)
 
 GITHUB_URL := https://github.com
-PLUGINDIR := plugins
+PLUGINDIR := $(CURDIR)/plugins
 PLUGINS := MunifTanjim/nui.nvim \
            SmiteshP/nvim-navbuddy \
            SmiteshP/nvim-navic \
@@ -83,7 +83,7 @@ plug-update: plug-sync
 	$(MAKE) -f make/setup-blink.mk
 	$(MAKE) -f make/setup-treesitter.mk PREFIX=$(NEOVIM_PREFIX)
 	$(MAKE) -f make/setup-neovim.mk PREFIX=$(NEOVIM_PREFIX)
-	$(MAKE) -f make/setup-neovide.mk PATH=$(PLUGINDIR)/neovide/neovide
+	$(MAKE) -f make/setup-neovide.mk NEOVIDE_PATH=$(PLUGINDIR)/neovide/neovide
 
 setup: plug-update lib-build
 

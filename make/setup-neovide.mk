@@ -1,4 +1,4 @@
-PATH ?= .
+NEOVIDE_PATH ?= .
 
 build:
-	cargo install --path $(PATH)
+	cd $(NEOVIDE_PATH) && cargo install --path .
