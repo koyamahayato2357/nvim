@@ -1,3 +1,4 @@
+-- overwrite superfluous paths
 vim.opt.runtimepath = "~/.config/nvim,~/.local/share/nvim/runtime,~/.local/lib/nvim"
 
 if vim.env.NVIM_PROF then require 'profile' end
