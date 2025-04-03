@@ -1,5 +1,5 @@
 #include "main.h"
-#include "../include/chore.h"
+#include "../testing/testing.h"
 #include <luajit-2.1/lauxlib.h>
 #include <luajit-2.1/lua.h>
 #include <luajit-2.1/lualib.h>
@@ -15,8 +15,10 @@ lua_State *L;
   })
 
 static table_t new_table(size_t len) {
-  return (table_t
-  ){malloc(len * sizeof(char *)) ?: lua_unreachable("allocation failure"), len};
+  return (table_t){
+    malloc(len * sizeof(char *)) ?: lua_unreachable("allocation failure"),
+    len,
+  };
 }
 
 char const *basename(char const *path) {
@@ -24,11 +26,29 @@ char const *basename(char const *path) {
   return last ? last + 1 : path;
 }
 
+test_table(
+  basename_test, basename, (char const *, char const *),
+  {
+    {  "main.c",                    "src/main.c"},
+    {"init.lua", "$(HOME)/.config/nvim/init.lua"},
+}
+)
+
 static bool ismatch(char const *target, char const *pattern) {
   for (; *target && *pattern; target++) pattern += *target == *pattern;
 
   return *pattern == '\0';
 }
+
+test_table(
+  match_test, ismatch, (bool, char const *, char const *),
+  {
+    { true,     "aabbccdd",  "abcd"},
+    { true, "src/main.zig",  "s/mz"},
+    {false,        "hello", "world"},
+    {false,     "init.lua",   "iin"},
+}
+)
 
 static table_t fuzfilter(table_t tbl, char const *pat) {
   table_t ret = new_table(tbl.len);

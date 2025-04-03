@@ -2,19 +2,28 @@
 
 CC = ccache clang
 
-SRCDIRS = $(wildcard src/*)
+SRCDIRS = $(filter-out src/testing, $(wildcard src/*))
 TARGETS = $(patsubst src/%, lib/%.so, $(SRCDIRS))
 
 CFLAGS := -std=c2y -Wtautological-compare -Wsign-compare -Wall -Wextra -O3 \
 		  -fforce-emit-vtables -ffunction-sections -fdata-sections -fPIC \
 		  -faddrsig -march=native -mtune=native -funroll-loops -fomit-frame-pointer
 LDFLAGS = -flto=full -fwhole-program-vtables -funroll-loops -fomit-frame-pointer \
-		  -O3 -shared
+		  -O3 -shared -lm
+TESTFLAGS := -std=c2y -DTEST_MODE -gfull $(shell pkg-config --cflags luajit)
+TESTLDFLAGS := -lm $(shell pkg-config --libs luajit)
+TESTTARGETS := $(addsuffix /test, $(SRCDIRS))
 
 lib-build: $(TARGETS)
 
-lib/%.so: src/%
+$(TARGETS): lib/%.so: src/%
 	$(CC) $</*.c $(CFLAGS) $(LDFLAGS) -o $@
+
+lib-test: $(TESTTARGETS)
+
+$(TESTTARGETS): %/test: %
+	$(CC) $</*.c $(wildcard src/testing/*.c) $(TESTFLAGS) $(TESTLDFLAGS) -o $@
+	./$@
 
 lib-clean:
 	rm $(TARGETS)
