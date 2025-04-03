@@ -30,7 +30,7 @@ function M.setup_keymap()
 		if vim.snippet.active({ direction = -1 }) then
 			vim.snippet.jump(-1)
 		else
-			return '<Tab>'
+			return '<S-Tab>'
 		end
 	end, { expr = true })
 end
