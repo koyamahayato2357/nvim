@@ -98,7 +98,7 @@ setup: plug-update lib-build
 
 LLMFILE ?= llmfile.txt
 FILES ?= makefile init.lua
-DIRS ?= lua lua/ftplugin src/fuzpath make
+DIRS ?= lua lua/ftplugin src/fuzpath src/testing make
 FILES_IN_DIRS := $(wildcard $(addsuffix /*.*, $(DIRS)))
 LIST_FILES ?= $(FILES) $(FILES_IN_DIRS)
 $(LLMFILE): $(LIST_FILES) # for the LLM to read
