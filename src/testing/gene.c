@@ -34,7 +34,7 @@ test_table(
 }
 )
 test_table(
-  complex_eq, complexEq, (bool, complex, complex),
+  complex_eq, complexEq, (bool, double complex, double complex),
   {
     { true,                0,          0},
     { true,           1 + 3i, 1.0 + 3.0i},
