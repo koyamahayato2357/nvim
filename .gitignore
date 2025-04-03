@@ -9,3 +9,4 @@ marks
 **/*.so
 archive
 llmfile.txt
+src/*/test
