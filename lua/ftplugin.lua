@@ -21,7 +21,7 @@ local function quickeval(cmd)
 	end
 	file:close()
 
-	vim.cmd('vert term ' .. cmd .. ' '.. tmpfilename)
+	vim.cmd('vert term ' .. cmd .. tmpfilename)
 	vim.cmd.startinsert()
 end
 
