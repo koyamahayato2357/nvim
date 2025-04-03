@@ -52,7 +52,7 @@ hi("Todo", { fg = NITSC.navy, bg = NITSC.cream, bold = true })
 hi("Operator", { fg = NITSC.cream })
 hi("Function", { fg = NITSC.gold })
 hi("SpecialChar", { fg = NITSC.bush })
-hi("Delimiter", { fg = NITSC.forest })
+hi("Delimiter", { fg = NITSC.cream })
 
 hi("@variable", { fg = NITSC.electriclime })
 hi("@variable.parameter", { italic = true })
