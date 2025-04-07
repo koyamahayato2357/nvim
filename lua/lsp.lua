@@ -7,4 +7,6 @@ end)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'grh', vim.lsp.buf.hover)
 
+vim.diagnostic.config({ virtual_text = true })
+
 return M
