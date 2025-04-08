@@ -32,6 +32,7 @@ au("FileType", {
 		if not ok then return end
 
 		if ftp.lsp then
+			ftp.lsp.on_attach = require 'lsp'.on_attach
 			vim.loop.new_async(vim.schedule_wrap(function()
 				vim.lsp.start(ftp.lsp)
 			end)):send()

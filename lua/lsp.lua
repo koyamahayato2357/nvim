@@ -9,4 +9,13 @@ vim.keymap.set('n', 'grh', vim.lsp.buf.hover)
 
 vim.diagnostic.config({ virtual_text = true })
 
+function M.on_attach(client, bufnr)
+	vim.lsp.completion.enable(true, client.id, bufnr, {
+		autotrigger = true,
+		convert = function(item)
+			return { abbr = item.label:gsub('%b()', '') }
+		end
+	})
+end
+
 return M
