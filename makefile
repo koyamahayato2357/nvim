@@ -47,7 +47,6 @@ PLUGINS := MunifTanjim/nui.nvim \
            nvim-tree/nvim-web-devicons \
            nvim-treesitter/nvim-treesitter \
            rafamadriz/friendly-snippets \
-           saghen/blink.cmp \
            stevearc/oil.nvim \
            utilyre/sentiment.nvim \
            vim-jp/nvimdoc-ja \
@@ -89,7 +88,6 @@ plug-gc: ; rm -rf $(GARBAGES)
 plug-clean: $(addsuffix /plug-rm, $(PLUGINS))
 
 plug-update: plug-sync
-	$(MAKE) -f make/setup-blink.mk
 	$(MAKE) -f make/setup-treesitter.mk PREFIX=$(NEOVIM_PREFIX)
 	$(MAKE) -f make/setup-neovim.mk PREFIX=$(NEOVIM_PREFIX)
 	$(MAKE) -f make/setup-neovide.mk NEOVIDE_PATH=$(PLUGINDIR)/neovide/neovide

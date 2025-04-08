@@ -93,7 +93,6 @@ au({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()
 		if vim.bo.filetype ~= 'markdown' then Load_plugin 'altermo/ultimate-autopair.nvim' end
-		Load_plugin 'saghen/blink.cmp'
 	end
 })
 
