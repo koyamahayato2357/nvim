@@ -5,6 +5,7 @@ o.autowrite = true
 o.complete = "w,i,d,kspell"
 o.completeopt = "menu,longest,noselect,fuzzy"
 o.cursorline = true
+o.expandtab = true
 o.foldmethod = "manual"
 o.fillchars = { stl = ' ', stlnc = ' ' }
 o.gdefault = true
