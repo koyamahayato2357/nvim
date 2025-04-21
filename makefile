@@ -46,7 +46,6 @@ PLUGINS := MunifTanjim/nui.nvim \
            nvim-telescope/telescope.nvim \
            nvim-tree/nvim-web-devicons \
            nvim-treesitter/nvim-treesitter \
-           rafamadriz/friendly-snippets \
            stevearc/oil.nvim \
            utilyre/sentiment.nvim \
            vim-jp/nvimdoc-ja \
