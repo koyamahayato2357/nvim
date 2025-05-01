@@ -8,9 +8,9 @@
 
 lua_State *L;
 
-#define lua_unreachable(msg, ...) \
+#define lua_unreachable(...) \
   ({ \
-    luaL_error(L, msg __VA_OPT__(, ) __VA_ARGS__); \
+    luaL_error(L, __VA_ARGS__); \
     nullptr; \
   })
 
