@@ -157,9 +157,9 @@ return {
                 -- These settings are used by some built-in sections
                 sections = {
                     {
-                        section = "terminal",
-                        cmd = "cat data/dashboard-header.txt | tte beams",
-                        height = 20
+                        section = 'terminal',
+                        cmd = 'cat ~/.config/nvim/data/dashboard-header.txt | tte beams',
+                        height = 7
                     },
                     {
                         pane = 2,
