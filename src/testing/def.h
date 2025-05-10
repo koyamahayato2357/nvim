@@ -7,7 +7,7 @@
 #define _TOSTR(x) #x
 #define TOSTR(x)  _TOSTR(x)
 
-#define EMP()
+#define EMP(...)
 #define EXPAND(...) __VA_ARGS__
 
 // max depth: 4 ^ 5 = 1024
@@ -33,7 +33,14 @@
 
 #define BOOL(x) NOT(NOT(x))
 
-#define PRIM_MAP(M, _1, ...) M(_1) __VA_OPT__(_MAP EMP()()(M, __VA_ARGS__))
+#define RECURSE(a, b) CAT EMP()(a, b)
 
-#define _MAP()   PRIM_MAP
+#define PRIM_MAP(M, _1, ...) \
+  M(_1) __VA_OPT__(RECURSE(PRIM, _MAP)(M, __VA_ARGS__))
+
 #define MAP(...) EVAL(PRIM_MAP(__VA_ARGS__))
+
+#define PRIM_MAP_PAIR(M, _1, ...) \
+  M _1 __VA_OPT__(RECURSE(PRIM, _MAP_PAIR)(M, __VA_ARGS__))
+
+#define MAP_PAIR(...) EVAL(PRIM_MAP_PAIR(__VA_ARGS__))

@@ -4,10 +4,8 @@
  */
 
 #include "gene.h"
-#include "tgmath.h"
+#include "mathdef.h"
 #include "testing.h"
-#include <stdio.h>
-#include <string.h>
 
 constexpr double eps = 1e-5;
 
@@ -16,7 +14,7 @@ static bool doubleEq(double a, double b) {
   if (a < 0 != b < 0) return false;        // mis signed
   return fabs(a / b - 1.0) < eps;          // cmp based on ratios
 }
-static bool complexEq(double complex a, double complex b) {
+static bool complexEq(comp a, comp b) {
   return doubleEq(creal(a), creal(b)) && doubleEq(cimag(a), cimag(b));
 }
 
@@ -34,7 +32,7 @@ test_table(
 }
 )
 test_table(
-  complex_eq, complexEq, (bool, double complex, double complex),
+  complex_eq, complexEq, (bool, comp, comp),
   {
     { true,                0,          0},
     { true,           1 + 3i, 1.0 + 3.0i},
@@ -83,7 +81,7 @@ void printanyf(double x) {
   PRINT(x);
 }
 void printanyf(char *x) {
-  PRINT('"', x, '"');
+  PRINT("\"", x, "\"");
 }
 void printanyf(char x) {
   PRINT("'", x, "'");
@@ -105,16 +103,12 @@ void printanyf(void *x) {
   bool eq(T x, T y) { \
     return x == y; \
   }
-EQ_DIRECTLY(int)
-EQ_DIRECTLY(size_t)
-EQ_DIRECTLY(char)
-EQ_DIRECTLY(bool)
-EQ_DIRECTLY(void *)
+MAP(EQ_DIRECTLY, int, size_t, char, bool, void *)
 
 bool eq(double x, double y) {
   return doubleEq(x, y);
 }
-bool eq(double complex x, double complex y) {
+bool eq(comp x, comp y) {
   return complexEq(x, y);
 }
 bool eq(char *x, char *y) {

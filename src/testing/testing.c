@@ -2,18 +2,16 @@
  * @file src/testing.c
  */
 
-#include <stdio.h>
+#include "testing.h"
+#undef main
 
 #ifdef TEST_MODE
-int TEST_success;
-int TEST_count;
+int test__success;
+int test__count;
 int main() {
+  PRINT("\n" ESCBLU "Passed" ESCLR ": ", test__success, "/", test__count, "\n");
   // pre-commit: make test || exit 1
-  return TEST_count - TEST_success;
-}
- #include "testing.h"
-[[gnu::destructor]] void TEST_report_test_result() {
-  PRINT("\n" ESCBLU "Passed" ESCLR ": ", TEST_success, "/", TEST_count, "\n");
+  return test__count - test__success;
 }
 
 test (testing_test) {
@@ -26,11 +24,11 @@ test (testing_test) {
     expect(1 + 1 == 1);
 
     expecteq(5, 3);
-    expecteq(3, 10);
+    expecteq(3, 3 + 3);
 
-    expectneq(10, 10);
+    expectneq(3 + 7, 50 / 5 + 6 * 0);
 
-    testing_unreachable;
+    expect(false);
   }
 }
 
