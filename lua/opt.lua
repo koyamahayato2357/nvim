@@ -18,6 +18,7 @@ o.incsearch = false
 o.laststatus = 0
 o.mouse = ""
 o.number = false
+o.paragraphs = ''
 o.path = ".,,,**"
 o.ruler = false
 o.scrolloff = 10
