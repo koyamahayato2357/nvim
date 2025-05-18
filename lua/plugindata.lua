@@ -159,7 +159,7 @@ return {
                     {
                         section = 'terminal',
                         cmd = 'cat ~/.config/nvim/data/dashboard-header.txt | tte beams',
-                        height = 7
+                        height = 20
                     },
                     {
                         pane = 2,
